@@ -111,6 +111,8 @@ public final class WWBGameService {
 			userData.setUsers( lstGrupo );
 			userData.setUserName( userName );
 			userData.setTeamName( usuario.getTeamname() );
+			userData.setAgencia( usuario.getAgencia() );
+			userData.setCiudad(usuario.getCiudad() );
 		}catch(Exception e) {
 			throw new Exception("Se ha presentado un error en el sistema por favor contactese con el administrador.");
 		}
