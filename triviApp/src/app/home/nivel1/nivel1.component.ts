@@ -41,6 +41,7 @@ export class Nivel1Component implements OnInit {
     this._customService.getPreguntas(nivel).subscribe(
       preguntas => {
         this.preguntas = preguntas;
+        console.log(preguntas);
         this.preguntaActiva = this.preguntas[this.numQuestion];
         this.countQuestion = this.preguntas.length;
         this.loader = false;

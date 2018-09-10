@@ -1,0 +1,79 @@
+.body {
+    background: url(../../../assets/img/banner1.jpg);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.header {
+    justify-content: space-between;
+    padding: 20px 30px;
+    align-items: center;
+}
+
+.item-integrante {
+    margin-right: 10px;
+    text-align: center;
+}
+
+.item-integrante h3 {
+    margin: 0px;
+    line-height: 10px;
+    font-size: 13px;
+    color: #fff;
+}
+
+.opciones {
+    color: #fff;
+    border: solid 2px;
+    padding: 5px 12px;
+}
+
+.opciones h4 {
+    margin: 0px;
+    border-right: solid 2px;
+    padding-right: 10px;
+    margin-right: 1px;
+    font-size: 14px;
+    line-height: 26px;
+}
+
+.opciones button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+img.persona {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+.introduccion, .preguntas {
+    position: absolute;
+    bottom: 240px;
+    width: 60%;
+    left: 340px;
+    background: #75AADB;
+    padding: 30px;
+    color: #fff;
+    border-radius: 20px;
+    text-align: justify;
+}
+
+.introduccion h2, .preguntas h2 {
+    font-size: 20px;
+}
+.preguntas h2{
+    font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;
+}
+.introduccion .btn, .preguntas .btn {
+    float: right;
+}
+.estado-nivel {
+    position: absolute;
+    bottom: 20px;
+    right: 50px;
+}
