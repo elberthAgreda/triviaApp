@@ -10,21 +10,13 @@ export class HttpProxyService {
   }
 
   /** @description Metodo que permite Obtener datos por GET con parametros */
-  public getByQuery<T>( service:string, queryParam:string ) : Observable<T>{
-    const params = new HttpParams({
-      fromString: queryParam
-    });
-    return this.http.get<T>(this.url + service, {params});
+  public getByQuery<T>( queryParam:string ) : Observable<T>{
+    return this.http.get<T>(this.url + queryParam);
   }
 
   /** @description Metodo que permite Obtener datos por POST */
   public post<T>(service:string, request ) : Observable<T>{
     return this.http.post<T>( this.url + service, request, this.getHeaders() );
-  }
-
-  /** @description Metodo que permite Obtener datos por PUT */
-  public put<T>(service:string, request ) : Observable<T>{    
-    return this.http.put<T>( this.url + service, request, this.getHeaders() );
   }
 
   /** @description Metodo que permite agregar cabeceras a la peticion */
