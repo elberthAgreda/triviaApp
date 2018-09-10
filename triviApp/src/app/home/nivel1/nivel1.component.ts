@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CustomSevice } from '../../shared/services/custom.service';
 
 @Component({
   selector: 'trivia-nivel',
@@ -7,7 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class Nivel1Component implements OnInit {
 
-  @Input() preguntas:any;
+  private preguntas:any;
+  private level:number;
   private preguntaActiva:any;
   private numQuestion:number;
   private optionAnswer:string;
@@ -15,8 +18,14 @@ export class Nivel1Component implements OnInit {
   private showIntroduction:boolean;
   private countAnswer:number;
   private countQuestion:number;
+  public loader:boolean;
 
-  constructor() {
+  constructor(  private _customService:CustomSevice,
+                private _nivel:ActivatedRoute,
+                private _router:Router )
+  {
+    this.loader = true;
+    this._nivel.params.subscribe(response => this.level = response['id']);
     this.numQuestion = 0;
     this.showIntroduction = true;
     this.showQuestion = false;
@@ -24,8 +33,19 @@ export class Nivel1Component implements OnInit {
   }
 
   ngOnInit() {
-    this.preguntaActiva = this.preguntas[this.numQuestion];
-    this.countQuestion = this.preguntas.length;
+    this.getPreguntas();
+  }
+
+  public getPreguntas():void{
+    var nivel = '?categories='+this.level;
+    this._customService.getPreguntas(nivel).subscribe(
+      preguntas => {
+        this.preguntas = preguntas;
+        this.preguntaActiva = this.preguntas[this.numQuestion];
+        this.countQuestion = this.preguntas.length;
+        this.loader = false;
+      }
+    );
   }
 
   private showQuestions():void{
@@ -57,8 +77,9 @@ export class Nivel1Component implements OnInit {
     this.preguntaActiva = [];
     //var tmpResult = Math.round(this.countAnswer / this.countQuestion);
     //console.log(tmpResult);
-    if(this.countAnswer >= 2){
+    if(this.countAnswer >= 1){
       alert("Gano el nivel");
+      this.navigate('./home/video');
     }
     else{
       alert("Perdiste tonto");
@@ -69,6 +90,10 @@ export class Nivel1Component implements OnInit {
   private showIntoductions():void{
     this.showIntroduction = true;
     this.showQuestion = false;
+  }
+
+  private navigate(path:string):void{
+    this._router.navigate([path]);
   }
 
 }

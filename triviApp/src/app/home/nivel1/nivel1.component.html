@@ -1,28 +1,30 @@
-<div *ngIf="showIntroduction">
-  <h2>{{preguntaActiva.post_meta_fields.introducion}}</h2>
-  <button (click)="showQuestions();">Siguiente</button>
-</div>
-<div *ngIf="showQuestion">
-  <p>{{preguntaActiva.post_meta_fields.pregunta}}</p>
-  <div>
-    <ul>
-      <li>
-        <input type="radio" name="optionAnswer" [(ngModel)]="optionAnswer" value="{{preguntaActiva.post_meta_fields.alternativas_0_opcion}}">        {{preguntaActiva.post_meta_fields.alternativas_0_opcion}}.
-        {{preguntaActiva.post_meta_fields.alternativas_0_texto}}
-      </li>
-      <li>
-        <input type="radio" name="optionAnswer" [(ngModel)]="optionAnswer" value="{{preguntaActiva.post_meta_fields.alternativas_1_opcion}}">        {{preguntaActiva.post_meta_fields.alternativas_1_opcion}}.
-        {{preguntaActiva.post_meta_fields.alternativas_1_texto}}
-      </li>
-      <li *ngIf="preguntaActiva.post_meta_fields.alternativas_2_opcion != null">
-        <input type="radio" name="optionAnswer" [(ngModel)]="optionAnswer" value="{{preguntaActiva.post_meta_fields.alternativas_2_opcion}}">        {{preguntaActiva.post_meta_fields.alternativas_2_opcion}}.
-        {{preguntaActiva.post_meta_fields.alternativas_2_texto}}
-      </li>
-      <li *ngIf="preguntaActiva.post_meta_fields.alternativas_3_opcion != null">
-        <input type="radio" name="optionAnswer" [(ngModel)]="optionAnswer" value="{{preguntaActiva.post_meta_fields.alternativas_3_opcion}}">        {{preguntaActiva.post_meta_fields.alternativas_3_opcion}}.
-        {{preguntaActiva.post_meta_fields.alternativas_3_texto}}
-      </li>
-    </ul>
+<div *ngIf="!loader">
+  <div *ngIf="showIntroduction">
+    <h2>{{preguntaActiva.post_meta_fields.introducion}}</h2>
+    <button (click)="showQuestions();">Siguiente</button>
   </div>
-  <button (click)="nextQuestion();">Responder</button>
+  <div *ngIf="showQuestion">
+    <p>{{preguntaActiva.post_meta_fields.pregunta}}</p>
+    <div>
+      <ul>
+        <li>
+          <input type="radio" name="optionAnswer" [(ngModel)]="optionAnswer" value="{{preguntaActiva.post_meta_fields.alternativas_0_opcion}}">        {{preguntaActiva.post_meta_fields.alternativas_0_opcion}}.
+          {{preguntaActiva.post_meta_fields.alternativas_0_texto}}
+        </li>
+        <li>
+          <input type="radio" name="optionAnswer" [(ngModel)]="optionAnswer" value="{{preguntaActiva.post_meta_fields.alternativas_1_opcion}}">        {{preguntaActiva.post_meta_fields.alternativas_1_opcion}}.
+          {{preguntaActiva.post_meta_fields.alternativas_1_texto}}
+        </li>
+        <li *ngIf="preguntaActiva.post_meta_fields.alternativas_2_opcion != null">
+          <input type="radio" name="optionAnswer" [(ngModel)]="optionAnswer" value="{{preguntaActiva.post_meta_fields.alternativas_2_opcion}}">        {{preguntaActiva.post_meta_fields.alternativas_2_opcion}}.
+          {{preguntaActiva.post_meta_fields.alternativas_2_texto}}
+        </li>
+        <li *ngIf="preguntaActiva.post_meta_fields.alternativas_3_opcion != null">
+          <input type="radio" name="optionAnswer" [(ngModel)]="optionAnswer" value="{{preguntaActiva.post_meta_fields.alternativas_3_opcion}}">        {{preguntaActiva.post_meta_fields.alternativas_3_opcion}}.
+          {{preguntaActiva.post_meta_fields.alternativas_3_texto}}
+        </li>
+      </ul>
+    </div>
+    <button (click)="nextQuestion();">Responder</button>
+  </div>
 </div>

@@ -6,6 +6,7 @@ import { HomeRouting } from './home.routing';
 // Components
 import { HomeComponent } from './home.component';
 import { Nivel1Component } from './nivel1/nivel1.component';
+import { VideoComponent } from './video/video.component';
 // Service
 import { CustomSevice } from '../shared/services/custom.service';
 
@@ -18,6 +19,7 @@ import { CustomSevice } from '../shared/services/custom.service';
     declarations: [
         HomeComponent,
         Nivel1Component,
+        VideoComponent,
     ],
     providers: [
         //AdministradorGuard,
