@@ -1,5 +1,6 @@
 import { NgModule }             from '@angular/core';
 import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 // Routing
 import { HomeRouting } from './home.routing';
 // Components
@@ -11,7 +12,8 @@ import { CustomSevice } from '../shared/services/custom.service';
 @NgModule({
     imports: [
         CommonModule,
-        HomeRouting
+        HomeRouting,
+        FormsModule
     ],
     declarations: [
         HomeComponent,
