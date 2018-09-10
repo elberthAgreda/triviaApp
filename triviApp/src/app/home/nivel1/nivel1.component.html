@@ -1,3 +1,17 @@
-<p>
-  nivel1 works!
-</p>
+<div>
+  <h2>{{preguntaActiva.post_meta_fields.introducion}}</h2>
+  <button (click)="showQuestion();">Siguiente</button>
+</div>
+
+<div>
+  <p>{{preguntaActiva.post_meta_fields.pregunta}}</p>
+</div>
+<div>
+  <ul>
+    <li>{{preguntaActiva.post_meta_fields.alternativas_0_opcion}}. {{preguntaActiva.post_meta_fields.alternativas_0_texto}}</li>
+    <li>{{preguntaActiva.post_meta_fields.alternativas_1_opcion}}. {{preguntaActiva.post_meta_fields.alternativas_1_texto}}</li>
+    <li>{{preguntaActiva.post_meta_fields.alternativas_2_opcion}}. {{preguntaActiva.post_meta_fields.alternativas_2_texto}}</li>
+    <li>{{preguntaActiva.post_meta_fields.alternativas_3_opcion}}. {{preguntaActiva.post_meta_fields.alternativas_3_texto}}</li>
+  </ul>
+</div>
+<button (click)="nextQuestion();">Responder</button>
