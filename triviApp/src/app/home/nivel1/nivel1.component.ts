@@ -10,15 +10,22 @@ import { CustomSevice } from '../../shared/services/custom.service';
 export class Nivel1Component implements OnInit {
 
   private preguntas:any;
+  private integrantes:any;
   private level:number;
   private preguntaActiva:any;
   private numQuestion:number;
   private optionAnswer:string;
   private showQuestion:boolean;
+  private showAnswer:boolean;
   private showIntroduction:boolean;
   private countAnswer:number;
   private countQuestion:number;
   public loader:boolean;
+  /* Custom */
+  public ruta:string = "../../../assets/img/";
+  public imgRespuesta:string;
+  public numIntegrante:number;
+  public integranteActivo:string;
 
   constructor(  private _customService:CustomSevice,
                 private _nivel:ActivatedRoute,
@@ -29,10 +36,13 @@ export class Nivel1Component implements OnInit {
     this.numQuestion = 0;
     this.showIntroduction = true;
     this.showQuestion = false;
+    this.showAnswer = false;
     this.countAnswer = 0;
+    this.numIntegrante = 0;
   }
 
   ngOnInit() {
+    this.getIntegrantes();
     this.getPreguntas();
   }
 
@@ -49,27 +59,45 @@ export class Nivel1Component implements OnInit {
     );
   }
 
+  public getIntegrantes():void{
+    this.integrantes = {integrante:[]};
+    this.integrantes.integrante.push({"nombre":"Elberth","image":this.ruta+"bien.png"});
+    this.integrantes.integrante.push({"nombre":"Jairo","image":this.ruta+"bien.png"});
+    this.integrantes.integrante.push({"nombre":"Carlos","image":this.ruta+"bien.png"});
+    this.integrantes.integrante.push({"nombre":"Lucia","image":this.ruta+"bien.png"});
+    this.integrantes.integrante.push({"nombre":"Ana","image":this.ruta+"bien.png"});
+  }
+
   private showQuestions():void{
     this.showIntroduction = false;
     this.showQuestion = true;
   }
 
   private nextQuestion():void{
-    // Validar si la respuesta es correcta
+    // Reestablece el numIntegrante a 0 si ya todos los participantes respondieron
+    if(this.numIntegrante === 4)
+      this.numIntegrante = 0;
+    // Valida si la respuesta es correcta
     if(this.preguntaActiva.post_meta_fields.respuesta_correcta == this.optionAnswer){
       this.countAnswer = this.countAnswer + 1;
-      alert("Respuesta Correcta");
+      // Cambia icono si la respuesta es correcta
+      this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"bien2.png";
+      this.imgRespuesta = this.ruta+"correcto.png";
     }
     else{
-      alert("Respuesta Incorrecta");
+      this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"error2.png";
+      this.imgRespuesta = this.ruta+"error.png";
     }
+    // Muestra el integrante que debe responder
+    this.integranteActivo = this.integrantes['integrante'][this.numIntegrante+1]['nombre'];
+    this.numIntegrante = this.numIntegrante + 1;
     // Pasar a la siguiente pregunta
     this.numQuestion = this.numQuestion + 1;
     if(this.preguntas[this.numQuestion] == undefined || this.preguntas[this.numQuestion] == null){
       this.finishLevel();
     }else{
       this.preguntaActiva = this.preguntas[this.numQuestion];
-      this.showIntoductions();
+      this.showAnswer = true;
     }
   }
 
@@ -79,8 +107,7 @@ export class Nivel1Component implements OnInit {
     //var tmpResult = Math.round(this.countAnswer / this.countQuestion);
     //console.log(tmpResult);
     if(this.countAnswer >= 1){
-      alert("Gano el nivel");
-      this.navigate('./home/video');
+      //this.navigate('./home/video');
     }
     else{
       alert("Perdiste tonto");
@@ -90,6 +117,7 @@ export class Nivel1Component implements OnInit {
 
   private showIntoductions():void{
     this.showIntroduction = true;
+    this.showAnswer = false;
     this.showQuestion = false;
   }
 

@@ -50,8 +50,12 @@ img.persona {
     bottom: 0px;
     left: 0px;
 }
+.item-integrante img {
+    width: 26px;
+    height: 26px;
+}
 
-.introduccion, .preguntas {
+.introduccion, .preguntas, .respuesta {
     position: absolute;
     bottom: 240px;
     width: 60%;
@@ -62,7 +66,9 @@ img.persona {
     border-radius: 20px;
     text-align: justify;
 }
-
+.respuesta{
+    text-align: center;
+}
 .introduccion h2, .preguntas h2 {
     font-size: 20px;
 }

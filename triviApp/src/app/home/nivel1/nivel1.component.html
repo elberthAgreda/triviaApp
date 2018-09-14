@@ -2,25 +2,9 @@
   <div class="flex header">
     <img src="../../../assets/img/logo.png">
     <div class="flex integrantes">
-      <div class="item-integrante">
-        <img src="../../../assets/img/bien.png">
-        <h3>Jairo</h3>
-      </div>
-      <div class="item-integrante">
-        <img src="../../../assets/img/bien.png">
-        <h3>Jairo</h3>
-      </div>
-      <div class="item-integrante">
-        <img src="../../../assets/img/bien.png">
-        <h3>Jairo</h3>
-      </div>
-      <div class="item-integrante">
-        <img src="../../../assets/img/bien.png">
-        <h3>Jairo</h3>
-      </div>
-      <div class="item-integrante">
-        <img src="../../../assets/img/bien.png">
-        <h3>Jairo</h3>
+      <div *ngFor="let integrante of integrantes.integrante" class="item-integrante">
+        <img [src]="integrante.image">
+        <h3>{{integrante.nombre}}</h3>
       </div>
       <div class="flex opciones">
         <h4>Bienvenido: <b>Grupo Jairos</b></h4>
@@ -63,6 +47,14 @@
       </div>
       <a (click)="showIntoductions();">Leer nuevamente el texto</a>
       <button class="btn" (click)="nextQuestion();">Responder</button>
+    </div>
+
+    <div *ngIf="showAnswer" class="respuesta">
+      <img [src]="imgRespuesta">
+      <div class="flex">
+        <button class="btn" (click)="showIntoductions();">Siguiente</button>
+        <p>Continúa el usuario: {{integranteActivo}}</p>
+      </div>
     </div>
 
     <img class="persona" src="../../../assets/img/persona1.png">
