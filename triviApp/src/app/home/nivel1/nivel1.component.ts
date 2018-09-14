@@ -26,7 +26,8 @@ export class Nivel1Component implements OnInit {
   public imgRespuesta:string;
   public numIntegrante:number;
   public integranteActivo:string;
-
+  public numRonda:number;
+  public firstRonda:boolean;
   constructor(  private _customService:CustomSevice,
                 private _nivel:ActivatedRoute,
                 private _router:Router )
@@ -39,6 +40,8 @@ export class Nivel1Component implements OnInit {
     this.showAnswer = false;
     this.countAnswer = 0;
     this.numIntegrante = 0;
+    this.numRonda = 0;
+    this.firstRonda = true;
   }
 
   ngOnInit() {
@@ -75,7 +78,7 @@ export class Nivel1Component implements OnInit {
 
   private nextQuestion():void{
     // Reestablece el numIntegrante a 0 si ya todos los participantes respondieron
-    if(this.numIntegrante === 4)
+    if(this.numIntegrante === 5)
       this.numIntegrante = 0;
     // Valida si la respuesta es correcta
     if(this.preguntaActiva.post_meta_fields.respuesta_correcta == this.optionAnswer){
@@ -89,9 +92,16 @@ export class Nivel1Component implements OnInit {
       this.imgRespuesta = this.ruta+"error.png";
     }
     // Muestra el integrante que debe responder
-    this.integranteActivo = this.integrantes['integrante'][this.numIntegrante+1]['nombre'];
-    this.numIntegrante = this.numIntegrante + 1;
+    if(this.numRonda === 0 && this.firstRonda === true)
+      this.integranteActivo = this.integrantes['integrante'][1]['nombre'];
+    if(this.numRonda >= 0 && this.firstRonda === false && this.numRonda <= 3)
+      this.integranteActivo = this.integrantes['integrante'][this.numIntegrante+1]['nombre'];
+    if(this.numRonda >= 4){
+      this.integranteActivo = this.integrantes['integrante'][0]['nombre'];
+      this.numRonda = 0;
+    }
     // Pasar a la siguiente pregunta
+    this.numIntegrante = this.numIntegrante + 1;
     this.numQuestion = this.numQuestion + 1;
     if(this.preguntas[this.numQuestion] == undefined || this.preguntas[this.numQuestion] == null){
       this.finishLevel();
@@ -100,6 +110,8 @@ export class Nivel1Component implements OnInit {
       this.showQuestion = false;
       this.showAnswer = true;
     }
+    this.numRonda = this.numRonda + 1;
+    this.firstRonda = false;
   }
 
   private finishLevel():void{
@@ -108,7 +120,7 @@ export class Nivel1Component implements OnInit {
     this.preguntaActiva = [];
     //var tmpResult = Math.round(this.countAnswer / this.countQuestion);
     //console.log(tmpResult);
-    if(this.countAnswer >= 1){
+    if(this.countAnswer >= 30){
       //this.navigate('./home/video');
     }
     else{
@@ -125,6 +137,29 @@ export class Nivel1Component implements OnInit {
 
   private navigate(path:string):void{
     this._router.navigate([path]);
+  }
+
+  private customOptions(nivel:number):void{
+    var path:string;
+    switch (nivel) {
+      case 1:
+        path = "...";
+        break;
+      case 2:
+        path = "...";
+        break;
+      case 3:
+        path = "...";
+        break;
+      case 4:
+        path = "...";
+        break;
+      case 5:
+        path = "...";
+        break;
+      default:
+        break;
+    }
   }
 
 }
