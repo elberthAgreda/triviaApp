@@ -69,6 +69,9 @@ img.persona {
 .respuesta{
     text-align: center;
 }
+.respuesta p{
+    margin-left: 20px;
+}
 .introduccion h2, .preguntas h2 {
     font-size: 20px;
 }

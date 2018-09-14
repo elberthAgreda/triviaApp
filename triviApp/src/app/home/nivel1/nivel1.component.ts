@@ -97,12 +97,14 @@ export class Nivel1Component implements OnInit {
       this.finishLevel();
     }else{
       this.preguntaActiva = this.preguntas[this.numQuestion];
+      this.showQuestion = false;
       this.showAnswer = true;
     }
   }
 
   private finishLevel():void{
     this.showQuestion = false;
+    this.showAnswer = true;
     this.preguntaActiva = [];
     //var tmpResult = Math.round(this.countAnswer / this.countQuestion);
     //console.log(tmpResult);
