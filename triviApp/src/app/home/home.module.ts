@@ -9,6 +9,7 @@ import { Nivel1Component } from './nivel1/nivel1.component';
 import { VideoComponent } from './video/video.component';
 // Service
 import { CustomSevice } from '../shared/services/custom.service';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ import { CustomSevice } from '../shared/services/custom.service';
         HomeComponent,
         Nivel1Component,
         VideoComponent,
+        ErrorComponent,
     ],
     providers: [
         //AdministradorGuard,

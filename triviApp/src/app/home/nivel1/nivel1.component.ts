@@ -50,7 +50,7 @@ export class Nivel1Component implements OnInit {
   }
 
   public getPreguntas():void{
-    var nivel = '?categories='+this.level;
+    var nivel = '?categories='+this.level+'&per_page=60';
     this._customService.getPreguntas(nivel).subscribe(
       preguntas => {
         this.preguntas = preguntas;
@@ -78,8 +78,10 @@ export class Nivel1Component implements OnInit {
 
   private nextQuestion():void{
     // Reestablece el numIntegrante a 0 si ya todos los participantes respondieron
-    if(this.numIntegrante === 5)
+    if(this.numIntegrante === 5){
       this.numIntegrante = 0;
+      this.numRonda = 0;
+    }
     // Valida si la respuesta es correcta
     if(this.preguntaActiva.post_meta_fields.respuesta_correcta == this.optionAnswer){
       this.countAnswer = this.countAnswer + 1;
@@ -92,14 +94,16 @@ export class Nivel1Component implements OnInit {
       this.imgRespuesta = this.ruta+"error.png";
     }
     // Muestra el integrante que debe responder
-    if(this.numRonda === 0 && this.firstRonda === true)
+    if(this.numRonda === 0 && this.firstRonda)
       this.integranteActivo = this.integrantes['integrante'][1]['nombre'];
-    if(this.numRonda >= 0 && this.firstRonda === false && this.numRonda <= 3)
-      this.integranteActivo = this.integrantes['integrante'][this.numIntegrante+1]['nombre'];
-    if(this.numRonda >= 4){
-      this.integranteActivo = this.integrantes['integrante'][0]['nombre'];
-      this.numRonda = 0;
+
+    if(this.numRonda >= 0 && !this.firstRonda && this.numRonda <= 4){
+      if(this.numIntegrante >= 4 )
+        this.integranteActivo = this.integrantes['integrante'][0]['nombre'];
+      else
+        this.integranteActivo = this.integrantes['integrante'][this.numIntegrante+1]['nombre'];
     }
+
     // Pasar a la siguiente pregunta
     this.numIntegrante = this.numIntegrante + 1;
     this.numQuestion = this.numQuestion + 1;
@@ -121,10 +125,10 @@ export class Nivel1Component implements OnInit {
     //var tmpResult = Math.round(this.countAnswer / this.countQuestion);
     //console.log(tmpResult);
     if(this.countAnswer >= 30){
-      //this.navigate('./home/video');
+      this.navigate('./home/video/2');
     }
     else{
-      alert("Perdiste tonto");
+      this.navigate('./home/error');
     }
     alert("numero de respuestas correctas: "+this.countAnswer + " de "+this.countQuestion);
   }
