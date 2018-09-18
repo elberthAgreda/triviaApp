@@ -102,6 +102,16 @@ img.persona {
     cursor: pointer;
     font-weight: bold;
 }
+.error-pregunta h3{
+    font-size: 1.4rem;
+    margin: 0px;
+}
+.error-pregunta ul{
+    height: 70px;
+    margin: 0px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
 .introduccion .btn, .preguntas .btn {
     float: right;
 }

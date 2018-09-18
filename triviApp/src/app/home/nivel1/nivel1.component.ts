@@ -22,6 +22,8 @@ export class Nivel1Component implements OnInit {
   private countQuestion:number;
   public loader:boolean;
   /* Custom */
+  public questionError:any[];
+  public errorNivel:boolean;
   public ruta:string = "../../../assets/img/";
   public imgRespuesta:string;
   public numIntegrante:number;
@@ -34,6 +36,7 @@ export class Nivel1Component implements OnInit {
   {
     this.loader = true;
     this._nivel.params.subscribe(response => this.level = response['id']);
+    this.errorNivel = false;
     this.numQuestion = 0;
     this.showIntroduction = true;
     this.showQuestion = false;
@@ -42,6 +45,7 @@ export class Nivel1Component implements OnInit {
     this.numIntegrante = 0;
     this.numRonda = 0;
     this.firstRonda = true;
+    this.questionError = [];
   }
 
   ngOnInit() {
@@ -50,7 +54,7 @@ export class Nivel1Component implements OnInit {
   }
 
   public getPreguntas():void{
-    var nivel = '?categories='+this.level+'&per_page=60';
+    var nivel = '?categories='+this.level+'&per_page=2';
     this._customService.getPreguntas(nivel).subscribe(
       preguntas => {
         this.preguntas = preguntas;
@@ -90,6 +94,7 @@ export class Nivel1Component implements OnInit {
       this.imgRespuesta = this.ruta+"correcto.png";
     }
     else{
+      this.questionError.push(this.preguntaActiva.post_meta_fields.pregunta);
       this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"error2.png";
       this.imgRespuesta = this.ruta+"error.png";
     }
@@ -128,9 +133,9 @@ export class Nivel1Component implements OnInit {
       this.navigate('./home/video/2');
     }
     else{
-      this.navigate('./home/error');
+      this.errorNivel = true;
+      this.showAnswer = false;
     }
-    alert("numero de respuestas correctas: "+this.countAnswer + " de "+this.countQuestion);
   }
 
   private showIntoductions():void{
