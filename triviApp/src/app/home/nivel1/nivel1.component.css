@@ -1,7 +1,7 @@
 .body {
     background: url(../../../assets/img/banner1.jpg);
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
 }
 
@@ -27,6 +27,7 @@
     color: #fff;
     border: solid 2px;
     padding: 5px 12px;
+    margin-left: 15px;
 }
 
 .opciones h4 {
@@ -49,39 +50,54 @@ img.persona {
     position: absolute;
     bottom: 0px;
     left: 0px;
+    max-width: 360px;
 }
 .item-integrante img {
     width: 26px;
     height: 26px;
 }
-
+.integrantes > h4{
+    margin: 0px;
+    text-align: center;
+    margin-right: 20px;
+    color: #fff;
+    font-size: 19px;
+}
+.integrantes > h4 span{
+    display: block;
+}
 .introduccion, .preguntas, .respuesta {
     position: absolute;
-    bottom: 240px;
-    width: 60%;
-    left: 340px;
-    background: #75AADB;
-    padding: 30px;
+    bottom: 220px;
+    width: 470px;
+    left: 440px;
+    background: #36a9e1;
+    padding: 15px 30px;
     color: #fff;
     border-radius: 20px;
     text-align: justify;
 }
 .respuesta{
-    text-align: center;
+    text-align: left;
+    background: transparent;
 }
 .respuesta p{
     margin-left: 20px;
 }
 .introduccion h2, .preguntas h2 {
-    font-size: 20px;
+    font-size: 17px;
+    font-weight: 100;
 }
 .preguntas h2{
     font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1.3rem;
 }
 .preguntas a{
     color: #ffe924;
     font-size: 16px;
     cursor: pointer;
+    font-weight: bold;
 }
 .introduccion .btn, .preguntas .btn {
     float: right;

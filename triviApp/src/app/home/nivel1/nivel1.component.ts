@@ -137,6 +137,7 @@ export class Nivel1Component implements OnInit {
     this.showIntroduction = true;
     this.showAnswer = false;
     this.showQuestion = false;
+    this.optionAnswer = null;
   }
 
   private navigate(path:string):void{

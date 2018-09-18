@@ -2,6 +2,10 @@
   <div class="flex header">
     <img src="../../../assets/img/logo.png">
     <div class="flex integrantes">
+      <h4>
+        <span>SCORE:</span>
+        {{countAnswer+1}}/{{countQuestion}}
+      </h4>
       <div *ngFor="let integrante of integrantes.integrante" class="item-integrante">
         <img [src]="integrante.image">
         <h3>{{integrante.nombre}}</h3>
@@ -43,6 +47,18 @@
         <input id="radio-3" type="radio" name="optionAnswer" [(ngModel)]="optionAnswer" value="{{preguntaActiva.post_meta_fields.alternativas_3_opcion}}">
         <label for="radio-3" class="radio-label">
           {{preguntaActiva.post_meta_fields.alternativas_3_opcion}}) {{preguntaActiva.post_meta_fields.alternativas_3_texto}}
+        </label>
+      </div>
+      <div *ngIf="preguntaActiva.post_meta_fields.alternativas_4_opcion != null" class="radio">
+        <input id="radio-4" type="radio" name="optionAnswer" [(ngModel)]="optionAnswer" value="{{preguntaActiva.post_meta_fields.alternativas_4_opcion}}">
+        <label for="radio-4" class="radio-label">
+          {{preguntaActiva.post_meta_fields.alternativas_4_opcion}}) {{preguntaActiva.post_meta_fields.alternativas_4_texto}}
+        </label>
+      </div>
+      <div *ngIf="preguntaActiva.post_meta_fields.alternativas_5_opcion != null" class="radio">
+        <input id="radio-5" type="radio" name="optionAnswer" [(ngModel)]="optionAnswer" value="{{preguntaActiva.post_meta_fields.alternativas_5_opcion}}">
+        <label for="radio-5" class="radio-label">
+          {{preguntaActiva.post_meta_fields.alternativas_5_opcion}}) {{preguntaActiva.post_meta_fields.alternativas_5_texto}}
         </label>
       </div>
       <a (click)="showIntoductions();">Leer nuevamente el texto</a>

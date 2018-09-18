@@ -15,6 +15,9 @@ b, h1{
 }
 body{
     position: relative;
+    max-width: 1360px;
+    margin: 0px auto;
+    height: 100vh;
 }
 .flex{
     display: flex;
@@ -34,7 +37,7 @@ button{
     border-radius: 24px;
     background: transparent;
     border: solid 2px;
-    padding: 8px 34px;
+    padding: 7px 19px;
     text-decoration: none;
     font-family: MyriadPro-Bold;
     letter-spacing: 1px;
@@ -62,23 +65,23 @@ button{
     border-radius: 100%;
     border: 1px solid #b4b4b4;
     display: inline-block;
-    width: 1.4em;
-    height: 1.4em;
+    width: 1em;
+    height: 1em;
     position: relative;
-    top: -0.2em;
-    margin-right: 1em;
+    top: 0em;
+    margin-right: 2px;
     vertical-align: top;
     cursor: pointer;
     text-align: center;
     transition: all 250ms ease;
   }
   .radio input[type="radio"]:checked + .radio-label:before {
-    background-color: #3197EE;
+    background-color: #6b6c6d;
     box-shadow: inset 0 0 0 4px #f4f4f4;
   }
   .radio input[type="radio"]:focus + .radio-label:before {
     outline: none;
-    border-color: #3197EE;
+    border-color: #6b6c6d;
   }
   .radio input[type="radio"] + .radio-label:empty:before {
     margin-right: 0;
