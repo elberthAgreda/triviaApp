@@ -54,7 +54,7 @@ export class Nivel1Component implements OnInit {
   }
 
   public getPreguntas():void{
-    var nivel = '?categories='+this.level+'&per_page=60';
+    var nivel = '?categories='+this.level+'&per_page=2';
     this._customService.getPreguntas(nivel).subscribe(
       preguntas => {
         this.preguntas = preguntas;
@@ -94,7 +94,7 @@ export class Nivel1Component implements OnInit {
       this.imgRespuesta = this.ruta+"correcto.png";
     }
     else{
-      this.questionError.push(this.preguntaActiva.post_meta_fields.pregunta);
+      this.questionError.push(this.preguntaActiva.post_meta_fields);
       this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"error2.png";
       this.imgRespuesta = this.ruta+"error.png";
     }

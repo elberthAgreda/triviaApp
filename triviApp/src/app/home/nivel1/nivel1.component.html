@@ -3,7 +3,7 @@
     <img src="../../../assets/img/logo.png">
     <div class="flex integrantes">
       <h4>
-        <span>PREGUNTA #:</span>
+        <span>PREGUNTA #</span>
         {{countAnswer+1}}/{{countQuestion}}
       </h4>
       <div *ngFor="let integrante of integrantes.integrante" class="item-integrante">
@@ -78,7 +78,10 @@
       <h3>Lo sentimos, tu grupo<br>no ha logrado pasar de nivel - Correctas: {{countAnswer}} de {{countQuestion}} </h3>
       <p>Vemos que han tenido dificultades en las siguientes preguntas:</p>
       <ul>
-        <li *ngFor="let error of questionError">{{error}}</li>
+        <li *ngFor="let error of questionError">
+          <span>{{error.introducion}}</span>
+          {{error.pregunta}}
+        </li>
       </ul>
     </div>
 
