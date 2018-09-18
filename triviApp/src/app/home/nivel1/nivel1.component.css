@@ -50,7 +50,7 @@ img.persona {
     position: absolute;
     bottom: 0px;
     left: 0px;
-    max-width: 360px;
+    max-width: 479px;
 }
 .item-integrante img {
     width: 26px;
@@ -68,8 +68,9 @@ img.persona {
 }
 .introduccion, .preguntas, .respuesta {
     position: absolute;
-    bottom: 220px;
-    width: 470px;
+    bottom: 250px;
+    width: 60%;
+    max-width: 700px;
     left: 440px;
     background: #36a9e1;
     padding: 15px 30px;
