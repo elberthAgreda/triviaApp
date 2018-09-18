@@ -54,7 +54,7 @@ export class Nivel1Component implements OnInit {
   }
 
   public getPreguntas():void{
-    var nivel = '?categories='+this.level+'&per_page=2';
+    var nivel = '?categories='+this.level+'&per_page=60';
     this._customService.getPreguntas(nivel).subscribe(
       preguntas => {
         this.preguntas = preguntas;
