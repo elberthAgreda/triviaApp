@@ -4,7 +4,7 @@
     <div class="flex integrantes">
       <h4>
         <span>PREGUNTA #</span>
-        {{countAnswer+1}}/{{countQuestion}}
+        {{countQuestionActive}}/{{countQuestion}}
       </h4>
       <div *ngFor="let integrante of integrantes.integrante" class="item-integrante">
         <img [src]="integrante.image">

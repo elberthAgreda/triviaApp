@@ -30,6 +30,7 @@ export class Nivel1Component implements OnInit {
   public integranteActivo:string;
   public numRonda:number;
   public firstRonda:boolean;
+  public countQuestionActive:number;
   constructor(  private _customService:CustomSevice,
                 private _nivel:ActivatedRoute,
                 private _router:Router )
@@ -45,6 +46,7 @@ export class Nivel1Component implements OnInit {
     this.numIntegrante = 0;
     this.numRonda = 0;
     this.firstRonda = true;
+    this.countQuestionActive = 1;
     this.questionError = [];
   }
 
@@ -81,6 +83,8 @@ export class Nivel1Component implements OnInit {
   }
 
   private nextQuestion():void{
+    // Contador de preguntas
+    this.countQuestionActive = this.countQuestionActive + 1;
     // Reestablece el numIntegrante a 0 si ya todos los participantes respondieron
     if(this.numIntegrante === 5){
       this.numIntegrante = 0;
@@ -112,6 +116,7 @@ export class Nivel1Component implements OnInit {
     // Pasar a la siguiente pregunta
     this.numIntegrante = this.numIntegrante + 1;
     this.numQuestion = this.numQuestion + 1;
+    // Validar si ya finalizo las preguntas
     if(this.preguntas[this.numQuestion] == undefined || this.preguntas[this.numQuestion] == null){
       this.finishLevel();
     }else{
@@ -119,6 +124,7 @@ export class Nivel1Component implements OnInit {
       this.showQuestion = false;
       this.showAnswer = true;
     }
+    // Contador para el numero de rondas
     this.numRonda = this.numRonda + 1;
     this.firstRonda = false;
   }
