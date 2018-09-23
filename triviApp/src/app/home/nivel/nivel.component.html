@@ -5,13 +5,7 @@
       <h4>
         <span>PREGUNTA #</span>
         {{countQuestionActive}}/{{countQuestion}}
-      </h4>
-      
-      <audio preload="auto" id="sonido">
-        <source src="" type="audio/mp3">
-        <source src="" type="audio/ogg">
-      </audio>
-      
+      </h4>      
       <div *ngFor="let integrante of integrantes.integrante" class="item-integrante">
         <img [src]="integrante.image">
         <h3>{{integrante.nombre}}</h3>

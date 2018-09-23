@@ -179,17 +179,10 @@ export class NivelComponent implements OnInit {
   }
 
   public soundGame():void{
-    //<![CDATA][
-      var audio;
-      function rep(audio){
-        audio = document.getElementById('sonido');
-        if(audio.paused == false){
-          audio.paused();
-        }else{
-          audio.play();
-        }
-      }
-    //]]>
+    var audio = new Audio();
+    audio.src = "http://cepi.do.grafos.tech/wp-content/themes/cepi/img/forest/sound/Forest.mp3";
+    audio.load();
+    audio.play();
   }
 
   private logout():void{
