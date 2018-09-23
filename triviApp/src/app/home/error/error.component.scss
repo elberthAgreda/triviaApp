@@ -1,11 +1,22 @@
 section.login{
     background: rgb(78,72,158);
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
+    padding: 20px 0px;
     width: 100vw;
-    overflow: hidden;
     background: rgb(48,160,219);
     background: linear-gradient(56deg, rgba(48,160,219,1) 0%, rgba(33,133,200,1) 50%, rgba(29,113,184,1) 100%);
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    p{
+        font-size: 1.5rem;
+        color: #fff;
+        font-weight: bold;
+    }
+    ul{
+        margin: 0px;
+        padding: 0px;
+        color: #fff;
+    }
 }
