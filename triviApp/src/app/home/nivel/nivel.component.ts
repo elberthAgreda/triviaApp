@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CustomSevice } from '../../shared/services/custom.service';
+import { LocalService } from '../../shared/services/local.service';
 
 @Component({
   selector: 'trivia-nivel',
-  templateUrl: './nivel1.component.html',
-  styleUrls: ['./nivel1.component.css']
+  templateUrl: './nivel.component.html',
+  styleUrls: ['./nivel.component.css']
 })
-export class Nivel1Component implements OnInit {
+export class NivelComponent implements OnInit {
 
   private preguntas:any;
   private integrantes:any;
@@ -33,6 +34,7 @@ export class Nivel1Component implements OnInit {
   public countQuestionActive:number;
   constructor(  private _customService:CustomSevice,
                 private _nivel:ActivatedRoute,
+                private _localService:LocalService,
                 private _router:Router )
   {
     this.loader = true;
@@ -53,6 +55,7 @@ export class Nivel1Component implements OnInit {
   ngOnInit() {
     this.getIntegrantes();
     this.getPreguntas();
+    this.soundGame();
   }
 
   public getPreguntas():void{
@@ -141,6 +144,7 @@ export class Nivel1Component implements OnInit {
     else{
       this.errorNivel = true;
       this.showAnswer = false;
+      this._localService.setQuestionError(this.questionError);
     }
   }
 
@@ -149,10 +153,6 @@ export class Nivel1Component implements OnInit {
     this.showAnswer = false;
     this.showQuestion = false;
     this.optionAnswer = null;
-  }
-
-  private navigate(path:string):void{
-    this._router.navigate([path]);
   }
 
   private customOptions(nivel:number):void{
@@ -176,6 +176,28 @@ export class Nivel1Component implements OnInit {
       default:
         break;
     }
+  }
+
+  public soundGame():void{
+    //<![CDATA][
+      var audio;
+      function rep(audio){
+        audio = document.getElementById('sonido');
+        if(audio.paused == false){
+          audio.paused();
+        }else{
+          audio.play();
+        }
+      }
+    //]]>
+  }
+
+  private logout():void{
+    this.navigate('./login');
+  }
+
+  private navigate(path:string):void{
+    this._router.navigate([path]);
   }
 
 }

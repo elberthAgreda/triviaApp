@@ -1,9 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./home.component";
-import { Nivel1Component } from "./nivel1/nivel1.component";
+import { NivelComponent } from "./nivel/nivel.component";
 import { VideoComponent } from "./video/video.component";
 import { ErrorComponent } from "./error/error.component";
+import { InicioComponent } from "./inicio/inicio.component";
 
 const adminRoutes: Routes = [
   {
@@ -11,8 +12,8 @@ const adminRoutes: Routes = [
     //canActivate: [AdministradorGuard],
     component: HomeComponent,
     children: [
-      { path: "", component: Nivel1Component },
-      { path: "nivel/:id", component: Nivel1Component },
+      { path: "inicio", component: InicioComponent },
+      { path: "nivel/:id", component: NivelComponent },
       { path: "video/:id", component: VideoComponent },
       { path: "error", component: ErrorComponent }
     ]

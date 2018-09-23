@@ -5,11 +5,12 @@ import { FormsModule } from "@angular/forms";
 import { HomeRouting } from './home.routing';
 // Components
 import { HomeComponent } from './home.component';
-import { Nivel1Component } from './nivel1/nivel1.component';
+import { NivelComponent } from './nivel/nivel.component';
 import { VideoComponent } from './video/video.component';
 // Service
 import { CustomSevice } from '../shared/services/custom.service';
 import { ErrorComponent } from './error/error.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 @NgModule({
     imports: [
@@ -19,9 +20,10 @@ import { ErrorComponent } from './error/error.component';
     ],
     declarations: [
         HomeComponent,
-        Nivel1Component,
+        NivelComponent,
         VideoComponent,
         ErrorComponent,
+        InicioComponent,
     ],
     providers: [
         //AdministradorGuard,

@@ -6,13 +6,19 @@
         <span>PREGUNTA #</span>
         {{countQuestionActive}}/{{countQuestion}}
       </h4>
+      
+      <audio preload="auto" id="sonido">
+        <source src="" type="audio/mp3">
+        <source src="" type="audio/ogg">
+      </audio>
+      
       <div *ngFor="let integrante of integrantes.integrante" class="item-integrante">
         <img [src]="integrante.image">
         <h3>{{integrante.nombre}}</h3>
       </div>
       <div class="flex opciones">
         <h4>Bienvenido: <b>Grupo Jairos</b></h4>
-        <button>Cerrar Sesión</button>
+        <button (click)="logout();" >Cerrar Sesión</button>
       </div>
     </div>
   </div>
@@ -76,13 +82,7 @@
     <div *ngIf="errorNivel" class="preguntas error-pregunta">
       <img [src]="ruta+'error2s.png'">
       <h3>Lo sentimos, tu grupo<br>no ha logrado pasar de nivel - Correctas: {{countAnswer}} de {{countQuestion}} </h3>
-      <p>Vemos que han tenido dificultades en las siguientes preguntas:</p>
-      <ul>
-        <li *ngFor="let error of questionError">
-          <span>{{error.introducion}}</span>
-          {{error.pregunta}}
-        </li>
-      </ul>
+      <button (click)="navigate('./home/error');" class="btn">Ver Resumen</button>
     </div>
 
     <img class="persona" src="../../../assets/img/persona1.png">

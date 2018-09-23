@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalService } from '../../shared/services/local.service';
 
 @Component({
   selector: 'app-error',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ErrorComponent implements OnInit {
 
-  constructor() { }
+  private errors:any;
+
+  constructor( private _localService:LocalService ) {
+    // this._localService.questionError.subscribe(
+    //   response => this.errors = response,
+    //   error => this.errors = null
+    // );
+  }
 
   ngOnInit() {
   }
