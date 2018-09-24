@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 // Routing
 import { AppRouting } from './app.routing';
 import { LocalService } from './shared/services/local.service';
+// Service
+import { CustomSevice } from './shared/services/custom.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { LocalService } from './shared/services/local.service';
     FormsModule,
     AppRouting
   ],
-  providers: [LocalService],
+  providers: [LocalService,CustomSevice],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
