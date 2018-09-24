@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Register } from '../shared/models/register.model';
 import { User } from '../shared/models/user.model';
+import { CustomSevice } from '../shared/services/custom.service';
 
 @Component({
   selector: 'app-registro',
@@ -16,7 +17,7 @@ export class RegistroComponent implements OnInit {
   private user4:User = new User();
   private user5:User = new User();
 
-  constructor() {
+  constructor( private _customService:CustomSevice ) {
   }
 
   ngOnInit() {
@@ -26,9 +27,19 @@ export class RegistroComponent implements OnInit {
     var tmpS = [];
     tmpS.push(this.user1);
     tmpS.push(this.user2);
-    
-    this.userRegister.$users = tmpS;
-    console.log(this.userRegister);
+    tmpS.push(this.user3);
+    tmpS.push(this.user4);
+    tmpS.push(this.user5);
+    //this.userRegister.$users = tmpS;
+    console.log(tmpS);
+    this._customService.register(this.userRegister).subscribe(
+      response => {
+        console.log(response);
+      }, error => {
+        console.log(error);
+      }
+    );
+
   }
 
 }
