@@ -1,7 +1,13 @@
 <section class="flex login">
   <img src="../../assets/img/logo.png">
+<<<<<<< Updated upstream
   <p>El grupo cuenta con errores en las siguientes preguntas:</p>
   <ul>
     <li *ngFor="let error of errors">{{ error.introducion }} - {{ error.pregunta }}</li>
+=======
+  <p>Errores:</p>
+  <ul *ngIf="error != null">
+    <li *ngFor="let error of errors">{{ error }}</li>
+>>>>>>> Stashed changes
   </ul>
 </section>
