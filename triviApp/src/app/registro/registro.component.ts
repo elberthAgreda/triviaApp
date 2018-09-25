@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Register } from '../shared/models/register.model';
 import { User } from '../shared/models/user.model';
-<<<<<<< Updated upstream
 import { CustomSevice } from '../shared/services/custom.service';
-=======
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-registro',
@@ -20,11 +17,7 @@ export class RegistroComponent implements OnInit {
   private user4:User = new User();
   private user5:User = new User();
 
-<<<<<<< Updated upstream
   constructor( private _customService:CustomSevice ) {
-=======
-  constructor() {
->>>>>>> Stashed changes
   }
 
   ngOnInit() {
@@ -34,7 +27,6 @@ export class RegistroComponent implements OnInit {
     var tmpS = [];
     tmpS.push(this.user1);
     tmpS.push(this.user2);
-<<<<<<< Updated upstream
     tmpS.push(this.user3);
     tmpS.push(this.user4);
     tmpS.push(this.user5);
@@ -48,11 +40,6 @@ export class RegistroComponent implements OnInit {
       }
     );
 
-=======
-    
-    this.userRegister.$users = tmpS;
-    console.log(this.userRegister);
->>>>>>> Stashed changes
   }
 
 }
