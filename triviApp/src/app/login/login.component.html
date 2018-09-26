@@ -1,8 +1,8 @@
 <section class="flex login">
   <img src="../../assets/img/logo.png">
-  <form class="flex">
-    <input type="text" placeholder="Usuario del grupo">
-    <input type="password" placeholder="Password">
-    <button type="submit">ACCEDER</button>
+  <form #loginForm="ngForm" (ngSubmit)="authentication()" class="flex">
+    <input [(ngModel)]="username" name="username" type="text" placeholder="Usuario del grupo" required>
+    <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required>
+    <button [disabled]="!loginForm.form.valid" type="submit">ACCEDER</button>
   </form>
 </section>
