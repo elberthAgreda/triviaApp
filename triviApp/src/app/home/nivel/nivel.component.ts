@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CustomSevice } from '../../shared/services/custom.service';
 import { LocalService } from '../../shared/services/local.service';
+import { Nivel } from '../../shared/models/nivel.model';
 
 @Component({
   selector: 'trivia-nivel',
@@ -10,32 +11,32 @@ import { LocalService } from '../../shared/services/local.service';
 })
 export class NivelComponent implements OnInit {
 
-  private preguntas:any;
-  private integrantes:any;
-  private level:number;
-  private preguntaActiva:any;
-  private numQuestion:number;
-  private optionAnswer:string;
-  private showQuestion:boolean;
-  private showAnswer:boolean;
-  private showIntroduction:boolean;
-  private countAnswer:number;
-  private countQuestion:number;
-  public loader:boolean;
+  preguntas:any;
+  integrantes:any;
+  level:number;
+  preguntaActiva:any;
+  numQuestion:number;
+  optionAnswer:string;
+  showQuestion:boolean;
+  showAnswer:boolean;
+  showIntroduction:boolean;
+  countAnswer:number;
+  countQuestion:number;
+  loader:boolean;
   /* Custom */
-  public questionError:any[];
-  public errorNivel:boolean;
-  public ruta:string = "../../../assets/img/";
-  public imgRespuesta:string;
-  public numIntegrante:number;
-  public integranteActivo:string;
-  public numRonda:number;
-  public firstRonda:boolean;
-  public countQuestionActive:number;
-  constructor(  private _customService:CustomSevice,
-                private _nivel:ActivatedRoute,
-                private _localService:LocalService,
-                private _router:Router )
+  questionError:any[];
+  errorNivel:boolean;
+  ruta:string = "../../../assets/img/";
+  imgRespuesta:string;
+  numIntegrante:number;
+  integranteActivo:string;
+  numRonda:number;
+  firstRonda:boolean;
+  countQuestionActive:number;
+  constructor(  public _customService:CustomSevice,
+                public _nivel:ActivatedRoute,
+                public _localService:LocalService,
+                public _router:Router )
   {
     this.loader = true;
     this._nivel.params.subscribe(response => this.level = response['id']);
@@ -58,8 +59,8 @@ export class NivelComponent implements OnInit {
     this.soundGame();
   }
 
-  public getPreguntas():void{
-    var nivel = '?categories='+this.level+'&per_page=60';
+  getPreguntas():void{
+    var nivel = '?categories='+this.level+'&per_page=3';
     this._customService.getPreguntas(nivel).subscribe(
       preguntas => {
         this.preguntas = preguntas;
@@ -71,7 +72,7 @@ export class NivelComponent implements OnInit {
     );
   }
 
-  public getIntegrantes():void{
+  getIntegrantes():void{
     this.integrantes = {integrante:[]};
     this.integrantes.integrante.push({"nombre":"Elberth","image":this.ruta+"bien.png"});
     this.integrantes.integrante.push({"nombre":"Jairo","image":this.ruta+"bien.png"});
@@ -80,12 +81,12 @@ export class NivelComponent implements OnInit {
     this.integrantes.integrante.push({"nombre":"Ana","image":this.ruta+"bien.png"});
   }
 
-  private showQuestions():void{
+  showQuestions():void{
     this.showIntroduction = false;
     this.showQuestion = true;
   }
 
-  private nextQuestion():void{
+  nextQuestion():void{
     // Contador de preguntas
     this.countQuestionActive = this.countQuestionActive + 1;
     // Reestablece el numIntegrante a 0 si ya todos los participantes respondieron
@@ -132,13 +133,13 @@ export class NivelComponent implements OnInit {
     this.firstRonda = false;
   }
 
-  private finishLevel():void{
+  finishLevel():void{
     this.showQuestion = false;
     this.showAnswer = true;
     this.preguntaActiva = [];
     //var tmpResult = Math.round(this.countAnswer / this.countQuestion);
     //console.log(tmpResult);
-    if(this.countAnswer >= 30){
+    if(this.countAnswer >= 1){
       this.navigate('./home/video/2');
     }
     else{
@@ -148,14 +149,14 @@ export class NivelComponent implements OnInit {
     }
   }
 
-  private showIntoductions():void{
+  showIntoductions():void{
     this.showIntroduction = true;
     this.showAnswer = false;
     this.showQuestion = false;
     this.optionAnswer = null;
   }
 
-  private customOptions(nivel:number):void{
+  customOptions(nivel:number):void{
     var path:string;
     switch (nivel) {
       case 1:
@@ -178,18 +179,21 @@ export class NivelComponent implements OnInit {
     }
   }
 
-  public soundGame():void{
+  soundGame():void{
     var audio = new Audio();
     audio.src = "http://cepi.do.grafos.tech/wp-content/themes/cepi/img/forest/sound/Forest.mp3";
     audio.load();
-    audio.play();
+    audio.loop = true;
+    setTimeout(function() {
+      audio.play();
+    }, 200);
   }
 
-  private logout():void{
+  logout():void{
     this.navigate('./login');
   }
 
-  private navigate(path:string):void{
+  navigate(path:string):void{
     this._router.navigate([path]);
   }
 

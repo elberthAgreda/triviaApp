@@ -10,28 +10,28 @@ import { CustomSevice } from '../shared/services/custom.service';
 })
 export class RegistroComponent implements OnInit {
 
-  private userRegister:Register = new Register();
-  private user1:User = new User();
-  private user2:User = new User();
-  private user3:User = new User();
-  private user4:User = new User();
-  private user5:User = new User();
+  userRegister:Register = new Register();
+  user1:User = new User();
+  user2:User = new User();
+  user3:User = new User();
+  user4:User = new User();
+  user5:User = new User();
 
-  constructor( private _customService:CustomSevice ) {
+  constructor( public _customService:CustomSevice ) {
   }
 
   ngOnInit() {
   }
 
-  private registerForm():void{
+  registerForm():void{
     var tmpS = [];
     tmpS.push(this.user1);
     tmpS.push(this.user2);
     tmpS.push(this.user3);
     tmpS.push(this.user4);
     tmpS.push(this.user5);
-    //this.userRegister.$users = tmpS;
-    console.log(tmpS);
+    this.userRegister.users = tmpS;
+    console.log(this.userRegister);
     this._customService.register(this.userRegister).subscribe(
       response => {
         console.log(response);
