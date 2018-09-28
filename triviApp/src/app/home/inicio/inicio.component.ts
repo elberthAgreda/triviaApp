@@ -9,9 +9,9 @@ import { LocalService } from '../../shared/services/local.service';
 })
 export class InicioComponent implements OnInit {
 
-  private level:number;
+  level:number;
   
-  constructor( private _router:Router, private _localService:LocalService ) {
+  constructor( public _router:Router, public _localService:LocalService ) {
     this._localService.responseModel.subscribe(
       response => console.log(response)
     );
@@ -21,11 +21,11 @@ export class InicioComponent implements OnInit {
   ngOnInit() {
   }
 
-  private goLevel():void{
+  goLevel():void{
     this.navigate('./home/nivel/'+this.level);
   }
 
-  private navigate(path:string):void{
+  navigate(path:string):void{
     this._router.navigate([path]);
   }
 

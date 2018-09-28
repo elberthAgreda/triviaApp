@@ -23,8 +23,8 @@ export class CustomSevice{
     }
 
     /** @description obtiene las preguntas por Nivel */
-    public login<T>( request:string ) : Observable<T>{
-        return this.proxyGame.post<T>(AppVariable.login,request);
+    public login<T>( request:any ) : Observable<T>{
+        return this.proxyGame.post<T>(AppVariable.login, request);
     }
 
     /** @description obtiene las preguntas por Nivel */

@@ -9,10 +9,10 @@ import { ISubscription } from 'rxjs/Subscription';
 })
 export class ErrorComponent implements OnInit, OnDestroy {
 
-  private errors:any;
-  private subscriptionError:ISubscription;
+  errors:any;
+  subscriptionError:ISubscription;
 
-  constructor( private _localService:LocalService ) {
+  constructor( public _localService:LocalService ) {
     this.subscriptionError = this._localService.questionError.subscribe(
       response => {
         this.errors = response;

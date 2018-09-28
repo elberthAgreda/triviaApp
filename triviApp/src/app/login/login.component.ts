@@ -11,24 +11,22 @@ import { ResponseModel } from '../shared/models/response.model';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(  private _router:Router,
-                private _customService:CustomSevice,
-                private _localService:LocalService ) { }
+  username:string;
+  password:string;
+  user:any = [];
 
-  private username:string;
-  private password:string;
+  constructor(  public _router:Router,
+                public _customService:CustomSevice,
+                public _localService:LocalService ){}
 
   ngOnInit() {
   }
 
-
-  private authentication():void{
-    var tmpLogin = '?username='+this.username + "&password=" + this.password;
+  authentication():void{
     var path = './home/inicio/';
-
-    this._customService.login<ResponseModel>(tmpLogin).subscribe(
+    this.user = {"userName":this.username, "password":this.password}
+    this._customService.login<ResponseModel>(this.user).subscribe(
       response => {
-        console.log(response);
         this._localService.setResponseModel(response);
         this._router.navigate([path]);
       }, error => {
