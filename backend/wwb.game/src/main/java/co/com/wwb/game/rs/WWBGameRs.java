@@ -21,9 +21,11 @@ public class WWBGameRs {
 	@Autowired
 	private WWBGameService service;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<UserData> login(@RequestParam(value="username") String username, @RequestParam(value="password") String password ) throws Exception {
-		UserData userData = service.login(username, password);
+	@RequestMapping(value = "/login", method = RequestMethod.POST, 
+									  consumes = MediaType.APPLICATION_JSON_VALUE,
+									  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UserData> login( @RequestBody  UserData user) throws Exception {
+		UserData userData = service.login(user.getUserName(), user.getPassword());
 		return ResponseEntity
 	            .ok()
 	            .body(userData);
@@ -33,14 +35,16 @@ public class WWBGameRs {
 										 consumes = MediaType.APPLICATION_JSON_VALUE, 
 										 produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> register(@RequestBody Registro registro ) throws Exception{
-		service.register(registro);
+		String message = service.register(registro);
 		return ResponseEntity
 	            .ok()
-	            .body("exito");
+	            .body(message);
 		
 	}
 	
-	@RequestMapping(value = "/saveProgress", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/saveProgress", method = RequestMethod.PUT, 
+											 consumes = MediaType.APPLICATION_JSON_VALUE,
+											 produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> saveProgress(@RequestBody NivelUsuario nivelUsuario ) throws Exception{
 		
 		service.saveProgress(nivelUsuario);

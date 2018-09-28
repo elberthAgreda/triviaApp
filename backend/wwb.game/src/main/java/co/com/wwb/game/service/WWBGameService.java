@@ -1,10 +1,7 @@
 package co.com.wwb.game.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,43 +41,49 @@ public final class WWBGameService {
 		
 		
 		if(userName == null || userName.isEmpty()) {
-			throw new Exception("Por favor suministre los datos de inicio de session");
+			throw new Exception("Por favor suministre los datos de inicio de sesión");
 		}
 		
 		if(password == null || password.isEmpty()) {
-			throw new Exception("Por favor suministre los datos de inicio de session");
+			throw new Exception("Por favor suministre los datos de inicio de sesión");
 		}
 		
 		Usuario usuario = getUserInformation(userName);
 		if(usuario == null) {
-			throw new Exception("Las Credenciales de autenticacion son incorrectas");
+			throw new Exception("Las Credenciales de autenticación son incorrectas");
 		}
 		
 		String encriptedPsw = md5HashingComponent.encript(password);
 		if(usuario.getPassword().compareTo( encriptedPsw ) != 0) {
-			throw new Exception("Las Credenciales de autenticacion son incorrectas");
+			throw new Exception("Las Credenciales de autenticación son incorrectas");
 		}
 		
 		UserData userData = new UserData();
 		
-		NivelUsuario nivelUsuario = null;
-		Optional<Nivel> optional = nivelRepository.findById( userName );
+		try {
 		
-		if( optional != null ) {
-			Nivel nivel = optional.get();
-			nivelUsuario  = new NivelUsuario();
-			nivelUsuario.setNivel( Integer.parseInt(nivel.getNivel())  );
-			nivelUsuario.setUserName( nivel.getUsername() );
-			userData.setNivel( nivelUsuario );
-		}
-		
-		List<WWBGameUsuario> lstGrupo = usuario.getLstGrupo().stream()
-															 .map( p -> new WWBGameUsuario(p.getMembername(), 
-																	 					   p.getMemberid()))
-															 .collect(Collectors.toList());
+			NivelUsuario nivelUsuario = null;
+			Optional<Nivel> optional = nivelRepository.findById( userName );
 			
-		userData.setUsers( lstGrupo );
-		userData.setUsuerName( userName );
+			if( optional.isPresent() ) {
+				Nivel nivel = optional.get();
+				nivelUsuario  = new NivelUsuario();
+				nivelUsuario.setNivel( Integer.parseInt(nivel.getNivel())  );
+				nivelUsuario.setUserName( nivel.getUsername() );
+				userData.setNivel( nivelUsuario );
+			}
+			
+			List<WWBGameUsuario> lstGrupo = usuario.getLstGrupo().stream()
+																 .map( p -> new WWBGameUsuario(p.getMembername(), 
+																		 					   p.getMemberid()))
+																 .collect(Collectors.toList());
+				
+			userData.setUsers( lstGrupo );
+			userData.setUserName( userName );
+			userData.setTeamName( usuario.getTeamname() );
+		}catch(Exception e) {
+			throw new Exception("Se ha presentado un error en el sistema por favor contactese con el administrador.");
+		}
 		
 		return userData;
 	}
@@ -94,47 +97,61 @@ public final class WWBGameService {
 	public String register(Registro registro) throws Exception{
 		
 		if(registro == null) {
-			throw new Exception("La informacion de registro es requerida");
+			throw new Exception("La información de registro es requerida");
 		}
 		
 		if(registro.getUsername() == null || registro.getPassword() == null || registro.getTeamName() == null) {
-			throw new Exception("La informacion de registro es requerida");
+			throw new Exception("La información de registro es requerida");
 		}
 		
 		if(registro.getUsername().isEmpty() || registro.getPassword().isEmpty() || registro.getTeamName().isEmpty()) {
-			throw new Exception("La informacion de registro es requerida");
+			throw new Exception("La información de registro es requerida");
 		}
 		
 		if(registro.getUsers() == null || registro.getUsers().isEmpty()) {
-			throw new Exception("La informacion de registro es requerida");
+			throw new Exception("La información de registro es requerida");
 		}
 		
 		
-		Usuario tmp =  getUserInformation(registro.getUsername());
+		try {
+			
+			Usuario tmp =  getUserInformation(registro.getUsername());
+			
+			if(tmp != null) {
+				throw new Exception("EL nombre de usuario ingresado no esta disponible");
+			}
+			
+			Usuario usuario = new Usuario();
+			usuario.setUsername(registro.getUsername());
+			
+			String encriptedPsw = md5HashingComponent.encript(registro.getPassword());
+			
+			usuario.setTeamname(registro.getTeamName());
+			usuario.setPassword( encriptedPsw );
+			
+			List<Grupo> lstGrupo = registro.getUsers().stream()
+					 								  .map( p -> new Grupo(p.getDocumentId(), 
+					 										  			   p.getName(),
+					 										  			   usuario))
+					 								  .collect(Collectors.toList());
+			
+			
+			usuario.setLstGrupo(lstGrupo);
+			repository.save(usuario);
+			
+			Nivel nivel = new Nivel();
+			nivel.setNivel("1");
+			nivel.setUsername(registro.getUsername());
+			nivelRepository.save( nivel );
+		}catch(IllegalStateException e) {
+			e.printStackTrace();
+			throw new Exception("Se ha presentado un error en el sistema por favor contactese con el administrador.");
 		
-		if(tmp != null) {
-			throw new Exception("EL nombre de usuario ingresado no esta disponible");
+		}catch(Exception iex) {
+			throw new Exception("La información sumistrada en el registro es invalida por favor validar los datos del Grupo que intenta de registrar.");
 		}
 		
-		Usuario usuario = new Usuario();
-		usuario.setUsername(registro.getUsername());
-		
-		String encriptedPsw = md5HashingComponent.encript(registro.getPassword());
-		
-		usuario.setTeamname(registro.getTeamName());
-		usuario.setPassword( encriptedPsw );
-		
-		List<Grupo> lstGrupo = registro.getUsers().stream()
-				 								  .map( p -> new Grupo(p.getDocumentId(), 
-				 										  			   p.getName(),
-				 										  			   usuario))
-				 								  .collect(Collectors.toList());
-		
-	
-		usuario.setLstGrupo(lstGrupo);
-		repository.save(usuario);
-		
-		return "Exito";
+		return "Registro Ejecutado Exitosamente";
 	}
 	
 	/**
@@ -155,18 +172,23 @@ public final class WWBGameService {
 		Usuario usuario = this.getUserInformation( nivelUsuario.getUserName() );
 		
 		if(usuario == null) {
-			throw new Exception("Informacion del usuario incorrecta");
+			throw new Exception("Información del usuario incorrecta");
 		}
 		
 		if( usuario.getUsername().compareTo( nivelUsuario.getUserName() ) != 0) {
 			throw new Exception("El usuario que esta intentando actualizar el progreso no exite.");
 		}
 		
-		Nivel nivel = new Nivel();
-		nivel.setUsername(nivelUsuario.getUserName());
-		nivel.setNivel(nivelUsuario.getNivel().toString());
-		
-		nivelRepository.save(nivel);
+		try {
+			Nivel nivel = new Nivel();
+			nivel.setUsername(nivelUsuario.getUserName());
+			nivel.setNivel(nivelUsuario.getNivel().toString());
+			
+			nivelRepository.save(nivel);
+		}catch(Exception e) {
+			throw new Exception("Se ha presentado un error en el sistema por favor contactese con el administrador.");
+		}
+			
 		
 	}
 	

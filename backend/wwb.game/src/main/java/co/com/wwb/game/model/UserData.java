@@ -6,7 +6,9 @@ public class UserData {
 	
 	private NivelUsuario nivel;
 	private List<WWBGameUsuario> users;
-	private String usuerName;
+	private String userName;
+	private String teamName;
+	private String password;
 	
 	
 	public NivelUsuario getNivel() {
@@ -21,11 +23,25 @@ public class UserData {
 	public void setUsers(List<WWBGameUsuario> users) {
 		this.users = users;
 	}
-	public String getUsuerName() {
-		return usuerName;
+	
+	public String getTeamName() {
+		return teamName;
 	}
-	public void setUsuerName(String usuerName) {
-		this.usuerName = usuerName;
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
 	}
-
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	
 }
