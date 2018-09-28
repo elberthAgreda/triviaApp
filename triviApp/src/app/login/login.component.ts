@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     this.user = {"userName":this.username, "password":this.password}
     this._customService.login<ResponseModel>(this.user).subscribe(
       response => {
+        console.log(response);
         this._localService.setResponseModel(response);
         this._router.navigate([path]);
       }, error => {

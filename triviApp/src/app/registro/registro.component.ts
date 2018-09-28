@@ -31,7 +31,7 @@ export class RegistroComponent implements OnInit {
     tmpS.push(this.user4);
     tmpS.push(this.user5);
     this.userRegister.users = tmpS;
-    console.log(this.userRegister);
+    
     this._customService.register(this.userRegister).subscribe(
       response => {
         console.log(response);

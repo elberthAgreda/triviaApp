@@ -60,7 +60,7 @@ export class NivelComponent implements OnInit {
   }
 
   getPreguntas():void{
-    var nivel = '?categories='+this.level+'&per_page=3';
+    var nivel = '?categories='+this.level+'&per_page=50';
     this._customService.getPreguntas(nivel).subscribe(
       preguntas => {
         this.preguntas = preguntas;
@@ -139,7 +139,7 @@ export class NivelComponent implements OnInit {
     this.preguntaActiva = [];
     //var tmpResult = Math.round(this.countAnswer / this.countQuestion);
     //console.log(tmpResult);
-    if(this.countAnswer >= 1){
+    if(this.countAnswer >= 30){
       this.navigate('./home/video/2');
     }
     else{
