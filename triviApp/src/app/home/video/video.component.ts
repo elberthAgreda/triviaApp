@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Nivel } from '../../shared/models/nivel.model';
 import { CustomSevice } from '../../shared/services/custom.service';
+import { LocalService } from '../../shared/services/local.service';
+import { ResponseModel } from '../../shared/models/response.model';
 
 @Component({
   selector: 'app-video',
@@ -10,22 +11,25 @@ import { CustomSevice } from '../../shared/services/custom.service';
 })
 export class VideoComponent implements OnInit {
   
-  urlIframe:SafeResourceUrl;
-  parentRouteId:any;
   nivelSave:Nivel = new Nivel();
+  responseModel:ResponseModel = new ResponseModel();
 
-  constructor( public sanitizer:DomSanitizer, public _customService:CustomSevice ) {
-    this.parentRouteId = "http://unoraya.com/";
-    this.urlIframe = this.sanitizer.bypassSecurityTrustResourceUrl(this.parentRouteId);
+  constructor( public _customService:CustomSevice, public _localService:LocalService )
+  {
+    this._localService.responseModel.subscribe(
+      response => {
+        this.responseModel = response;
+        this.nivelSave = this.responseModel.nivel;
+      }
+    );
   }
 
   ngOnInit() {
-    this.saveLevel();
+    if(this.nivelSave != undefined)
+      this.saveLevel();
   }
 
   saveLevel():void{
-    this.nivelSave.nivel = 2;
-    this.nivelSave.userName = "lucasian2";
     this._customService.saveProgress(this.nivelSave).subscribe(
       response => {
         console.log("ok");

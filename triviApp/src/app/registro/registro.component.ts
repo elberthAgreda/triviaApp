@@ -9,7 +9,8 @@ import { CustomSevice } from '../shared/services/custom.service';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-
+  message:boolean = false;
+  txtMessage:string;
   userRegister:Register = new Register();
   user1:User = new User();
   user2:User = new User();
@@ -34,8 +35,11 @@ export class RegistroComponent implements OnInit {
     
     this._customService.register(this.userRegister).subscribe(
       response => {
-        console.log(response);
+        this.txtMessage = "Grupo:" + this.userRegister.teamName + "registrado correctamente";
+        this.message = true;
       }, error => {
+        this.txtMessage = "No es posible registrar el grupo, por favor valide si los datos ingresados son correctos";
+        this.message = true;
         console.log(error);
       }
     );

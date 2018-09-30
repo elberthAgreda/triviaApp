@@ -23,13 +23,12 @@ export class LoginComponent implements OnInit {
   }
 
   authentication():void{
-    var path = './home/inicio/';
     this.user = {"userName":this.username, "password":this.password}
     this._customService.login<ResponseModel>(this.user).subscribe(
       response => {
         console.log(response);
         this._localService.setResponseModel(response);
-        this._router.navigate([path]);
+        this._router.navigate('./home/inicio/');
       }, error => {
         console.log(error);
       }
