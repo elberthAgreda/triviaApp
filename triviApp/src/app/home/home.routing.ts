@@ -13,7 +13,7 @@ const adminRoutes: Routes = [
     component: HomeComponent,
     children: [
       { path: "inicio", component: InicioComponent },
-      { path: "nivel/:id", component: NivelComponent },
+      { path: "nivel", component: NivelComponent },
       { path: "video/:id", component: VideoComponent },
       { path: "error", component: ErrorComponent }
     ]

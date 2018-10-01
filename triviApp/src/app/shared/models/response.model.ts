@@ -6,5 +6,5 @@ export class ResponseModel{
     nivel:Nivel;
     users:User[];
     userName:string;
-
+    teamName:string;
 }

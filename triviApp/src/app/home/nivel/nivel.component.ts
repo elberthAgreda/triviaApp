@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { CustomSevice } from '../../shared/services/custom.service';
 import { LocalService } from '../../shared/services/local.service';
-import { Nivel } from '../../shared/models/nivel.model';
+import { ResponseModel } from '../../shared/models/response.model';
+import { User } from '../../shared/models/user.model';
 
 @Component({
   selector: 'trivia-nivel',
@@ -23,6 +24,9 @@ export class NivelComponent implements OnInit {
   countAnswer:number;
   countQuestion:number;
   loader:boolean;
+  responseModel:ResponseModel = new ResponseModel();
+  integrantesResponse:User[];
+  nameGroup:string;
   /* Custom */
   questionError:any[];
   errorNivel:boolean;
@@ -34,12 +38,19 @@ export class NivelComponent implements OnInit {
   firstRonda:boolean;
   countQuestionActive:number;
   constructor(  public _customService:CustomSevice,
-                public _nivel:ActivatedRoute,
                 public _localService:LocalService,
                 public _router:Router )
   {
     this.loader = true;
-    this._nivel.params.subscribe(response => this.level = response['id']);
+    this._localService.responseModel.subscribe(
+      response => {
+        console.log(response);
+        this.responseModel = response;
+        this.level = response.nivel.nivel + 1;
+        this.integrantesResponse = response.users;
+        this.nameGroup = response.teamName;
+      }
+    )
     this.errorNivel = false;
     this.numQuestion = 0;
     this.showIntroduction = true;
@@ -74,11 +85,9 @@ export class NivelComponent implements OnInit {
 
   getIntegrantes():void{
     this.integrantes = {integrante:[]};
-    this.integrantes.integrante.push({"nombre":"Elberth","image":this.ruta+"bien.png"});
-    this.integrantes.integrante.push({"nombre":"Jairo","image":this.ruta+"bien.png"});
-    this.integrantes.integrante.push({"nombre":"Carlos","image":this.ruta+"bien.png"});
-    this.integrantes.integrante.push({"nombre":"Lucia","image":this.ruta+"bien.png"});
-    this.integrantes.integrante.push({"nombre":"Ana","image":this.ruta+"bien.png"});
+    for (let i = 0; i < this.integrantesResponse.length; i++) {
+      this.integrantes.integrante.push({"nombre":this.integrantesResponse[i]['name'],"image":this.ruta+"bien.png"});
+    }
   }
 
   showQuestions():void{
@@ -190,7 +199,7 @@ export class NivelComponent implements OnInit {
   }
 
   logout():void{
-    this.navigate('./login');
+    location.href ="./home";
   }
 
   navigate(path:string):void{

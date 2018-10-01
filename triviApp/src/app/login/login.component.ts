@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   username:string;
   password:string;
   user:any = [];
+  stateMessage:boolean = false;
+  message:string;
 
   constructor(  public _router:Router,
                 public _customService:CustomSevice,
@@ -24,13 +26,15 @@ export class LoginComponent implements OnInit {
 
   authentication():void{
     this.user = {"userName":this.username, "password":this.password}
+    var ruta = "./home/inicio/";
     this._customService.login<ResponseModel>(this.user).subscribe(
       response => {
-        console.log(response);
         this._localService.setResponseModel(response);
-        this._router.navigate('./home/inicio/');
+        this._localService.setLevel(response.nivel.nivel);
+        this._router.navigate([ruta]);
       }, error => {
-        console.log(error);
+        this.stateMessage = true;
+        this.message = "Datos Incorrectos";
       }
     );
   }

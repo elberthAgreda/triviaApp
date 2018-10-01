@@ -1,5 +1,5 @@
 <section class="flex login">
-    <p *ngIf="message">{{txtMessage}}</p>
+    <p class="error" *ngIf="message">{{txtMessage}}</p>
   <img src="../../assets/img/logo.png">
   <form #registroForm="ngForm" (ngSubmit)="registerForm()" class="flex">
     <input type="text" name="username" [(ngModel)]="userRegister.username" placeholder="Username del grupo">

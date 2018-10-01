@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalService } from '../../shared/services/local.service';
-import { ResponseModel } from '../../shared/models/response.model';
 
 @Component({
   selector: 'app-inicio',
@@ -11,24 +10,37 @@ import { ResponseModel } from '../../shared/models/response.model';
 export class InicioComponent implements OnInit {
 
   level:number;
-  responseModel:ResponseModel = new ResponseModel();
-  
+  message:string;
+
   constructor( public _router:Router, public _localService:LocalService ) {
-    this._localService.responseModel.subscribe(
+    this._localService.level.subscribe(
       response => {
-        this.responseModel = response;
-        this.level = this.responseModel.nivel.nivel;
+        this.level =  response + 1;
       }
     );
   }
 
   ngOnInit() {
-    if(this.level != undefined)
-      this.goLevel();
+    switch (this.level) {
+      case 2:
+        this.message = "Acá empieza la aventura en la cual juntos deben superar 5 niveles.";
+        break;
+      case 3:
+        this.message = "texto nivel 2";
+      case 4:
+        this.message = "texto nivel 3";
+      case 5:
+        this.message = "texto nivel 4";
+      case 6:
+        this.message = "texto nivel 5";
+      default:
+        this.message = "Sin nivel";
+        break;
+    }
   }
 
   goLevel():void{
-    var ruta = './home/nivel/'+this.level;
+    var ruta = './home/nivel/';
     this._router.navigate([ruta]);
   }
 

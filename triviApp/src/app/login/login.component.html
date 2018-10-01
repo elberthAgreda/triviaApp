@@ -5,4 +5,5 @@
     <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required>
     <button [disabled]="!loginForm.form.valid" type="submit">ACCEDER</button>
   </form>
+  <p class="error" *ngIf="stateMessage">{{message}}</p>
 </section>

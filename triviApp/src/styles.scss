@@ -58,6 +58,12 @@ button{
     position: absolute;
     opacity: 0;
 }
+p.error{
+    color: #fff;
+    font-size: 1.3rem;
+    background: #247bb1;
+    padding: 10px 20px;
+}
   .radio input[type="radio"] + .radio-label:before {
     content: '';
     background: #f4f4f4;
