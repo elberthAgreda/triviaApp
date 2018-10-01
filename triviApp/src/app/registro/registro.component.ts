@@ -35,12 +35,13 @@ export class RegistroComponent implements OnInit {
     
     this._customService.register(this.userRegister).subscribe(
       response => {
-        this.txtMessage = "Grupo:" + this.userRegister.teamName + "registrado correctamente";
         this.message = true;
       }, error => {
-        this.txtMessage = "No es posible registrar el grupo, por favor valide si los datos ingresados son correctos";
+        if(error.status == 200)
+          this.txtMessage = "Grupo:" + this.userRegister.teamName + "registrado correctamente";
+        else
+          this.txtMessage = "No es posible registrar el grupo, por favor valide si los datos ingresados son correctos";
         this.message = true;
-        console.log(error);
       }
     );
 

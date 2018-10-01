@@ -16,11 +16,12 @@
 .item-integrante {
     margin-right: 10px;
     text-align: center;
+    max-width: 70px;
 }
 
 .item-integrante h3 {
     margin: 0px;
-    line-height: 10px;
+    line-height: 13px;
     font-size: 13px;
     color: #fff;
 }
@@ -38,12 +39,18 @@
     padding-right: 10px;
     margin-right: 1px;
     font-size: 14px;
-    line-height: 26px;
+    line-height: 17px;
+}
+
+.opciones h4 b{
+    display: block;
+    text-align: center;
 }
 
 .opciones button {
     background: transparent;
     border: none;
+    cursor: pointer;
     color: #fff;
     font-size: 14px;
 }
