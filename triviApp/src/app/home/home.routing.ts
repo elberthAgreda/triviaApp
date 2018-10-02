@@ -14,7 +14,7 @@ const adminRoutes: Routes = [
     children: [
       { path: "inicio", component: InicioComponent },
       { path: "nivel", component: NivelComponent },
-      { path: "video/:id", component: VideoComponent },
+      { path: "video", component: VideoComponent },
       { path: "error", component: ErrorComponent }
     ]
   }

@@ -37,6 +37,7 @@ export class NivelComponent implements OnInit {
   numRonda:number;
   firstRonda:boolean;
   countQuestionActive:number;
+  markeLevel:number;
   constructor(  public _customService:CustomSevice,
                 public _localService:LocalService,
                 public _router:Router )
@@ -49,6 +50,7 @@ export class NivelComponent implements OnInit {
         this.level = response.nivel.nivel + 1;
         this.integrantesResponse = response.users;
         this.nameGroup = response.teamName;
+        this.customOptions(this.level);
       }
     )
     this.errorNivel = false;
@@ -148,7 +150,7 @@ export class NivelComponent implements OnInit {
     this.preguntaActiva = [];
     this._localService.setLevel(this.level - 1);
     if(this.countAnswer >= 30){
-      this.navigate('./home/video/2');
+      this.navigate('./home/video');
     }
     else{
       this.errorNivel = true;
@@ -165,22 +167,22 @@ export class NivelComponent implements OnInit {
   }
 
   customOptions(nivel:number):void{
-    var path:string;
+
     switch (nivel) {
-      case 1:
-        path = "...";
-        break;
       case 2:
-        path = "...";
+        this.markeLevel = 14;
         break;
       case 3:
-        path = "...";
+        this.markeLevel = 85;
         break;
       case 4:
-        path = "...";
+        this.markeLevel = 156;
         break;
       case 5:
-        path = "...";
+        this.markeLevel = 227;
+        break;
+      case 6:
+        this.markeLevel = 299;
         break;
       default:
         break;
