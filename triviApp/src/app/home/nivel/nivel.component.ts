@@ -146,8 +146,7 @@ export class NivelComponent implements OnInit {
     this.showQuestion = false;
     this.showAnswer = true;
     this.preguntaActiva = [];
-    //var tmpResult = Math.round(this.countAnswer / this.countQuestion);
-    //console.log(tmpResult);
+    this._localService.setLevel(this.level - 1);
     if(this.countAnswer >= 30){
       this.navigate('./home/video/2');
     }

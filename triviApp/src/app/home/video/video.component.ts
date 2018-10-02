@@ -12,16 +12,16 @@ import { ResponseModel } from '../../shared/models/response.model';
 export class VideoComponent implements OnInit {
   
   nivelSave:Nivel = new Nivel();
-  responseModel:ResponseModel = new ResponseModel();
+  level:number;
 
   constructor( public _customService:CustomSevice, public _localService:LocalService )
   {
     this._localService.responseModel.subscribe(
       response => {
-        this.responseModel = response;
-        this.nivelSave = this.responseModel.nivel;
+        this.nivelSave = response.nivel;
       }
     );
+    this._localService.level.subscribe( ()=> this.level );
   }
 
   ngOnInit() {
@@ -30,6 +30,7 @@ export class VideoComponent implements OnInit {
   }
 
   saveLevel():void{
+    this.nivelSave.nivel = this.level;
     this._customService.saveProgress(this.nivelSave).subscribe(
       response => {
         console.log("ok");

@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
     var ruta = "./home/inicio/";
     this._customService.login<ResponseModel>(this.user).subscribe(
       response => {
+        console.log(response);
         this._localService.setResponseModel(response);
         this._localService.setLevel(response.nivel.nivel);
         this._router.navigate([ruta]);

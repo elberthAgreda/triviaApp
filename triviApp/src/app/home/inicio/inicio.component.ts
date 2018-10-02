@@ -27,12 +27,16 @@ export class InicioComponent implements OnInit {
         break;
       case 3:
         this.message = "texto nivel 2";
+        break;
       case 4:
         this.message = "texto nivel 3";
+        break;
       case 5:
         this.message = "texto nivel 4";
+        break;
       case 6:
         this.message = "texto nivel 5";
+        break;
       default:
         this.message = "Sin nivel";
         break;
