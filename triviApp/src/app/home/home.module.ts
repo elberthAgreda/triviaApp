@@ -11,6 +11,8 @@ import { VideoComponent } from './video/video.component';
 import { CustomSevice } from '../shared/services/custom.service';
 import { ErrorComponent } from './error/error.component';
 import { InicioComponent } from './inicio/inicio.component';
+// Guards
+import { AuthGuard } from '../shared/auth/auth.guards';
 
 @NgModule({
     imports: [
@@ -26,7 +28,7 @@ import { InicioComponent } from './inicio/inicio.component';
         InicioComponent,
     ],
     providers: [
-        //AdministradorGuard,
+        AuthGuard,
         CustomSevice
     ]
 })

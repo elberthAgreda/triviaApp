@@ -21,8 +21,7 @@ export class LoginComponent implements OnInit {
                 public _customService:CustomSevice,
                 public _localService:LocalService ){}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   authentication():void{
     this.user = {"userName":this.username, "password":this.password}
