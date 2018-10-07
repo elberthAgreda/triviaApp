@@ -6,8 +6,16 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    flex-flow: column;
     video{
-        width: 90vw;
-        height: 90vh;
+        width: 60vw;
+        height: 68vh;
+        margin-bottom: 20px;
+    }
+    p{
+        font-size: 1.3rem;
+        color: #fff;
+        margin: 0px;
+        margin-bottom: 20px;
     }
 }

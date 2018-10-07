@@ -1,6 +1,7 @@
 section.login{
     background: rgb(78,72,158);
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     width: 100vw;
     overflow: hidden;
     background: rgb(48,160,219);
@@ -27,7 +28,14 @@ input[type="password"], input[type="text"] {
     padding: 10px;
     border-radius: 20px;
     outline: 0px;
-    color: #e6b548;
+    color: #fff;
+}
+
+form p {
+    margin: 0px;
+    font-size: 12px;
+    color: #fff;
+    margin-left: 12px;
 }
 
 .form-group{
@@ -37,6 +45,7 @@ input[type="password"], input[type="text"] {
     border-right: none;
     border-radius: 20px 0px 0px 20px;
     flex:1;
+    max-width: 350px;
 }
 .form-group input[type="text"]:nth-child(2){
     border-left: solid 1px #ffff;

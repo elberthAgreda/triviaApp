@@ -45,7 +45,6 @@ export class NivelComponent implements OnInit {
     this.loader = true;
     this._localService.responseModel.subscribe(
       response => {
-        console.log(response);
         this.responseModel = response;
         this.level = response.nivel.nivel + 1;
         this.integrantesResponse = response.users;
@@ -72,12 +71,12 @@ export class NivelComponent implements OnInit {
     this.soundGame();
   }
 
+  // obtener las preguntas del servicio Wordpress
   getPreguntas():void{
-    var nivel = '?categories='+this.level+'&per_page=50';
+    var nivel = '?categories='+this.level+'&per_page=3';
     this._customService.getPreguntas(nivel).subscribe(
       preguntas => {
         this.preguntas = preguntas;
-        console.log(preguntas);
         this.preguntaActiva = this.preguntas[this.numQuestion];
         this.countQuestion = this.preguntas.length;
         this.loader = false;
@@ -85,6 +84,7 @@ export class NivelComponent implements OnInit {
     );
   }
 
+  // obtener y crear el arreglo de integrantes
   getIntegrantes():void{
     this.integrantes = {integrante:[]};
     for (let i = 0; i < this.integrantesResponse.length; i++) {
@@ -92,16 +92,27 @@ export class NivelComponent implements OnInit {
     }
   }
 
+  // mostrar contenedor de preguntas
   showQuestions():void{
     this.showIntroduction = false;
     this.showQuestion = true;
   }
 
+  // Cambiar a la siguiente pregunta
   nextQuestion():void{
+    if(this.optionAnswer != undefined)
+      this.validateQuestion();
+    else
+      alert("Seleccionar una respuesta");
+  }
+
+  // Validar preguntas
+  validateQuestion():void{
     // Contador de preguntas
-    this.countQuestionActive = this.countQuestionActive + 1;
+    if(this.countQuestion !== this.countQuestionActive)
+      this.countQuestionActive = this.countQuestionActive + 1;
     // Reestablece el numIntegrante a 0 si ya todos los participantes respondieron
-    if(this.numIntegrante === 5){
+    if(this.numIntegrante === this.integrantesResponse.length){
       this.numIntegrante = 0;
       this.numRonda = 0;
     }
@@ -121,8 +132,8 @@ export class NivelComponent implements OnInit {
     if(this.numRonda === 0 && this.firstRonda)
       this.integranteActivo = this.integrantes['integrante'][1]['nombre'];
 
-    if(this.numRonda >= 0 && !this.firstRonda && this.numRonda <= 4){
-      if(this.numIntegrante >= 4 )
+    if(this.numRonda >= 0 && !this.firstRonda && this.numRonda <= this.integrantesResponse.length - 1){
+      if(this.numIntegrante >= this.integrantesResponse.length - 1 )
         this.integranteActivo = this.integrantes['integrante'][0]['nombre'];
       else
         this.integranteActivo = this.integrantes['integrante'][this.numIntegrante+1]['nombre'];
@@ -144,12 +155,14 @@ export class NivelComponent implements OnInit {
     this.firstRonda = false;
   }
 
+  // Termina el nivel del juego
   finishLevel():void{
     this.showQuestion = false;
     this.showAnswer = true;
     this.preguntaActiva = [];
-    this._localService.setLevel(this.level - 1);
-    if(this.countAnswer >= 30){
+    var tmpLevel = {level:this.level, state:true}
+    this._localService.setLevel(tmpLevel);
+    if(this.countAnswer >= 2){
       this.navigate('./home/video');
     }
     else{
@@ -159,6 +172,7 @@ export class NivelComponent implements OnInit {
     }
   }
 
+  // mostrar introduccion
   showIntoductions():void{
     this.showIntroduction = true;
     this.showAnswer = false;
@@ -166,8 +180,8 @@ export class NivelComponent implements OnInit {
     this.optionAnswer = null;
   }
 
+  // Mover el marcador del nivel
   customOptions(nivel:number):void{
-
     switch (nivel) {
       case 2:
         this.markeLevel = 14;
@@ -189,6 +203,7 @@ export class NivelComponent implements OnInit {
     }
   }
 
+  // Cambiar el sonido del juego
   soundGame():void{
     var audio = new Audio();
     audio.src = "http://cepi.do.grafos.tech/wp-content/themes/cepi/img/forest/sound/Forest.mp3";
@@ -199,10 +214,12 @@ export class NivelComponent implements OnInit {
     }, 200);
   }
 
+  // Salir de la aplicación
   logout():void{
-    location.href ="./home";
+    location.href ="./";
   }
 
+  // Redirecionar
   navigate(path:string):void{
     this._router.navigate([path]);
   }

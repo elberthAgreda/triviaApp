@@ -14,7 +14,7 @@ export class ErrorComponent implements OnInit, OnDestroy {
 
   constructor( public _localService:LocalService ) {
     this.subscriptionError = this._localService.questionError.subscribe(
-      () => this.errors
+      response => this.errors = response
     );
   }
 
