@@ -10,12 +10,15 @@ import { AppRouting } from './app.routing';
 import { LocalService } from './shared/services/local.service';
 // Service
 import { CustomSevice } from './shared/services/custom.service';
+// Directivas
+import { OnlyNumber } from './shared/directives/onlyNumber.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistroComponent,
+    OnlyNumber
   ],
   imports: [
     BrowserModule,

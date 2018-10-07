@@ -9,6 +9,12 @@ section.login{
     justify-content: center;
     align-items: center;
 }
+a{
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+    text-decoration: underline;
+}
 form.flex{
     flex-flow: column;
     margin-top: 17px;

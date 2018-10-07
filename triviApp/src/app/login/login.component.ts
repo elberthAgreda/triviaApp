@@ -38,4 +38,9 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  registrar():void{
+    var rutaRegistro = "./registro";
+    this._router.navigate([rutaRegistro]);
+  }
+
 }
