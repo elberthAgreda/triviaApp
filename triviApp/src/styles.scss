@@ -4,7 +4,7 @@
 }
 @font-face {
     font-family: MyriadPro-Bold;
-    src: url(./assets/fonts/MyriadPro-Light.otf);
+    src: url(./assets/fonts/MyriadPro-Bold.otf);
 }
 *{
     font-family: MyriadPro-Light, Arial, Helvetica, sans-serif;
@@ -31,6 +31,7 @@ input[type="password"], input[type="text"]{
 button{
     outline: 0px;
 }
+
 button:disabled{
     background: #c7c7c7 !important;
     color: #533e91 !important;
@@ -42,10 +43,19 @@ button:disabled{
     border: solid 2px;
     padding: 7px 19px;
     text-decoration: none;
-    font-family: MyriadPro-Bold;
-    letter-spacing: 1px;
+    font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
     cursor: pointer;
     text-transform: uppercase;
+    transition: all linear 0.2s;
+    cursor: pointer;
+}
+.btn:hover{
+    background: #2bbbad;
+}
+img.logoWWB{
+    width: 290px;
 }
 .nivel{
     position: relative;

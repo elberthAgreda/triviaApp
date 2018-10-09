@@ -43,12 +43,13 @@ export class RegistroComponent implements OnInit {
       response => {
         this.message = true;
       }, error => {
+        console.log(error);
         if(error.status == 200){
           this.txtMessage = "Grupo: " + this.userRegister.teamName + " registrado correctamente";
           this._router.navigate([ruta]);
         }  
         else
-          this.txtMessage = "No es posible registrar el grupo, por favor valide si los datos ingresados son correctos";
+          this.txtMessage = "El nombre del grupo o uno de los usuarios ya existen, por favor escribe un nuevo nombre o validar los usuarios";
         this.message = true;
       }
     );

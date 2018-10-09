@@ -21,6 +21,14 @@ button{
     border: none;
     padding: 14px 20px;
     border-radius: 20px;
+    font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: all linear 0.2s;
+    cursor: pointer;
+}
+button:hover{
+    background: #2bbbad;
 }
 input[type="password"], input[type="text"] {
     background: transparent;
@@ -33,9 +41,10 @@ input[type="password"], input[type="text"] {
 
 form p {
     margin: 0px;
-    font-size: 12px;
+    font-size: 14px;
     color: #fff;
-    margin-left: 12px;
+    text-align: center;
+    margin-bottom: 5px;
 }
 
 .form-group{
