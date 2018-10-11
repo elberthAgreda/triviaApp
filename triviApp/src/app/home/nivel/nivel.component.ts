@@ -31,6 +31,8 @@ export class NivelComponent implements OnInit {
   questionError:any[];
   errorNivel:boolean;
   ruta:string = "../../../assets/img/";
+  pathImgLevel:string = "nivel1";
+  imgLevel:number = 1;
   imgRespuesta:string;
   numIntegrante:number;
   integranteActivo:string;
@@ -100,8 +102,12 @@ export class NivelComponent implements OnInit {
 
   // Cambiar a la siguiente pregunta
   nextQuestion():void{
-    if(this.optionAnswer != undefined)
+    if(this.optionAnswer != undefined){
       this.validateQuestion();
+      if(this.imgLevel >= 5)
+        this.imgLevel = 0;
+      this.imgLevel = this.imgLevel + 1;
+    }
     else
       alert("Seleccionar una respuesta");
   }
@@ -180,22 +186,27 @@ export class NivelComponent implements OnInit {
     this.optionAnswer = null;
   }
 
-  // Mover el marcador del nivel
+  // Custom nivel
   customOptions(nivel:number):void{
     switch (nivel) {
       case 2:
+        this.pathImgLevel = "nivel1";
         this.markeLevel = 14;
         break;
       case 3:
+        this.pathImgLevel = "nivel2";
         this.markeLevel = 85;
         break;
       case 4:
+        this.pathImgLevel = "nivel3";
         this.markeLevel = 156;
         break;
       case 5:
+        this.pathImgLevel = "nivel4";
         this.markeLevel = 227;
         break;
       case 6:
+        this.pathImgLevel = "nivel5";
         this.markeLevel = 299;
         break;
       default:

@@ -1,5 +1,6 @@
 .body {
     background-image: url(../../../assets/img/banner1.jpg);
+    background-position: left bottom;
     background-size: cover;
     height: 100%;
     width: 100%;
@@ -10,7 +11,7 @@
 .header {
     justify-content: space-between;
     padding: 20px 30px;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .item-integrante {
@@ -58,8 +59,9 @@
 img.persona {
     position: absolute;
     bottom: 0px;
-    left: 0px;
+    left: 80px;
     max-width: 490px;
+    max-height: 475px;
 }
 .item-integrante img {
     width: 26px;

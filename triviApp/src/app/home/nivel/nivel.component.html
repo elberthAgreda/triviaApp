@@ -79,7 +79,7 @@
       <button (click)="navigate('./home/error');" class="btn">Ver Resumen</button>
     </div>
 
-    <img class="persona" src="../../../assets/img/persona1.png">
+    <img class="persona" [src]="ruta+pathImgLevel+'/'+imgLevel+'.png'">
     <div class="estado-nivel">
         <div class="nivel">
             <img src="../../../assets/img/posicion.png"  [ngStyle]="{'left.px': markeLevel}" class="posicionNivel">
