@@ -6,6 +6,14 @@
     width: 100%;
     overflow: hidden;
     background-repeat: no-repeat;
+    position: relative;
+}
+.body > audio{
+    position: absolute;
+    bottom: 10px;
+    width: 148px;
+    left: 37px;
+    z-index: 99999999;
 }
 
 .header {
@@ -62,8 +70,9 @@ img.persona {
   left: 80px;
   max-width: 490px;
   max-height: 475px;
-  -webkit-animation-duration: 10s;
-  animation-duration: 10s;
+  opacity: 0;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   -webkit-animation-name: fadeOut;
@@ -71,13 +80,13 @@ img.persona {
 }
 
 @-webkit-keyframes fadeOut {
-  0% {opacity: 1;}
-  100% {opacity: 0;}
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }
 
 @keyframes fadeOut {
-  0% {opacity: 1;}
-  100% {opacity: 0;}
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }
 
 .item-integrante img {

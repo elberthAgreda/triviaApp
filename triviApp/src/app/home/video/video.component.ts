@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Nivel } from '../../shared/models/nivel.model';
 import { CustomSevice } from '../../shared/services/custom.service';
 import { LocalService } from '../../shared/services/local.service';
@@ -15,7 +15,9 @@ export class VideoComponent implements OnInit {
   level:number;
   state:boolean;
   message:string;
-
+  rutaLevel:string;
+  @ViewChild('myVideo') myVideo: any;
+  
   constructor(  public _customService:CustomSevice,
                 public _router:Router,
                 public _localService:LocalService )
@@ -27,9 +29,33 @@ export class VideoComponent implements OnInit {
 
   ngOnInit() {
     if(this.level['state']){
+      this.setupVideo();
       this.saveLevel();
       this.state = true;
     }
+  }
+
+  setupVideo(){
+    var tmpLevel = 3;
+    var rutaVideo = "https://www.w3schools.com/Html/";
+    switch (tmpLevel) {
+      case 1:
+        this.rutaLevel = rutaVideo+'mov_bbb.mp4';
+        break;
+      case 2:
+        this.rutaLevel = rutaVideo+'mov_bbb.mp4';
+        break;
+      case 3:
+        this.rutaLevel = rutaVideo+'mov_bbb.mp4';
+        break;
+      case 4:
+        this.rutaLevel = rutaVideo+'mov_bbb.mp4';
+        break;
+      case 5:
+        this.rutaLevel = rutaVideo+'mov_bbb.mp4';
+        break;
+    }
+    this.myVideo.nativeElement.play();
   }
 
   saveLevel():void{
@@ -38,7 +64,7 @@ export class VideoComponent implements OnInit {
       response => {console.log("ok");}
       , error => {
         if(error.status == 200)
-          this.message = "Felicitaciones paso al nivel "+this.level['level'];
+          this.message = "Felicitaciones, han pasado de nivel";
         else
           this.message = "No paso de nivel, contactar con el administrador";
       }

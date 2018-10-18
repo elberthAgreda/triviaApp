@@ -70,7 +70,6 @@ export class NivelComponent implements OnInit {
   ngOnInit() {
     this.getIntegrantes();
     this.getPreguntas();
-    this.soundGame();
   }
 
   // obtener las preguntas del servicio Wordpress
@@ -212,17 +211,6 @@ export class NivelComponent implements OnInit {
       default:
         break;
     }
-  }
-
-  // Cambiar el sonido del juego
-  soundGame():void{
-    var audio = new Audio();
-    audio.src = "http://cepi.do.grafos.tech/wp-content/themes/cepi/img/forest/sound/Forest.mp3";
-    audio.load();
-    audio.loop = true;
-    setTimeout(function() {
-      audio.play();
-    }, 200);
   }
 
   // Salir de la aplicación
