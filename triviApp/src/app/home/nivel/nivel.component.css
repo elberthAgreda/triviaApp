@@ -115,6 +115,7 @@ img.persona {
     border-radius: 20px;
     text-align: justify;
     font-size: 17px;
+    z-index: 999999999;
 }
 .respuesta{
     text-align: left;

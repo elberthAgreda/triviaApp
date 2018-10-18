@@ -16,7 +16,6 @@ export class VideoComponent implements OnInit {
   state:boolean;
   message:string;
   rutaLevel:string;
-  @ViewChild('myVideo') myVideo: any;
   
   constructor(  public _customService:CustomSevice,
                 public _router:Router,
@@ -30,13 +29,11 @@ export class VideoComponent implements OnInit {
   ngOnInit() {
     if(this.level['state']){
       this.setupVideo();
-      this.saveLevel();
-      this.state = true;
     }
   }
 
   setupVideo(){
-    var tmpLevel = 3;
+    var tmpLevel = 1;
     var rutaVideo = "https://www.w3schools.com/Html/";
     switch (tmpLevel) {
       case 1:
@@ -55,7 +52,8 @@ export class VideoComponent implements OnInit {
         this.rutaLevel = rutaVideo+'mov_bbb.mp4';
         break;
     }
-    this.myVideo.nativeElement.play();
+    this.state = true; 
+    this.saveLevel();
   }
 
   saveLevel():void{
