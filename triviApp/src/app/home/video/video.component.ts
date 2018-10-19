@@ -16,7 +16,8 @@ export class VideoComponent implements OnInit {
   state:boolean;
   message:string;
   rutaLevel:string;
-  
+  videoFinish:boolean;
+
   constructor(  public _customService:CustomSevice,
                 public _router:Router,
                 public _localService:LocalService )
@@ -24,12 +25,12 @@ export class VideoComponent implements OnInit {
     this._localService.responseModel.subscribe( response => this.nivelSave = response.nivel );
     this._localService.level.subscribe( response => { this.level = response; } );
     this.state = false;
+    this.videoFinish = false;
   }
 
   ngOnInit() {
-    if(this.level['state']){
+    if(this.level['state'])
       this.setupVideo();
-    }
   }
 
   setupVideo(){
@@ -67,6 +68,11 @@ export class VideoComponent implements OnInit {
           this.message = "No paso de nivel, contactar con el administrador";
       }
     );
+  }
+
+  videoEnd(){
+    if(this.state)
+      this.videoFinish = true;
   }
 
   salir():void{

@@ -1,10 +1,10 @@
 <section class="flex video">
-  <video *ngIf="state" autoplay width="800" height="500" controls>
+  <video *ngIf="state" (ended)="videoEnd()" [ngClass]="{'smallVideo':videoFinish === true}" autoplay controls>
     <source [src]="rutaLevel" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
-  <p>{{message}}<br>
+  <p *ngIf="videoFinish"><b>{{message}}</b><br>
     Para continuar con el siguiente nivel debes ingresar cuando se especifique en el calendario de capacitación
   </p>
-  <button (click)="salir();" class="btn">Salir</button>
+  <button *ngIf="videoFinish" (click)="salir();" class="btn">Salir</button>
 </section>

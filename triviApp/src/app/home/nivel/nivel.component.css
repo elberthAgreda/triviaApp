@@ -170,7 +170,7 @@ body::-webkit-scrollbar-thumb {
     width: 90%;
 }
 .error-pregunta img{
-    width: auto;
+    width: 90px;
 }
 .introduccion .btn, .preguntas .btn {
     float: right;
@@ -179,4 +179,18 @@ body::-webkit-scrollbar-thumb {
     position: absolute;
     bottom: 20px;
     right: 50px;
+}
+.sw-answ {
+    justify-content: flex-start;
+    align-items: center;
+}
+.sw-answ img{
+    width: 120px;
+    height: auto;
+}
+.sw-answ h5{
+    font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    text-decoration: underline;
 }

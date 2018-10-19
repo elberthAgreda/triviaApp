@@ -66,7 +66,10 @@
     </div>
 
     <div *ngIf="showAnswer" class="respuesta">
-      <img [src]="imgRespuesta">
+      <div class="flex sw-answ">
+        <img [src]="imgRespuesta">
+        <h5>{{txtRespuestaSt}}</h5>
+      </div>
       <div class="flex">
         <button class="btn" (click)="showIntoductions();">Siguiente Pregunta</button>
         <p>Continúa el usuario: {{integranteActivo}}</p>
@@ -74,7 +77,7 @@
     </div>
 
     <div *ngIf="errorNivel" class="preguntas error-pregunta">
-      <img [src]="ruta+'error2s.png'">
+      <img [src]="ruta+'respuesta_incorrecta.gif'">
       <h3>Lo sentimos, tu grupo<br>no ha logrado pasar de nivel - Correctas: {{countAnswer}} de {{countQuestion}} </h3>
       <button (click)="navigate('./home/error');" class="btn">Ver Resumen</button>
     </div>
@@ -82,7 +85,7 @@
     <img class="persona" [src]="ruta+pathImgLevel+'/'+imgLevel+'.png'">
     <div class="estado-nivel">
         <div class="nivel">
-            <img src="../../../assets/img/posicion.png"  [ngStyle]="{'left.px': markeLevel}" class="posicionNivel">
+            <img src="../../../assets/img/gps.gif"  [ngStyle]="{'left.px': markeLevel}" class="posicionNivel">
             <img src="../../../assets/img/niveles.png">
         </div>
     </div>

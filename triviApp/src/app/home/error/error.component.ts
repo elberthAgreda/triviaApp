@@ -19,6 +19,7 @@ export class ErrorComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log(this.errors);
   }
 
   ngOnDestroy() {

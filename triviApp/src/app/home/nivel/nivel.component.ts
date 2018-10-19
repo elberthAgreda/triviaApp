@@ -29,6 +29,7 @@ export class NivelComponent implements OnInit {
   nameGroup:string;
   /* Custom */
   questionError:any[];
+  txtRespuestaSt:string;
   errorNivel:boolean;
   ruta:string = "../../../assets/img/";
   pathImgLevel:string = "nivel1";
@@ -78,6 +79,7 @@ export class NivelComponent implements OnInit {
     this._customService.getPreguntas(nivel).subscribe(
       preguntas => {
         this.preguntas = preguntas;
+        console.log(this.preguntas);
         this.preguntaActiva = this.preguntas[this.numQuestion];
         this.countQuestion = this.preguntas.length;
         this.loader = false;
@@ -125,13 +127,15 @@ export class NivelComponent implements OnInit {
     if(this.preguntaActiva.post_meta_fields.respuesta_correcta == this.optionAnswer){
       this.countAnswer = this.countAnswer + 1;
       // Cambia icono si la respuesta es correcta
-      this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"bien2.png";
-      this.imgRespuesta = this.ruta+"correcto.png";
+      this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"carita_feliz.gif";
+      this.txtRespuestaSt = "Respuesta Correcta";
+      this.imgRespuesta = this.ruta+"respuesta_correcta.gif";
     }
     else{
       this.questionError.push(this.preguntaActiva.post_meta_fields);
-      this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"error2.png";
-      this.imgRespuesta = this.ruta+"error.png";
+      this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"carita_triste.gif";
+      this.txtRespuestaSt = "Respuesta Incorrecta";
+      this.imgRespuesta = this.ruta+"respuesta_incorrecta.gif";
     }
     // Muestra el integrante que debe responder
     if(this.numRonda === 0 && this.firstRonda)
@@ -168,7 +172,7 @@ export class NivelComponent implements OnInit {
     var tmpLevel = {level:this.level, state:true}
     this._localService.setLevel(tmpLevel);
     if(this.countAnswer >= 2){
-      this.navigate('./home/video');
+      //this.navigate('./home/video');
     }
     else{
       this.errorNivel = true;
@@ -190,23 +194,23 @@ export class NivelComponent implements OnInit {
     switch (nivel) {
       case 2:
         this.pathImgLevel = "nivel1";
-        this.markeLevel = 14;
+        this.markeLevel = 6;
         break;
       case 3:
         this.pathImgLevel = "nivel2";
-        this.markeLevel = 85;
+        this.markeLevel = 78;
         break;
       case 4:
         this.pathImgLevel = "nivel3";
-        this.markeLevel = 156;
+        this.markeLevel = 148;
         break;
       case 5:
         this.pathImgLevel = "nivel4";
-        this.markeLevel = 227;
+        this.markeLevel = 219;
         break;
       case 6:
         this.pathImgLevel = "nivel5";
-        this.markeLevel = 299;
+        this.markeLevel = 290;
         break;
       default:
         break;
