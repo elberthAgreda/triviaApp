@@ -4,10 +4,17 @@ import { CustomSevice } from '../../shared/services/custom.service';
 import { LocalService } from '../../shared/services/local.service';
 import { ResponseModel } from '../../shared/models/response.model';
 import { User } from '../../shared/models/user.model';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { slideInDown, slideInUp, slideInLeft } from 'ng-animate';
 
 @Component({
   selector: 'trivia-nivel',
   templateUrl: './nivel.component.html',
+  animations: [
+    trigger('slideInDown', [transition('* => *', useAnimation(slideInDown))]),
+    trigger('slideInLeft', [transition('* => *', useAnimation(slideInLeft))]),
+    trigger('slideInUp', [transition('* => *', useAnimation(slideInUp))]),
+  ],
   styleUrls: ['./nivel.component.css']
 })
 export class NivelComponent implements OnInit {
@@ -75,7 +82,7 @@ export class NivelComponent implements OnInit {
 
   // obtener las preguntas del servicio Wordpress
   getPreguntas():void{
-    var nivel = '?categories='+this.level+'&per_page=3';
+    var nivel = '?categories='+this.level+'&per_page=50';
     this._customService.getPreguntas(nivel).subscribe(
       preguntas => {
         this.preguntas = preguntas;
@@ -171,8 +178,8 @@ export class NivelComponent implements OnInit {
     this.preguntaActiva = [];
     var tmpLevel = {level:this.level, state:true}
     this._localService.setLevel(tmpLevel);
-    if(this.countAnswer >= 2){
-      //this.navigate('./home/video');
+    if(this.countAnswer >= 30){
+      this.navigate('./home/video');
     }
     else{
       this.errorNivel = true;

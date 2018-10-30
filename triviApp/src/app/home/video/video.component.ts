@@ -34,23 +34,23 @@ export class VideoComponent implements OnInit {
   }
 
   setupVideo(){
-    var tmpLevel = 1;
-    var rutaVideo = "https://www.w3schools.com/Html/";
+    var tmpLevel = this.level['level'] - 1;
+    var rutaVideo = "../../../assets/video/";
     switch (tmpLevel) {
       case 1:
-        this.rutaLevel = rutaVideo+'mov_bbb.mp4';
+        this.rutaLevel = rutaVideo+'1.mp4';
         break;
       case 2:
-        this.rutaLevel = rutaVideo+'mov_bbb.mp4';
+        this.rutaLevel = rutaVideo+'2.mp4';
         break;
       case 3:
-        this.rutaLevel = rutaVideo+'mov_bbb.mp4';
+        this.rutaLevel = rutaVideo+'3.mp4';
         break;
       case 4:
-        this.rutaLevel = rutaVideo+'mov_bbb.mp4';
+        this.rutaLevel = rutaVideo+'4.mp4';
         break;
       case 5:
-        this.rutaLevel = rutaVideo+'mov_bbb.mp4';
+        this.rutaLevel = rutaVideo+'5.mp4';
         break;
     }
     this.state = true; 

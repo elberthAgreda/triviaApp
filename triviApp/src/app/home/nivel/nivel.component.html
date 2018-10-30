@@ -1,7 +1,7 @@
 <section class="body">
   <div class="flex header">
-    <img class="logoWWB" src="../../../assets/img/logo.png">
-    <div class="flex integrantes">
+    <img [@slideInLeft]="" class="logoWWB" src="../../../assets/img/logo.png">
+    <div [@slideInUp]="" class="flex integrantes">
       <h4>
         <span>PREGUNTA #</span>
         {{countQuestionActive}}/{{countQuestion}}
@@ -82,7 +82,7 @@
       <button (click)="navigate('./home/error');" class="btn">Ver Resumen</button>
     </div>
 
-    <img class="persona" [src]="ruta+pathImgLevel+'/'+imgLevel+'.png'">
+    <img class="persona" [@slideInDown]="" [src]="ruta+pathImgLevel+'/'+imgLevel+'.png'">
     <div class="estado-nivel">
         <div class="nivel">
             <img src="../../../assets/img/gps.gif"  [ngStyle]="{'left.px': markeLevel}" class="posicionNivel">
@@ -90,8 +90,9 @@
         </div>
     </div>
   </div>
+
   <audio controls loop autoplay>
-    <source src="http://cepi.do.grafos.tech/wp-content/themes/cepi/img/forest/sound/Forest.mp3" type="audio/mpeg">
+    <source src="http://sonidosmp3gratis.com/sounds/juego-de-tronos-1.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 </section>
