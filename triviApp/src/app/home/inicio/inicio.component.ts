@@ -10,7 +10,9 @@ import { LocalService } from '../../shared/services/local.service';
 export class InicioComponent implements OnInit {
 
   level:number;
-  message:string;
+  messageImg:string;
+  rutaImg:string;
+  positionMarker:number;
 
   constructor( public _router:Router, public _localService:LocalService ) {
     this._localService.level.subscribe(
@@ -21,24 +23,32 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit() {
+    var rutaAssets = "../../../assets/img/";
     switch (this.level) {
       case 2:
-        this.message = "Acá empieza la aventura en la cual juntos deben superar 5 niveles.";
+        this.messageImg = rutaAssets + 'nivel1/texto_niveles-01.png';
+        this.rutaImg = rutaAssets + 'nivel1/fondo-01.jpg';
+        this.positionMarker = 20;
         break;
       case 3:
-        this.message = "texto nivel 2";
+        this.messageImg = rutaAssets + 'nivel2/texto_niveles-02.png';
+        this.rutaImg = rutaAssets + 'nivel2/fondo-02.jpg';
+        this.positionMarker = 169;
         break;
       case 4:
-        this.message = "texto nivel 3";
+        this.messageImg = rutaAssets + 'nivel3/texto_niveles-03.png';
+        this.rutaImg = rutaAssets + 'nivel3/fondo-03.jpg';
+        this.positionMarker = 318;
         break;
       case 5:
-        this.message = "texto nivel 4";
+        this.messageImg = rutaAssets + 'nivel4/texto_niveles-04.png';
+        this.rutaImg = rutaAssets + 'nivel4/fondo-04.jpg';
+        this.positionMarker = 470;
         break;
       case 6:
-        this.message = "texto nivel 5";
-        break;
-      default:
-        this.message = "Sin nivel";
+        this.messageImg = rutaAssets + 'nivel5/texto_niveles-05.png';
+        this.rutaImg = rutaAssets + 'nivel5/fondo-05.jpg';
+        this.positionMarker = 620;
         break;
     }
   }

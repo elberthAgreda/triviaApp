@@ -1,4 +1,4 @@
-<section class="body">
+<section class="body" [ngStyle]="{'background-image': 'url(' + ruta + rutaImgBackground + ')'}">
   <div class="flex header">
     <img [@slideInLeft]="" class="logoWWB" src="../../../assets/img/logo.png">
     <div [@slideInUp]="" class="flex integrantes">
@@ -92,7 +92,7 @@
   </div>
 
   <audio controls loop autoplay>
-    <source src="http://sonidosmp3gratis.com/sounds/juego-de-tronos-1.mp3" type="audio/mpeg">
+    <source src="../../../assets/audio/audio.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 </section>

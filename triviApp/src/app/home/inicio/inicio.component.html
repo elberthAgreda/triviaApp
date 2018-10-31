@@ -1,13 +1,8 @@
-<section class="flex fullCenter inicio">
-    <div class="header">
-        <img class="logoWWB" src="../../../assets/img/logo.png">
-    </div>
-    <div class="imgen">
-        <!-- <img src="../../../assets/img/mano.png"> -->
-    </div>
+<section class="flex fullCenter inicio" [ngStyle]="{'background-image': 'url(' + rutaImg + ')'}">
     <div class="flex texto">
-        <h1>¡Bienvenidos!</h1>
-        <h3>Nivel {{level - 1}}, {{message}}</h3>
-        <button class="btn" (click)="goLevel();" >EMPEZAR EL JUEGO</button>
+        <img class="imgTxt" [src]="messageImg">
+        <img class="imgPto" [ngStyle]="{'margin-left.px': positionMarker}" src="../../../assets/img/gps.gif">
+        <img class="imgNivel" src="../../../assets/img/n1.png">
+        <button class="btn" (click)="goLevel();">EMPEZAR EL JUEGO</button>
     </div>
 </section>

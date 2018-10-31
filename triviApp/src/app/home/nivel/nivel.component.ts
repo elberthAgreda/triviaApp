@@ -39,6 +39,7 @@ export class NivelComponent implements OnInit {
   txtRespuestaSt:string;
   errorNivel:boolean;
   ruta:string = "../../../assets/img/";
+  rutaImgBackground:string;
   pathImgLevel:string = "nivel1";
   imgLevel:number = 1;
   imgRespuesta:string;
@@ -201,22 +202,27 @@ export class NivelComponent implements OnInit {
     switch (nivel) {
       case 2:
         this.pathImgLevel = "nivel1";
+        this.rutaImgBackground = "nivel1/fondo-01.jpg";
         this.markeLevel = 6;
         break;
       case 3:
         this.pathImgLevel = "nivel2";
+        this.rutaImgBackground = "nivel2/fondo-02.jpg";
         this.markeLevel = 78;
         break;
       case 4:
         this.pathImgLevel = "nivel3";
+        this.rutaImgBackground = "nivel3/fondo-03.jpg";
         this.markeLevel = 148;
         break;
       case 5:
         this.pathImgLevel = "nivel4";
+        this.rutaImgBackground = "nivel4/fondo-04.jpg";
         this.markeLevel = 219;
         break;
       case 6:
         this.pathImgLevel = "nivel5";
+        this.rutaImgBackground = "nivel5/fondo-05.jpg";
         this.markeLevel = 290;
         break;
       default:
