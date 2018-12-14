@@ -8,18 +8,48 @@
     background-repeat: no-repeat;
     position: relative;
 }
+.animacionBackground {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    z-index: 1;
+}
+.animacionBackground svg{
+    -webkit-animation:spin 90s linear infinite;
+    -moz-animation:spin 90s linear infinite;
+    animation:spin 90s linear infinite;
+    overflow: hidden;
+    height: 100%;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.imgr{
+    -webkit-animation: 3s rotate linear infinite;
+    animation: 3s rotate linear infinite;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
 .body > audio{
     position: absolute;
     bottom: 10px;
     width: 148px;
     left: 37px;
-    z-index: 99999999;
+    z-index: 99999999999;
 }
 
 .header {
     justify-content: space-between;
-    padding: 20px 30px;
+    padding: 0px;
     align-items: flex-start;
+    z-index: 99999999999;
+    position: relative;
 }
 
 .item-integrante {
@@ -36,32 +66,43 @@
 }
 
 .opciones {
-    color: #fff;
-    border: solid 2px;
-    padding: 5px 12px;
-    margin-left: 15px;
-    align-items: center;
+    color: #015cab;
+    background: #fff;
+    border-radius: 10px 0px 0px;
+    text-align: center;
+    padding: 5px 16px;
+    position: absolute;
+    top: -23px;
+    right: 63px;
+    z-index: -1;
 }
 
 .opciones h4 {
     margin: 0px;
-    border-right: solid 2px;
-    padding-right: 10px;
-    margin-right: 1px;
     font-size: 14px;
-    line-height: 17px;
 }
 
-.opciones h4 b{
-    display: block;
-    text-align: center;
+.btnCerrar{
+    position: absolute;
+    right: -22px;
+    top: -40px;
+    width: 135px;
+    cursor: pointer;
 }
 
 .radio {
     transition: all 0.2s linear;
 }
 .radio label{
+    display: flex;
     cursor: pointer;
+}
+.radio input[type=radio]+.radio-label:before{
+    margin-right: 10px;
+    min-width: 17px;
+    max-width: 17px;
+    width: 17px;
+    height: 17px;
 }
 .radio:hover{
     transform: scale(1.01);
@@ -75,36 +116,56 @@
 }
 
 img.persona {
-  position: absolute;
-  bottom: 0px;
-  left: 80px;
-  max-width: 490px;
-  max-height: 475px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    max-width: 490px;
+    max-height: 475px;
+    z-index: 999999999999;
 }
 
 .item-integrante img {
-    width: 54px;
+    width: 35px;
     height: auto;
 }
 .integrantes {
+    margin-top: 45px;
+    margin-right: 40px;
     align-items: center;
+    background: #015cab;
+    border-radius: 50px;
+    position: relative;
+    padding: 10px 55px;
+    padding-right: 80px;
 }
+
+.icono-img{
+    width: 70px;
+    height: 79px;
+    position: absolute;
+    left: -20px;
+    bottom: -20px;
+}
+
 .integrantes > h4{
     margin: 0px;
     text-align: center;
     margin-right: 20px;
     color: #fff;
-    font-size: 19px;
+    font-size: 14px;
+    border-right: solid 1px;
+    padding-right: 20px;
 }
 .integrantes > h4 span{
     display: block;
+    font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;
 }
 .introduccion, .preguntas, .respuesta {
     position: absolute;
-    bottom: 250px;
+    bottom: 35vh;
     width: 60%;
     max-width: 700px;
-    left: 440px;
+    left: 30vw;
     background: #36a9e1;
     padding: 15px 30px;
     color: #fff;
@@ -113,12 +174,33 @@ img.persona {
     font-size: 17px;
     z-index: 999999999;
 }
+.preguntas, .introduccion {
+    z-index: 9999999999 !important;
+}
 .respuesta{
-    text-align: left;
     background: transparent;
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    left: auto;
+    top: 0px;
+    bottom: 0px;
+    max-width: 100vw;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contBtnResp{
+    position: absolute;
+    width: 300px;
+    right: 10%;
+    text-align: right;
 }
 .respuesta p{
     margin-left: 20px;
+    text-align: left;
+    font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;
 }
 .introduccion h2, .preguntas h2 {
     font-size: 17px;
@@ -144,6 +226,21 @@ img.persona {
 .error-pregunta h3{
     font-size: 1.4rem;
     margin: 0px;
+    font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+.error-pregunta h4{
+    font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+.error-pregunta hr{
+    margin: 0px;
+    width: 90px;
+    border: none;
+    height: 2px;
+    background: #fff;
+    margin-left: -20px;
+    margin-top: 10px;
 }
 body::-webkit-scrollbar {
     width: 1em;
@@ -156,6 +253,17 @@ body::-webkit-scrollbar-thumb {
   outline: 1px solid slategrey;
 }
 
+.error-pregunta {
+    bottom: 150px;
+    width: 500px;
+    padding: 33px 40px;
+}
+.error-pregunta img{
+    width: 320px;
+    position: absolute;
+    right: 30px;
+    bottom: 65px;
+}
 .error-pregunta ul{
     height: 70px;
     margin: 0px;
@@ -165,24 +273,40 @@ body::-webkit-scrollbar-thumb {
 .error-pregunta ul li{
     width: 90%;
 }
-.error-pregunta img{
-    width: 90px;
+
+.error-pregunta p {
+    font-size: 14px;
+    margin-bottom: 90px;
 }
 .introduccion .btn, .preguntas .btn {
     float: right;
+}
+.error-pregunta .btn{
+    float: none;
 }
 .estado-nivel {
     position: absolute;
     bottom: 20px;
     right: 50px;
+    max-width: 700px;
+    z-index: 999;
+}
+.estado-nivel img.nivlMedidor{
+    width: 100%;
+    max-width: 700px;
+}
+.nivel .posicionNivel{
+    top: 50px;
+    width: 51px;
+    height: 68px;
 }
 .sw-answ {
     justify-content: flex-start;
     align-items: center;
 }
 .sw-answ img{
-    width: 190px;
     height: auto;
+    width: 500px;
 }
 .sw-answ h5{
     font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;

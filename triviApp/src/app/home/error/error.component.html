@@ -1,10 +1,15 @@
 <section class="flex login">
   <img class="logoWWB" src="../../assets/img/logo.png">
-  <p>Inténtenlo de nuevo mañana, seguro lo harán mejor<br>
-    El grupo cuenta con errores en las siguientes preguntas:</p>
-  <ul>
-    <li *ngFor="let error of errors">{{ error.introducion }} - {{ error.pregunta }}</li>
-  </ul>
-  <br><br>
+  <p>Resumen de preguntas incorrectas</p>
+  <div class="contenido-errores">
+    <div *ngFor="let error of errors; let i = index" class="flex errorDiv">
+      <h5><span>Preguntas</span>{{i + 1}}</h5>
+      <div class="txtContent">
+        <h3>{{ error.introducion }}</h3>
+        <p>{{ error.pregunta }}</p>
+      </div>
+      <img class="cir" src="../../../assets/img/circulo_rojo.svg">
+    </div>
+  </div>
   <a class="btn" href="http://unoraya.com/demo/juego/">Ir a biblioteca de estudio</a>
 </section>

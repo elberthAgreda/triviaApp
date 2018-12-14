@@ -35,8 +35,8 @@ export class NivelComponent implements OnInit {
   integrantesResponse:User[];
   nameGroup:string;
   /* Custom */
+  colorSvg:string;
   questionError:any[];
-  txtRespuestaSt:string;
   errorNivel:boolean;
   ruta:string = "../../../assets/img/";
   rutaImgBackground:string;
@@ -47,6 +47,7 @@ export class NivelComponent implements OnInit {
   integranteActivo:string;
   numRonda:number;
   firstRonda:boolean;
+  countError:number;
   countQuestionActive:number;
   markeLevel:number;
   constructor(  public _customService:CustomSevice,
@@ -65,6 +66,7 @@ export class NivelComponent implements OnInit {
     )
     this.errorNivel = false;
     this.numQuestion = 0;
+    this.countError = 0;
     this.showIntroduction = true;
     this.showQuestion = false;
     this.showAnswer = false;
@@ -74,6 +76,8 @@ export class NivelComponent implements OnInit {
     this.firstRonda = true;
     this.countQuestionActive = 1;
     this.questionError = [];
+    this.colorSvg = '#fff';
+    this.markeLevel = 0;
   }
 
   ngOnInit() {
@@ -86,8 +90,15 @@ export class NivelComponent implements OnInit {
     var nivel = '?categories='+this.level+'&per_page=50';
     this._customService.getPreguntas(nivel).subscribe(
       preguntas => {
-        this.preguntas = preguntas;
-        console.log(this.preguntas);
+        // Generar random del arreglo de preguntas
+        let tmpPreguntas = preguntas;
+        for (var i = 49; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var temp = tmpPreguntas[i];
+          tmpPreguntas[i] = tmpPreguntas[j];
+          tmpPreguntas[j] = temp;
+        }
+        this.preguntas = tmpPreguntas;
         this.preguntaActiva = this.preguntas[this.numQuestion];
         this.countQuestion = this.preguntas.length;
         this.loader = false;
@@ -134,15 +145,22 @@ export class NivelComponent implements OnInit {
     // Valida si la respuesta es correcta
     if(this.preguntaActiva.post_meta_fields.respuesta_correcta == this.optionAnswer){
       this.countAnswer = this.countAnswer + 1;
+      // Valida si el contador de correctas es igual a 30
+      if(this.countAnswer >= 30)
+        this.finishLevel();  
       // Cambia icono si la respuesta es correcta
+      this.sonidoCorrecto();
+      this.markeLevel = this.markeLevel + 23.33;
+      this.colorSVG(true);
       this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"carita_feliz.gif";
-      this.txtRespuestaSt = "Respuesta Correcta";
       this.imgRespuesta = this.ruta+"respuesta_correcta.gif";
     }
     else{
       this.questionError.push(this.preguntaActiva.post_meta_fields);
+      this.sonidoError();
+      this.colorSVG(false);
+      this.countError = this.countError + 1;
       this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"carita_triste.gif";
-      this.txtRespuestaSt = "Respuesta Incorrecta";
       this.imgRespuesta = this.ruta+"respuesta_incorrecta.gif";
     }
     // Muestra el integrante que debe responder
@@ -195,6 +213,7 @@ export class NivelComponent implements OnInit {
     this.showAnswer = false;
     this.showQuestion = false;
     this.optionAnswer = null;
+    this.colorSvg = '#fff';
   }
 
   // Custom nivel
@@ -203,31 +222,47 @@ export class NivelComponent implements OnInit {
       case 2:
         this.pathImgLevel = "nivel1";
         this.rutaImgBackground = "nivel1/fondo-01.jpg";
-        this.markeLevel = 6;
         break;
       case 3:
         this.pathImgLevel = "nivel2";
         this.rutaImgBackground = "nivel2/fondo-02.jpg";
-        this.markeLevel = 78;
         break;
       case 4:
         this.pathImgLevel = "nivel3";
         this.rutaImgBackground = "nivel3/fondo-03.jpg";
-        this.markeLevel = 148;
         break;
       case 5:
         this.pathImgLevel = "nivel4";
         this.rutaImgBackground = "nivel4/fondo-04.jpg";
-        this.markeLevel = 219;
         break;
       case 6:
         this.pathImgLevel = "nivel5";
         this.rutaImgBackground = "nivel5/fondo-05.jpg";
-        this.markeLevel = 290;
         break;
       default:
         break;
     }
+  }
+
+  colorSVG(answer:boolean){
+    if ( answer )
+      this.colorSvg = '#66cccc';
+    else
+      this.colorSvg = '#ff3366';
+  }
+
+  sonidoCorrecto(){
+    var audioC = new Audio();
+    audioC.src = "../../../assets/audio/bien.mp3";
+    audioC.load();
+    audioC.play();
+  }
+
+  sonidoError(){
+    var audioE = new Audio();
+    audioE.src = "../../../assets/audio/error.mp3";
+    audioE.load();
+    audioE.play();
   }
 
   // Salir de la aplicación
