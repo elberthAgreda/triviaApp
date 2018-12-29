@@ -50,11 +50,14 @@ export class InicioComponent implements OnInit {
         this.rutaImg = rutaAssets + 'nivel5/fondo-05.jpg';
         this.positionMarker = 620;
         break;
+      case 7:
+        this._router.navigate(['./home/finalizado']);
+        break;
     }
   }
 
   goLevel():void{
-    var ruta = './home/nivel/';
+    let ruta = './home/nivel/';
     this._router.navigate([ruta]);
   }
 

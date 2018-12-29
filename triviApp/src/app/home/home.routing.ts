@@ -7,6 +7,7 @@ import { ErrorComponent } from "./error/error.component";
 import { InicioComponent } from "./inicio/inicio.component";
 // Guards
 import { AuthGuard } from "../shared/auth/auth.guards";
+import { FinalizadoComponent } from "./finalizado/finalizado.component";
 
 const adminRoutes: Routes = [
   {
@@ -16,6 +17,7 @@ const adminRoutes: Routes = [
     children: [
       { path: "inicio", component: InicioComponent },
       { path: "nivel", component: NivelComponent },
+      { path: "finalizado", component: FinalizadoComponent },
       { path: "video", component: VideoComponent },
       { path: "error", component: ErrorComponent }
     ]
