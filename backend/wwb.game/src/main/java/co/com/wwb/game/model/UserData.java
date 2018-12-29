@@ -9,7 +9,8 @@ public class UserData {
 	private String userName;
 	private String teamName;
 	private String password;
-	
+	private String ciudad;
+	private String agencia;
 	
 	public NivelUsuario getNivel() {
 		return nivel;
@@ -41,6 +42,30 @@ public class UserData {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	/**
+	 * @return the ciudad
+	 */
+	public String getCiudad() {
+		return ciudad;
+	}
+	/**
+	 * @param ciudad the ciudad to set
+	 */
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+	/**
+	 * @return the agencia
+	 */
+	public String getAgencia() {
+		return agencia;
+	}
+	/**
+	 * @param agencia the agencia to set
+	 */
+	public void setAgencia(String agencia) {
+		this.agencia = agencia;
 	}
 	
 	

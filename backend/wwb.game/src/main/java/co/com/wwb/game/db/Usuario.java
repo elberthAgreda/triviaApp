@@ -7,7 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity(name="Usuario")
@@ -20,6 +19,10 @@ public class Usuario {
 	private String password;
 	
 	private String teamname;
+	
+	private String ciudad;
+	
+	private String agencia;
 	
 	@OneToMany(mappedBy="usuario", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Grupo> lstGrupo = new ArrayList<Grupo>();
@@ -55,4 +58,34 @@ public class Usuario {
 	public void setLstGrupo(List<Grupo> lstGrupo) {
 		this.lstGrupo = lstGrupo;
 	}
+
+	/**
+	 * @return the ciudad
+	 */
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	/**
+	 * @param ciudad the ciudad to set
+	 */
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	/**
+	 * @return the agencia
+	 */
+	public String getAgencia() {
+		return agencia;
+	}
+
+	/**
+	 * @param agencia the agencia to set
+	 */
+	public void setAgencia(String agencia) {
+		this.agencia = agencia;
+	}
+	
+	
 }
