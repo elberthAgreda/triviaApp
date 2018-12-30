@@ -10,6 +10,8 @@ public class Elemento {
 
 	private String agencia;
 
+	private String valor;
+
 	public Elemento(){
 	}
 	
@@ -29,6 +31,14 @@ public class Elemento {
 		this.nombre = nombre;
 		this.ciudad = ciudad;
 		this.agencia = agencia;
+	}
+
+	public Elemento(String codigo, String nombre, String ciudad ,String agencia, String valor){
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.ciudad = ciudad;
+		this.agencia = agencia;
+		this.valor = valor;
 	}
 
 	/**
@@ -87,5 +97,19 @@ public class Elemento {
 		this.agencia = agencia;
 	}
 
-	
+	/**
+	 * @return the valor
+	 */
+	public String getValor() {
+		return valor;
+	}
+
+	/**
+	 * @param valor the valor to set
+	 */
+	public void setValor(String valor) {
+		this.valor = valor;
+	}
+
+
 }

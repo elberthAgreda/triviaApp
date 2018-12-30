@@ -30,6 +30,7 @@ import co.com.wwb.game.repository.AgenciaRepository;
 import co.com.wwb.game.repository.CiudadRepository;
 import co.com.wwb.game.repository.NivelRespository;
 import co.com.wwb.game.repository.UsuarioRespository;
+import co.com.wwb.game.repository.VotoQueryRepository;
 import co.com.wwb.game.repository.VotoRepository;
 
 @Service
@@ -53,7 +54,11 @@ public final class WWBGameService {
 	private AgenciaRepository agenciaRepository;
 
 	@Autowired
+	private VotoQueryRepository votoQueryRepository;
+
+	@Autowired
 	private MD5HashingComponent md5HashingComponent;
+
 	
 	/**
 	 * 
@@ -64,7 +69,7 @@ public final class WWBGameService {
 	
 	public UserData login(String userName, String password) throws Exception{
 		
-		
+
 		if(userName == null || userName.isEmpty()) {
 			throw new Exception("Por favor suministre los datos de inicio de sesión");
 		}
@@ -144,13 +149,15 @@ public final class WWBGameService {
 		if(registro.getAgencia() == null || registro.getAgencia().isEmpty()) {
 			throw new Exception("La Agencia es requerida");
 		}
-		
+
+		String error = null;
 		try {
 			
 			Usuario tmp =  getUserInformation(registro.getUsername());
 			
 			if(tmp != null) {
-				throw new Exception("EL nombre de usuario ingresado no esta disponible");
+				error = "EL nombre de usuario ingresado no esta disponible";
+				throw new Exception(error);
 			}
 			
 			Usuario usuario = new Usuario();
@@ -182,8 +189,11 @@ public final class WWBGameService {
 			throw new Exception("Se ha presentado un error en el sistema por favor contactese con el administrador.");
 		
 		}catch(Exception iex) {
-			iex.printStackTrace();
-			throw new Exception("La información sumistrada en el registro es invalida por favor validar los datos del Grupo que intenta de registrar.");
+			if ( error == null) {
+				iex.printStackTrace();
+				error = "La información sumistrada en el registro es invalida por favor validar los datos del Grupo que intenta de registrar.";
+			}
+			throw new Exception(error);
 		}
 		
 		return "Registro Ejecutado Exitosamente";
@@ -202,7 +212,6 @@ public final class WWBGameService {
 		if(nivelUsuario.getUserName() == null || nivelUsuario.getUserName().isEmpty()) {
 			throw new Exception("El nivel es requerido");
 		}
-		
 		
 		Usuario usuario = this.getUserInformation( nivelUsuario.getUserName() );
 		
@@ -261,12 +270,15 @@ public final class WWBGameService {
 		if ( usuario.getAgencia() != null ) {
 			if ( !usuario.getAgencia().equals(agenciaSrv) ) {
 				error = "No se puede registrar un voto para la misma agencia";
-				throw new Exception( error );	
+				throw new Exception( error );
 			}	
 		}
 		
-		//TODO: valido  la cantidad de votos que puede tener un video de un mismo usuario
-		
+		long total = this.votoQueryRepository.votosByUser( puntuacionUsuario.getUsuario() );
+		if ( total > 1 && (total > usuario.getLstGrupo().size() )) {
+			error = "EL usuario no puede registrar más votos";
+			throw new Exception( error );	
+		}
 		
 		try {
 			Voto voto = new Voto();
@@ -276,9 +288,9 @@ public final class WWBGameService {
 			voto.setAgencia( puntuacionUsuario.getAgencia() );
 			
 			if ( puntuacionUsuario.getFecha() == null || puntuacionUsuario.getFecha().isEmpty() ) {
-				voto.setFecha( formatoFecha.parse( puntuacionUsuario.getFecha().trim() ) );
-			}else {
 				voto.setFecha( new Date() );
+			}else {
+				voto.setFecha( formatoFecha.parse( puntuacionUsuario.getFecha().trim() ) );
 			}
 			
 			votoRepository.save(voto);
@@ -386,7 +398,7 @@ public final class WWBGameService {
 			}
 			
 			for (String id : acumulado.keySet()) {
-				resultado.getListado().add( new Elemento( id , String.valueOf( acumulado.get(id) ), null, laAgencia.get(id)  ) );
+				resultado.getListado().add( new Elemento( id , String.valueOf( acumulado.get(id) ), null, laAgencia.get(id) , String.valueOf( acumulado.get(id) ) ) );
 			}
 
 			laAgencia.clear();
