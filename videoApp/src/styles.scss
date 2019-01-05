@@ -1,0 +1,312 @@
+@font-face{
+    font-family: "MyriadPro-Regular";
+    src: url(./assets/fonts/MyriadPro-Regular.otf);
+}
+@font-face{
+    font-family: "MyriadPro-Bold";
+    src: url(./assets/fonts/MyriadPro-Bold.otf);
+}
+
+*{
+    font-family: "MyriadPro-Regular";
+}
+h2, b{
+    font-family: "MyriadPro-Bold";
+}
+.extras-tbs{
+    display: none;
+}
+html, body{
+    overflow-x: hidden;
+    background: #fff;
+}
+.flex{
+    display: flex;
+}
+.fullCenter{
+    justify-content: center;
+    align-items: center;
+}
+.col1{
+    flex:1;
+}
+.col2{
+    flex:2;
+}
+header{
+    width: 100vw;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+}
+header > img {
+    border: 0;
+    width: 100vw;
+    height: 98%;
+}
+.pr-50{
+    padding-right: 50px;
+}
+img.scrllBn {
+    width: 42px;
+    position: absolute;
+    bottom: 17px;
+    z-index: 99;
+}
+h4.dcmDownl{
+    padding-left: 47px;
+    font-size: 16px;
+    color: #0499e5;
+    border-bottom: solid 1px #dddddd;
+    font-family: "MyriadPro-Bold";
+    padding-bottom: 17px;
+}
+.contenido-banner {
+    position: absolute;
+    top: 0px;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
+}
+.logo{
+    width: 300px;
+    height: auto;
+    position: absolute;
+    top: -11px;
+}
+.btnCumplimiento {
+    display: block;
+    text-align: center;
+    margin-bottom: 27px;
+}
+.btnCumplimiento a.btn{
+    color: #0d5d9b;
+    text-transform: capitalize;
+    border-color: #7dc7be;
+    box-shadow: none;
+}
+.btn-jugar {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 487px;
+    overflow: hidden;
+}
+a.btn {
+    background: transparent;
+    border-radius: 50px;
+    border: solid 2px #fff;
+    color: #fff;
+    padding: 19px 35px;
+    text-transform: uppercase;
+    font-family: "MyriadPro-Bold";
+    line-height: 6px;
+    font-size: 18px;
+}
+img.personaBn {
+    position: absolute;
+    right: 0px;
+    bottom: -24px;
+    width: 95vw;
+    max-width: 1380px;
+}
+div.botonesHeader{
+    margin-bottom: 230px;
+    z-index: 999999;
+}
+img.lgBanner{
+    width: 300px;
+    margin-right: 44px;
+}
+
+section.contenido {
+    max-width: 1200px;
+    margin: 40px auto;
+}
+section.contenido h2{
+color: #37a6df;
+    text-align: center;
+}
+.detalle-title h2{
+    text-transform: uppercase;
+    font-size: 35px;
+    line-height: 28px;
+    margin-bottom: 0px;
+}
+.detalle-title p{
+margin-top: 10px;
+    max-width: 200px;
+    line-height: 11px;
+    font-size: 12px;
+    text-align: center;
+}
+.detalle-title a.btn{
+    background: #0d5d9b;
+    border: none;
+}
+.tabs .tab a{
+    color: #1d71b8;
+    font-size: 16px;
+    font-family: "MyriadPro-Bold";
+    text-transform: capitalize;
+}
+.border-left{
+    border-left: solid 1px #868686;
+    padding-left: 0px;
+}
+.amarillo{
+    background: #F7B033 !important;
+}
+.azul{
+    background: #0d5d9b !important;
+}
+.rosa {
+    background: #d60d52 !important;
+}
+.verde {
+    background: #92c01f !important;
+}
+.collapsible-body{
+    padding-bottom: 0px;
+}
+.collapsible-body > .row{
+        margin-bottom: 0px;
+}
+.f-column{
+    flex-flow: column;
+    -ms-flex-flow: column;
+}
+.imgContenido{
+    text-align:center;
+}
+.imgContenido img{
+width: 253px;
+    margin-bottom: -8px;
+}
+.btn-descargas a{
+    position: relative;
+    max-width: 207px;
+    background: #37a6e0;
+    height: 66px;
+    border: none;
+    margin-right: 20px;
+}
+.btn-descargas a img{
+    position: absolute;
+    width: 45px;
+    left: 10px;
+    top: 8px;
+}
+.btn-descargas a label{
+    color: #fff;
+    display: block;
+    font-family: "MyriadPro-Bold";
+    width: 121px;
+    text-align: left;
+    margin-left: 32px;
+    line-height: 13px;
+}
+.tabs .tab a:hover, .tabs .tab a.active{
+    color: #35a8e1;
+}
+.tabs .indicator{
+    background-color: #039be5;
+    height: 4px;
+}
+.opcionesTab{
+    margin-bottom: 40px;
+}
+img.play{
+    width: 90%;
+    max-width: 144px;
+    display: block;
+    margin: 0px auto;
+}
+p{
+    text-align: justify;
+    font-size: 15px;
+    color: #868686;
+}
+footer{
+    background: #ededed;
+    padding: 20px 0px;
+}
+footer > img{
+    display: block;
+    margin: 0px auto;
+    margin-top: 20px;
+    width: 90px;
+}
+.footer {
+    width: 90%;
+    max-width: 600px;
+    margin: 0px auto;
+    align-items: center;
+    justify-content: center;
+}
+.footer > img{
+    width: 200px;
+    margin-right: 13%;
+}
+
+.txt-footer h2{
+    margin: 0px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+/* Arrow holder */
+.arrowed {
+    position: relative;
+    height: 20px;
+    width: 20px;
+}
+.arrowed div {
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+	margin: auto;
+}
+.arrow-3 {
+    height: 0px;
+    width: 0px;
+    border: 8px solid;
+    border-color: #049ae5 #049ae5 transparent transparent;
+    transform: rotate(45deg);
+    border-radius: 3px;
+}
+.collapsible-header{
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    cursor: pointer;
+}
+.collapsible-header label{
+    margin-left: 13px;
+    font-size: 16px;
+    color: #0499e5;
+    font-family: "MyriadPro-Bold";
+}
+
+.txt-collapse img{
+    width: 80px;
+    margin-right: 13px;
+}
+.txt-collapse .col1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.txt-collapse .col1 label{
+    font-size: 18px;
+    color: #41ade2;
+    line-height: 20px;
+    font-family: "MyriadPro-Bold";
+    max-width: 130px;
+}
+.collapsible{
+    box-shadow: none;
+    border: none;
+}
