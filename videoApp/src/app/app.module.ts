@@ -9,13 +9,13 @@ import { AppRouting } from './app.routing';
 import { LocalService } from './shared/services/local.service';
 // Service
 import { CustomSevice } from './shared/services/custom.service';
-import { VideoComponent } from './video/video.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VideoComponent,
+    HomeComponent,
     LoginComponent
   ],
   imports: [

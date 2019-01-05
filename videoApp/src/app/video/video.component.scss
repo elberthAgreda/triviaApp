@@ -1,0 +1,114 @@
+section.video-content{
+    background-size: cover;
+    padding-bottom: 15px;
+  }
+  .contenido-banner {
+      top: 20px;
+      right: 90px;
+      justify-content: flex-end;
+      width: auto;
+      height: auto;
+      align-items: flex-start;
+  }
+  .logo {
+    width: 220px;
+  }
+  .descripcion-video h1{
+    max-width: 320px;
+    line-height: 57px;
+  }
+  .contenido-banner a,
+  .descripcion-video h1,
+  .contenido label{
+    font-family: "MyriadPro-Bold";
+    color: #fff;
+  }
+  .contenido-banner a {
+    border-right: solid 2px #00BCD4;
+    padding-right: 10px;
+    margin-right: 10px;
+    font-size: 19px;
+  }
+  .contenido-banner li:last-child a{
+    border: none;
+    margin: 0px;
+  }
+  label{
+    font-size: 22px;
+    text-transform: uppercase;
+  }
+  .btn-votar{
+    cursor: pointer;
+    transition: all 0.2s linear;
+  }
+  .btn-votar:hover{
+    transform: scale(1.02);
+  }
+  header {
+    width: 100vw;
+    height: 240px;
+  }
+  .descripcion-video p{
+    max-width: 350px;
+    margin-top: 0px;
+    font-size: 17px;
+    line-height: 20px;
+    text-align: left;
+    color: #fff;
+  }
+  section.contenido{
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  a.btn{
+    background: transparent;
+    color: #fff;
+  }
+  .btn-cerrar{
+    position: absolute;
+    right: 40px;
+    top: 70px;
+    z-index: 9999999;
+  }
+  section.videos-listado{
+    width: 85%;
+    margin: 0px auto;
+  }
+  section.videos-listado > h2{
+    color: #37a6df;
+    font-size: 30px;
+  }
+  .items-video {
+    margin-bottom: 30px;
+    flex-flow: row wrap;
+  }
+  .item-video {
+    width: 220px;
+    background: #37a6df;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 140px;
+    cursor: pointer;
+    transition: all 0.2s linear;
+  }
+  .item-video:hover{
+    transform: scale(1.03);
+  }
+  .item-video h2{
+    font-size: 25px;
+    width: 90%;
+    margin: 0px auto;
+    text-align: center;
+  }
+  .items-video .item-video:nth-child(even){
+    background: #7dc6be;
+  }
+  #videoCampana{
+    position: absolute;
+    top: 0px;
+    z-index: 99;
+    width: 100vw;
+    height: inherit;
+  }

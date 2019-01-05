@@ -5,6 +5,14 @@
     <p>Inscribe tu equipo</p>
     <input type="text" name="username" [(ngModel)]="userRegister.username" placeholder="Nombre del grupo" required>
     <input type="password" name="password" [(ngModel)]="userRegister.password" placeholder="Password del grupo" required> 
+    <select name="ciudad" [(ngModel)]="userRegister.ciudad">
+        <option *ngFor="let ciudad of ciudades"
+                [value]="ciudad.codigo">{{ciudad.nombre}}</option>
+    </select>
+    <select name="agencia" [(ngModel)]="userRegister.agencia">
+        <option *ngFor="let agencia of agencias"
+                [value]="agencia.codigo">{{agencia.nombre}}</option>
+    </select>
     <div class="form-group">
         <input type="text" name="name" [(ngModel)]="user1.name" placeholder="Nombre Usuario 1" required>
         <input type="text" OnlyNumber name="documentId" [(ngModel)]="user1.documentId" placeholder="C.C." required>

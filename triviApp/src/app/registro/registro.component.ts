@@ -3,6 +3,7 @@ import { Register } from '../shared/models/register.model';
 import { User } from '../shared/models/user.model';
 import { CustomSevice } from '../shared/services/custom.service';
 import { Router } from '@angular/router';
+import { UserData } from '../shared/models/userData.model';
 
 @Component({
   selector: 'app-registro',
@@ -13,6 +14,9 @@ export class RegistroComponent implements OnInit {
   
   message:boolean = false;
   txtMessage:string;
+  userData:UserData = new UserData();
+  ciudades:any[];
+  agencias:any[];
   userRegister:Register = new Register();
   user1:User = new User();
   user2:User = new User();
@@ -20,9 +24,31 @@ export class RegistroComponent implements OnInit {
   user4:User = new User();
   user5:User = new User();
 
-  constructor( public _customService:CustomSevice, public _router:Router ) {}
+  constructor( public _customService:CustomSevice, public _router:Router ) {
+    this.ciudades = [];
+    this.agencias = [];
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCiudades();
+    this.getAgencias();
+  }
+
+  getCiudades():void{
+    this._customService.cities<any>(this.userData).subscribe(
+      (ciuadades: { listado: any[]; }) => {
+        this.ciudades = ciuadades.listado;
+      }
+    );
+  }
+
+  getAgencias():void{
+    this._customService.agencies<any>(this.userData).subscribe(
+      (agencias: { listado: any[]; }) => { 
+        this.agencias = agencias.listado;
+      }
+    );
+  }
 
   registerForm():void{
     var tmpS = [];

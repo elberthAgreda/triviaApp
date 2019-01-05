@@ -16,9 +16,9 @@ export class AuthGuard implements CanActivate {
       response => {
         this.validate = response;
         if(this.validate != null)
-            this.onNavigation = true;
+          this.onNavigation = true;
         else
-            this.onNavigation = false;
+          this.onNavigation = false;
       }
     );
     return this.onNavigation;

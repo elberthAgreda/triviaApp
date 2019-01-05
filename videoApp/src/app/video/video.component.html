@@ -1,3 +1,59 @@
-<p>
-  video works!
-</p>
+<section [ngStyle]="{'background-image': 'url(' + videoData.imagen + ')'}"
+         class="video-content">
+  <video *ngIf="showVideo" autoplay muted loop id="videoCampana">
+    <source [src]="videoData.video" type="video/mp4">
+  </video>
+  <a *ngIf="showVideo" (click)="showVideoBase(false);"
+      class="btn btn-cerrar">Cerrar</a>
+  <header>
+    <img class="logo" src="../../assets/img/fondo1.png">
+    <div class="flex contenido-banner">
+      <ul class="flex">
+        <li><a href="">Instrucciones</a></li>
+        <li><a href="">Cumplimiento</a></li>
+        <li><a href="">Saro</a></li>
+        <li><a href="">Sarlaft</a></li>
+        <li><a href="">Seguridad</a></li>
+        <li><a href="">Control (SCI)</a></li>
+        <li><a href="">Crear Video</a></li>
+        <li><a href="">Ver Videos</a></li>
+      </ul>
+    </div>
+  </header>
+  <section class="flex contenido">
+    <div *ngIf="videoData.video != null" class="descripcion-video">
+      <h1>{{videoData.titulo}}</h1>
+      <p>{{videoData.descripcion}}</p>
+      <a (click)="showVideoBase(true);" class="btn">Reproducir</a>
+    </div>
+    <a *ngIf="videoData.video != null" class="btn-votar"
+       (click)="saveVote();" >
+      <img src="">
+      <label>Vota por este video</label>
+    </a>
+  </section>
+</section>
+
+<section class="videos-listado">
+  <h2>Agencias</h2>
+  <div class="flex items-video">
+    <div (click)="viewAgencie(agencia);" *ngFor="let agencia of agencias" class="item-video">
+      <h2>{{agencia.post_meta_fields.titulo}}</h2>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer flex">
+    <img src="../../assets/img/logo-footer.png">
+    <div class="txt-footer">
+      <h2>Contacto</h2>
+      <p>
+        PBX: +57(2) 123-4567<br>
+        Celular: 31234567890<br>
+        info@cinco.bmm.com
+      </p>
+    </div>
+  </div>
+  <img src="../../assets/img/unoraya.png">
+</footer>

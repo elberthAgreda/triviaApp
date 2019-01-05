@@ -2,13 +2,20 @@ section.login{
     background: rgb(78,72,158);
     height: auto;
     min-height: 100vh;
-    width: 100vw;
-    overflow: hidden;
+    width: 100%;
+    padding: 30px 0px;
     background: rgb(48,160,219);
     background: linear-gradient(56deg, rgba(48,160,219,1) 0%, rgba(33,133,200,1) 50%, rgba(29,113,184,1) 100%);
     flex-flow: column;
     justify-content: center;
     align-items: center;
+}
+select{
+    background: transparent;
+    border: solid 2px #fff;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom:10px;
 }
 form.flex{
     flex-flow: column;

@@ -1,3 +1,9 @@
-<p>
-  login works!
-</p>
+<section class="flex login">
+  <img class="logoWWB" src="../../assets/img/logo.png">
+  <form #loginForm="ngForm" (ngSubmit)="authentication()" class="flex">
+    <input [(ngModel)]="username" name="username" type="text" placeholder="Usuario del grupo" required>
+    <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required>
+    <button [disabled]="!loginForm.form.valid" type="submit">ACCEDER</button>
+  </form>
+  <p class="error" *ngIf="stateMessage">{{message}}</p>
+</section>
