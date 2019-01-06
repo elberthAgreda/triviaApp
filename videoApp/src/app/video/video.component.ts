@@ -20,6 +20,7 @@ export class VideoComponent implements OnInit {
   videoData:VideoModel;
   dataVoto:Puntuacion;
   showVideo:boolean;
+  today:Date;
 
   constructor( private _customService:CustomSevice,
                private _localService:LocalService ) {
@@ -31,6 +32,7 @@ export class VideoComponent implements OnInit {
     this.videoData.video = null;
     this.videoData.puntuacion = new Puntuacion();
     this.userData = new UserData();
+    this.today = new Date();
     this._localService.responseModel
     .subscribe( response => { this.responseModel = response; } );
   }
@@ -58,16 +60,18 @@ export class VideoComponent implements OnInit {
     this.videoData.video = data.post_meta_fields.video_url;
     // Puntuacion
     this.videoData.puntuacion.video = data.id;
-    this.videoData.puntuacion.agencia = this.responseModel.agencia;
+    this.videoData.puntuacion.agencia = data.id;
     this.videoData.puntuacion.usuario = this.responseModel.userName;
-    this.videoData.puntuacion.fecha = '11/01/2019';
+    const dateAc = this.today.getDate()+'/'+this.today.getMonth()+'/'+this.today.getFullYear();
+    this.videoData.puntuacion.fecha = dateAc;
+    $('html,body').animate({ scrollTop: 0 },1000);
   }
 
   saveVote():void{
     this.dataVoto = this.videoData.puntuacion;
     this._customService.saveVote(this.dataVoto).subscribe(
       response => { console.log(response); },
-      error => { alert(error.message); }
+      error => { console.log(error); }
     );
   }
 

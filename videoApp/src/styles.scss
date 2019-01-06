@@ -13,9 +13,6 @@
 h2, b{
     font-family: "MyriadPro-Bold";
 }
-.extras-tbs{
-    display: none;
-}
 html, body{
     overflow-x: hidden;
     background: #fff;
@@ -85,6 +82,7 @@ h4.dcmDownl{
     text-transform: capitalize;
     border-color: #7dc7be;
     box-shadow: none;
+    line-height: 2px;
 }
 .btn-jugar {
     display: flex;
@@ -212,6 +210,7 @@ width: 253px;
 }
 .tabs .tab a:hover, .tabs .tab a.active{
     color: #35a8e1;
+    border-bottom: solid;
 }
 .tabs .indicator{
     background-color: #039be5;

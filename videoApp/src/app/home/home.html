@@ -16,271 +16,32 @@
 <section class="contenido">
 <div class="row">
     <div class="btnCumplimiento">
-    <a id="showInstruciones" class="btn">Instrucciones</a>
+    <a [routerLink]="['instrucciones']" class="btn">Instrucciones</a>
     </div>
     <div class="col s12 opcionesTab">
     <ul class="tabs">
-        <li class="tab col s2"><a href="#cumplimiento">Cumplimiento</a></li>
-        <li class="tab col s3"><a href="#saro">Riesgos No Financieros</a></li>
-        <li class="tab col s2"><a href="#sarlaf">SARLAFT</a></li>           
-        <li class="tab col s2"><a href="#control">Seguridad Bancaria</a></li>
-        <li class="tab col s2"><a href="#seguridad">Control Interno (SCI)</a></li>
-    
+        <li class="tab col s2">
+            <a routerLinkActive="active" [routerLink]="['cumplimiento']">Cumplimiento</a>
+        </li>
+        <li class="tab col s3">
+            <a routerLinkActive="active" [routerLink]="['riesgos']">Riesgos No Financieros</a>
+        </li>
+        <li class="tab col s2">
+            <a routerLinkActive="active" [routerLink]="['sarlaft']">SARLAFT</a>
+        </li>           
+        <li class="tab col s2">
+            <a routerLinkActive="active" [routerLink]="['seguridad']">Seguridad Bancaria</a>
+        </li>
+        <li class="tab col s2">
+            <a routerLinkActive="active" [routerLink]="['control-interno']">Control Interno (SCI)</a>
+        </li>
     </ul>
     </div>
-    <div id="instrucciones" class="col s12">
-    <div class="flex content-instr">
-        <div class="col1 flex fullCenter f-column pr-50">
-        <p><b>Bienvenidos a CINCO,</b> una campaña corporativa del Banco
-            Mundo Mujer. Durante 2 meses viviremos junto con todos
-            nuestros compañeros los valores y principios que dan vida a
-            nuestra identidad como Banco líder de Microfinanzas en Colombia.
-            <br><br>
-            A continuación te presentamos el instructivo de la campaña,
-            con el cual, conocerás cómo participar activamente y cumplir
-            paso a paso cada uno de los retos propuestos.</p>
-        </div>
-        <div class="col1 flex fullCenter f-column detalle-title border-left">
-        <img class="play" src="../../assets/img/logo-footer.png">
-        <h2>Descargar<br>Instructivo</h2>
-        <p>Conoce todas las instrucciones que esta
-            campaña trae para tí</p>
-        <a href="" class="btn">Descargar</a>
-        </div>
-    </div>
-    </div>
+
     <div class="extras-tbs">
-    <div id="cumplimiento" class="col s12">
-        <h2>Cumplimiento</h2>
-        <ul class="collapsible">
-        <li>
-            <div class="collapsible-header showTB">
-            <div class="arrowed">
-                <div class="arrow-3"></div>
-            </div>
-            <label>¿Qué es el Área de Cumplimiento?</label>
-            </div>
-            <div class="collapsible-body">
-            <div class="row">
-                <div class="col l6">
-                <p>
-                    La función de Cumplimiento tiene como finalidad hacer una supervisión independiente de 
-                    la gestión que el Banco hace respecto del cumplimiento de la regulación (Norma, decretos, 
-                    reglamentos, regulaciones, entre otros) y estándares de Auto-regulación (Códigos y políticas 
-                    corporativas de conducta), garantizando la transparencia en sus operaciones, evitando una 
-                    afectación por incumplimientos y protegiendo así el buen nombre del Banco.
-                </p>
-                <p><b>Función Principal del área</b></p>
-                <p>• Apoyar el cumplimento de los objetivos estratégicos del Banco mediante el seguimiento 
-                    al cumplimiento de la normatividad y fomentando una cultura de transparencia e integridad al 
-                    interior de la organización</p>
-                <p>• Promueve el cumplimiento de la normatividad aplicable al Banco y realiza acompañamiento para 
-                su entendimiento y aplicación.</p>
-                </div>
-                <div class="col l6 text-center imgContenido">
-                    <img src="../../assets/img/cumplimiento06.jpg">
-                </div>
-                </div>
-            </div>
-        </li>
-        </ul>
-        <h4 class="dcmDownl">Documentación para Descargar</h4>
-        <div class="flex btn-descargas">
-        <a href="pdf/CUMPLIMIENTO/Funcióndecumplimiento.pdf" target="_blank" class="btn">
-            <img src="../../assets/img/icono_boton.png">
-            <label>Función de Cumplimiento</label>
-        </a>
-        <a href="pdf/CUMPLIMIENTO/TipsdeCumplimiento.pdf" target="_blank" class="btn">
-            <img src="../../assets/img/icono_boton.png">
-            <label>Tips de Cumplimiento</label>
-        </a>
-        </div>  
+        <router-outlet></router-outlet>
     </div>
-    <div id="saro" class="col s12">
-        <h2>Riesgos No Financieros</h2>
-        <ul class="collapsible">
-        <li>
-            <div class="collapsible-header showTB">
-            <div class="arrowed">
-                <div class="arrow-3"></div>
-            </div>
-            <label>¿Qué es el Área de Riesgos No Financieros?</label>
-            </div>
-            <div class="collapsible-body">
-                <div class="row">
-                <div class="col l6">
-            <p>
-            Somos los responsables de definir las políticas y procedimientos relacionados a la prevención 
-            del riesgo en la organización.</p>
-            <p><b>Funciones principales del área</b></p>
-
-            <p>· Definir las políticas y procedimientos para una adecuada gestión y prevención del 
-            riesgo operativo en los procesos, teniendo en cuenta las fuentes de riesgo: Recurso humano,
-                procesos, Tecnología, Externos e infraestructura.</p>
-
-            <p>· Definir las políticas y controles necesarios, con el fin de mitigar los riesgos que puedan 
-            llegar afectar la confidencialidad, integridad y disponibilidad de la información.</p>
-
-            <p>· Definir las estrategias de recuperación en caso de un desastre que afecte 
-            la continuidad del negocio.
-            </p>
-                </div>
-                <div class="col l6 text-center imgContenido">
-                    <img src="../../assets/img/riesgo05.jpg">
-                </div>
-                </div>
-            </div>
-        </li>
-        </ul>
-        <h4 class="dcmDownl">Documentación para Descargar</h4>
-        <div class="flex btn-descargas">
-        <a href="pdf/RIESGONOFINANCIERO/MaterialSARO.pdf" target="_blank" class="btn amarillo">
-            <img src="../../assets/img/icono_boton.png">
-            <label>Documentación SARO</label>
-        </a>
-        <a href="pdf/RIESGONOFINANCIERO/MaterialSeguridadelaInformación.pdf" target="_blank" class="btn amarillo">
-            <img src="../../assets/img/icono_boton.png">
-            <label>Documentación Seguridad de la Información</label>
-        </a>
-        </div>
-    </div>
-    <div id="sarlaf" class="col s12">
-        <h2>SARLAFT</h2>
-        <ul class="collapsible">
-        <li>
-            <div class="collapsible-header showTB">
-            <div class="arrowed">
-                <div class="arrow-3"></div>
-            </div>
-            <label>¿Qué es el SARLAFT?</label>
-            </div>
-            <div class="collapsible-body">
-                <div class="row">
-                <div class="col l6">
-            <p>El Sistema de Administración de Riesgo de Lavado de Activos y de la Financiación 
-                del Terrorismo SARLAFT se compone de dos fases:</p>
-            <p><b>La primera,</b> corresponde a prevenir que se introduzcan al Banco recursos provenientes 
-                del lavado de activos y  la financiación del terrorismo, su pilar fundamental es el 
-                adecuado conocimiento del cliente y del origen de sus recursos.</p>
-            <p><b>La segunda,</b> corresponde al control  y consiste en detectar y reportar las operaciones 
-            que se pretendan realizar o se hayan realizado  para intentar dar apariencia de legalidad 
-            a operaciones relacionadas con estos delitos.</p>
-            <p><b>Función Principal del área</b></p>
-            <p>Blindar que el Banco Mundo Mujer sea utilizado por organizaciones criminales 
-            para lavar activos y financiar terrorismo.</p>
-            </div>
-                <div class="col l6 text-center imgContenido">
-                    <img src="../../assets/img/sarlaft01.jpg">
-                </div>
-                </div>
-            </div>
-        </li>
-        </ul>
-        <h4 class="dcmDownl">Documentación para Descargar</h4>
-        <div class="flex btn-descargas">
-        <a href="pdf/SARLAFT/ComoapoyaralagestióndeSARLAFT.pdf" target="_blank" class="btn azul">
-            <img src="../../assets/img/icono_boton.png">
-            <label>¿Cómo apoyar la gestión del SARLAFT?</label>
-        </a>
-        <a href="pdf/SARLAFT/ConceptosdeSARLAFT.pdf" target="_blank" class="btn azul">
-            <img src="../../assets/img/icono_boton.png">
-            <label>Conceptos de SARLAFT</label>
-        </a>
-        <a href="pdf/SARLAFT/DefinicióndeLavaodeActivos.pdf" target="_blank" class="btn azul">
-            <img src="../../assets/img/icono_boton.png">
-            <label>Definición del Lavado de Activos</label>
-        </a>
-        <a href="pdf/SARLAFT/LoquedebesaberdeLAFT.pdf" target="_blank" class="btn azul">
-            <img src="../../assets/img/icono_boton.png">
-            <label>Lo que debe saber de LA FT</label>
-        </a>
-        </div>
-    </div>
-    <div id="seguridad" class="col s12">
-        <h2>Control Interno (SCI)</h2>
-        <ul class="collapsible">
-        <li>
-            <div class="collapsible-header showTB">
-            <div class="arrowed">
-                <div class="arrow-3"></div>
-            </div>
-            <label>¿Qué es el Sistema de Control Interno (SCI)?</label>
-            </div>
-            <div class="collapsible-body">
-                <div class="row">
-                <div class="col l6">
-            <p>
-                Un adecuado Control Interno protege los recursos de la organización, asegura el cumplimiento de 
-                normas, mejora los resultados, minimiza la incertidumbre, promueve buenas prácticas de gobierno 
-                corporativo, genera información financiera confiable, facilita la toma de decisiones gerenciales, 
-                y propicia la continuidad y el crecimiento de las empresas a través del tiempo.<br><br>
-                Por el contrario, la ausencia de Control Interno o su deficiente gestión, expone a la organización a 
-                errores, fraudes, incumplimiento de normas legales, sanciones, reprocesos, sobrecostos, información 
-                inoportuna y poco confiable, personal poco comprometido, clientes insatisfechos, pérdidas y riesgos 
-                de conflicto y quiebra.
-            </p>
-            </div>
-                <div class="col l6 text-center imgContenido">
-                    <img src="../../assets/img/control_interno05.jpg">
-                </div>
-                </div>
-            </div>
-        </li>
-        </ul>
-        <h4 class="dcmDownl">Documentación para Descargar</h4>
-        <div class="flex btn-descargas">
-        <a href="pdf/SISTEMADECONTROLINTERNO/SISTEMADECONTROLINTERNO.pdf" target="_blank" class="btn rosa">
-            <img src="../../assets/img/icono_boton.png">
-            <label>Sistema de Control Interno</label>
-        </a>
-        <a href="pdf/SISTEMADECONTROLINTERNO/ROLSISTEMADECONTROLINTERNO.pdf" target="_blank" class="btn rosa">
-            <img src="../../assets/img/icono_boton.png">
-            <label>Rol Sistema de Control Interno</label>
-        </a>
-        </div>
-    </div>
-    <div id="control" class="col s12">
-        <h2>Seguridad Bancaria</h2>
-        <ul class="collapsible">
-        <li>
-            <div class="collapsible-header showTB">
-            <div class="arrowed">
-                <div class="arrow-3"></div>
-            </div>
-            <label>¿Qué es el Área de Seguridad Bancaria?</label>
-            </div>
-            <div class="collapsible-body">
-                <div class="row">
-                <div class="col l6">
-            <p>
-                El Área de Seguridad Bancaria está enfocada en mitigar los riesgos y eventos de fraude 
-                a que están expuestos los usuarios, clientes, funcionarios e instalaciones del Banco, 
-                dando a conocer las instrucciones básicas,  las medidas de seguridad y estrategias 
-                para disminuir el riesgo y obtener un mayor nivel de seguridad, impulsando una cultura 
-                de prevención, detección, denuncio y respuesta hacia todos los eventos o actos ilícitos 
-                y situaciones de fraude enfocando a todos los funcionarios del Banco Mundo Mujer, 
-                hacia la aplicación del código de buen gobierno y conducta responsable al igual que a 
-                sus directivos, proveedores, clientes, usuarios o personas que interactúan con el 
-                Banco y que puedan causar daño moral, financiero o de Imagen corporativa al mismo a través 
-                de conductas delictivas o inapropiadas en su proceder hacia la Entidad.
-            </p>
-            </div>
-                <div class="col l6 text-center imgContenido">
-                    <img src="../../assets/img/seguridad06.jpg">
-                </div>
-                </div>
-            </div>
-        </li>
-        </ul>
-        <h4 class="dcmDownl">Documentación para Descargar</h4>
-        <div class="flex btn-descargas">
-        <a href="pdf/SEGURIDADBANCARIA/SEGURIDADBANCARIA.pptx" class="btn verde">
-            <img src="../../assets/img/icono_boton.png">
-            <label>Documentación Seguridad Bancaria</label>
-        </a>
-        </div>
-    </div>
-    </div>
+    
 </div>
 </section>
 

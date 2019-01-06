@@ -24,8 +24,7 @@
       ],
       "scripts": [
         "assets/js/jquery-3.1.1.js",
-        "assets/js/materialize.min.js",
-        "assets/js/appCustom.js"
+        "assets/js/materialize.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

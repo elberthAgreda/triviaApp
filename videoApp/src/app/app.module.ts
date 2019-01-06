@@ -10,12 +10,10 @@ import { LocalService } from './shared/services/local.service';
 // Service
 import { CustomSevice } from './shared/services/custom.service';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     LoginComponent
   ],
   imports: [
