@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./video.component.scss']
 })
 export class VideoComponent implements OnInit {
-  
+
   nivelSave:Nivel = new Nivel();
   level:number;
   state:boolean;
@@ -60,7 +60,7 @@ export class VideoComponent implements OnInit {
   saveLevel():void{
     this.nivelSave.nivel = this.level['level'];
     this._customService.saveProgress(this.nivelSave).subscribe(
-      response => {console.log("ok");}
+      response => { console.log('Ok'); }
       , error => {
         if(error.status == 200)
           this.message = "Felicitaciones, han pasado de nivel";

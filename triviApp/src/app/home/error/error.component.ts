@@ -10,16 +10,18 @@ import { ISubscription } from 'rxjs/Subscription';
 export class ErrorComponent implements OnInit, OnDestroy {
 
   errors:any;
+  loader: boolean;
   subscriptionError:ISubscription;
 
   constructor( public _localService:LocalService ) {
+    this.loader = true;
     this.subscriptionError = this._localService.questionError.subscribe(
-      response => this.errors = response
+      response => { this.errors = response; }
     );
   }
 
   ngOnInit() {
-    console.log(this.errors);
+    this.loader = false;
   }
 
   ngOnDestroy() {

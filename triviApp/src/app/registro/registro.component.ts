@@ -17,6 +17,7 @@ export class RegistroComponent implements OnInit {
   userData:UserData = new UserData();
   ciudades:any[];
   agencias:any[];
+  loader: boolean;
   userRegister:Register = new Register();
   user1:User = new User();
   user2:User = new User();
@@ -30,6 +31,7 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loader = true;
     this.getCiudades();
     this.getAgencias();
   }
@@ -46,11 +48,13 @@ export class RegistroComponent implements OnInit {
     this._customService.agencies<any>(this.userData).subscribe(
       (agencias: { listado: any[]; }) => { 
         this.agencias = agencias.listado;
+        this.loader = false;
       }
     );
   }
 
-  registerForm():void{
+  registerForm(): void {
+    this.loader = true;
     var tmpS = [];
     var ruta = "./login";
     tmpS.push(this.user1);
@@ -68,8 +72,9 @@ export class RegistroComponent implements OnInit {
     this._customService.register(this.userRegister).subscribe(
       response => {
         this.message = true;
+        this.loader = false;
       }, error => {
-        console.log(error);
+        this.loader = false;
         if(error.status == 200){
           this.txtMessage = "Grupo: " + this.userRegister.teamName + " registrado correctamente";
           this._router.navigate([ruta]);

@@ -13,6 +13,7 @@ import { CustomSevice } from './shared/services/custom.service';
 // Directivas
 import { OnlyNumber } from './shared/directives/onlyNumber.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoaderModule } from './shared/loader/loader.module';
 
 @NgModule({
   declarations: [
@@ -25,10 +26,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    LoaderModule,
     FormsModule,
     AppRouting
   ],
-  providers: [LocalService,CustomSevice],
+  providers: [LocalService, CustomSevice],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

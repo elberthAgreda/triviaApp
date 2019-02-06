@@ -15,25 +15,33 @@ export class LoginComponent implements OnInit {
   password:string;
   user:any = [];
   stateMessage:boolean = false;
+  loader: boolean;
   message:string;
 
-  constructor(  public _router:Router,
-                public _customService:CustomSevice,
-                public _localService:LocalService ){}
+  constructor(  public _router: Router,
+                public _customService: CustomSevice,
+                public _localService: LocalService ) {
+                  this.loader = true;
+                }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loader = false;
+  }
 
-  authentication():void{
-    this.user = {"userName":this.username, "password":this.password}
-    var ruta = "./home/inicio/";
+  authentication(): void {
+    this.loader = true;
+    this.user = { 'userName': this.username, 'password': this.password };
+    const ruta = './home/inicio/';
     this._customService.login<ResponseModel>(this.user).subscribe(
       response => {
         this._localService.setResponseModel(response);
         this._localService.setLevel(response.nivel.nivel);
         this._router.navigate([ruta]);
+        this.loader = false;
       }, error => {
         this.stateMessage = true;
-        this.message = "Datos Incorrectos";
+        this.loader = false;
+        this.message = 'Datos Incorrectos';
       }
     );
   }

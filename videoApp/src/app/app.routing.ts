@@ -11,7 +11,8 @@ const appRoutes: Routes = [
       { path: '', loadChildren: './home/home.module#HomeModule' },
       { path: 'home', loadChildren: './home/home.module#HomeModule' },
       { path: 'login', component: LoginComponent },
-      { path: 'video', loadChildren: './video/video.module#VideoModule' }
+      { path: 'video', loadChildren: './video/video.module#VideoModule' },
+      { path: '**', component: LoginComponent }
     ]
   }
 ];
@@ -23,5 +24,6 @@ const appRoutes: Routes = [
 	exports: [
 	  RouterModule
 	]
-  })
+})
+
 export class AppRouting { }

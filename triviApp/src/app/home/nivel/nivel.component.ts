@@ -18,7 +18,7 @@ import { slideInDown, slideInUp, slideInLeft } from 'ng-animate';
   styleUrls: ['./nivel.component.css']
 })
 export class NivelComponent implements OnInit {
-
+  loader: boolean;
   preguntas:any;
   integrantes:any;
   level:number;
@@ -30,7 +30,6 @@ export class NivelComponent implements OnInit {
   showIntroduction:boolean;
   countAnswer:number;
   countQuestion:number;
-  loader:boolean;
   responseModel:ResponseModel = new ResponseModel();
   integrantesResponse:User[];
   nameGroup:string;

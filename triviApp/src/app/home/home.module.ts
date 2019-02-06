@@ -14,9 +14,14 @@ import { InicioComponent } from "./inicio/inicio.component";
 // Guards
 import { AuthGuard } from "../shared/auth/auth.guards";
 import { FinalizadoComponent } from "./finalizado/finalizado.component";
+import { LoaderModule } from "../shared/loader/loader.module";
 
 @NgModule({
-  imports: [CommonModule, HomeRouting, FormsModule],
+  imports: [
+    CommonModule,
+    HomeRouting,
+    FormsModule,
+    LoaderModule],
   declarations: [
     HomeComponent,
     NivelComponent,

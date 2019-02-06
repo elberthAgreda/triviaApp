@@ -1,10 +1,14 @@
 <section class="flex login">
     <p class="error" *ngIf="message">{{txtMessage}}</p>
-  <img class="logoWWB" src="../../assets/img/logo.png">
+  <img class="logoWWB" src="./assets/img/logo.png">
   <form #registroForm="ngForm" (ngSubmit)="registerForm()" class="flex">
     <p>Inscribe tu equipo</p>
-    <input type="text" name="username" [(ngModel)]="userRegister.username" placeholder="Nombre del grupo" required>
-    <input type="password" name="password" [(ngModel)]="userRegister.password" placeholder="Password del grupo" required> 
+    <input type="text" name="username"
+            [(ngModel)]="userRegister.username"
+            placeholder="Nombre del grupo" required>
+    <input type="password" name="password"
+            [(ngModel)]="userRegister.password"
+            placeholder="Password del grupo" required> 
     <select name="ciudad" [(ngModel)]="userRegister.ciudad">
         <option *ngFor="let ciudad of ciudades"
                 [value]="ciudad.codigo">{{ciudad.nombre}}</option>
@@ -37,3 +41,5 @@
     <button [disabled]="!registroForm.form.valid" type="submit">CREAR GRUPO</button>
   </form>
 </section>
+
+<loader estado="{{loader}}"></loader>

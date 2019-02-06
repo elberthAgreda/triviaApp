@@ -4,11 +4,11 @@
 <div class="flex contenido-banner">
     <div class="btn-jugar">
     <div class="flex fullCenter botonesHeader">
-        <img class="lgBanner" src="../../assets/img/logo.png">
-        <a class="btn" href="http://ec2-18-191-187-176.us-east-2.compute.amazonaws.com/#/">Jugar</a>
+        <img class="lgBanner" src="./assets/img/logo.png">
+        <a class="btn" href="https://www.cincobmm.com/trivia/#/">Jugar</a>
     </div>
-    <img class="scrllBn" src="../../assets/img/scroll.png">
-    <img class="personaBn" src="../../assets/img/persona1.png">
+    <img class="scrllBn" src="./assets/img/scroll.png">
+    <img class="personaBn" src="./assets/img/persona1.png">
     </div>
 </div>
 </header>
@@ -16,30 +16,30 @@
 <section class="contenido">
 <div class="row">
     <div class="btnCumplimiento">
-    <a [routerLink]="['instrucciones']" class="btn">Instrucciones</a>
+    <a (click)="navegar('instrucciones')" class="btn">Instrucciones</a>
     </div>
     <div class="col s12 opcionesTab">
     <ul class="tabs">
         <li class="tab col s2">
-            <a routerLinkActive="active" [routerLink]="['cumplimiento']">Cumplimiento</a>
+            <a (click)="navegar('cumplimiento')">Cumplimiento</a>
         </li>
         <li class="tab col s3">
-            <a routerLinkActive="active" [routerLink]="['riesgos']">Riesgos No Financieros</a>
+            <a (click)="navegar('riesgos')">Riesgos No Financieros</a>
         </li>
         <li class="tab col s2">
-            <a routerLinkActive="active" [routerLink]="['sarlaft']">SARLAFT</a>
+            <a (click)="navegar('sarlaft')">SARLAFT</a>
         </li>           
         <li class="tab col s2">
-            <a routerLinkActive="active" [routerLink]="['seguridad']">Seguridad Bancaria</a>
+            <a (click)="navegar('seguridad')">Seguridad Bancaria</a>
         </li>
         <li class="tab col s2">
-            <a routerLinkActive="active" [routerLink]="['control-interno']">Control Interno (SCI)</a>
+            <a (click)="navegar('control-interno')">Control Interno (SCI)</a>
         </li>
         <!-- <li class="tab col s2">
-            <a routerLinkActive="active" [routerLink]="['crear-video']">Crear Video</a>
+            <a (click)="navegar('crear-video')">Crear Video</a>
         </li>
         <li class="tab col s2">
-            <a [routerLink]="['../login']">Videos</a>
+            <a (click)="navegar('../login')">Videos</a>
         </li> -->
     </ul>
     </div>

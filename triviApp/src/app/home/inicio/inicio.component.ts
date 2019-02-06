@@ -8,13 +8,14 @@ import { LocalService } from '../../shared/services/local.service';
   styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent implements OnInit {
-
+  loader: boolean;
   level:number;
   messageImg:string;
   rutaImg:string;
   positionMarker:number;
 
   constructor( public _router:Router, public _localService:LocalService ) {
+    this.loader = true;
     this._localService.level.subscribe(
       response => {
         this.level =  response + 1;
@@ -54,6 +55,7 @@ export class InicioComponent implements OnInit {
         this._router.navigate(['./home/finalizado']);
         break;
     }
+    this.loader = false;
   }
 
   goLevel():void{

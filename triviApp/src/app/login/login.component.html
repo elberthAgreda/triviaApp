@@ -1,10 +1,15 @@
 <section class="flex login">
   <img class="logoWWB" src="../../assets/img/logo.png">
   <form #loginForm="ngForm" (ngSubmit)="authentication()" class="flex">
-    <input [(ngModel)]="username" name="username" type="text" placeholder="Usuario del grupo" required>
-    <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required>
+    <input [(ngModel)]="username" name="username" 
+          type="text" placeholder="Usuario del grupo"
+          required>
+    <input [(ngModel)]="password" name="password" 
+           type="password" placeholder="Password"
+           required>
     <button [disabled]="!loginForm.form.valid" type="submit">ACCEDER</button>
   </form>
   <a (click)="registrar();">Registra tu equipo</a>
   <p class="error" *ngIf="stateMessage">{{message}}</p>
 </section>
+<loader estado="{{loader}}"></loader>
