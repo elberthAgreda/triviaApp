@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class LoaderComponent {
 
- @Input() estado: boolean;
+ @Input() estado: string;
 
  constructor() { }
 

@@ -68,7 +68,8 @@ export class RegistroComponent implements OnInit {
       tmpS.push(this.user5);
     // Agregar datos al userRegister
     this.userRegister.users = tmpS;
-    this.userRegister.teamName = this.userRegister.username;
+    this.userRegister.teamName = this.userRegister.username.replace(/\s*$/,'');
+    this.userRegister.username = this.userRegister.username.replace(/\s*$/,'');
     this._customService.register(this.userRegister).subscribe(
       response => {
         this.message = true;
