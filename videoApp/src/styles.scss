@@ -84,6 +84,12 @@ h4.dcmDownl{
     box-shadow: none;
     line-height: 2px;
 }
+.btn-descargas {
+    flex-flow: row wrap;
+    .btn {
+        margin-bottom: 10px;
+    }
+}
 .btn-jugar {
     display: flex;
     flex-flow: column;

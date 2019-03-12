@@ -14,12 +14,14 @@ import { CustomSevice } from './shared/services/custom.service';
 import { OnlyNumber } from './shared/directives/onlyNumber.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoaderModule } from './shared/loader/loader.module';
+import { RecuperarPassComponent } from './recuperar-pass/recuperar-pass.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistroComponent,
+    RecuperarPassComponent,
     OnlyNumber
   ],
   imports: [

@@ -86,6 +86,10 @@ export class NivelComponent implements OnInit {
 
   // obtener las preguntas del servicio Wordpress
   getPreguntas():void{
+    // Valida que solo deje ingresar el nivel 1 - temporal validacion
+    if ( this.level > 3 ) {
+      this._router.navigate(['./home/finalizado']);
+    }
     var nivel = '?categories='+this.level+'&per_page=50';
     this._customService.getPreguntas(nivel).subscribe(
       preguntas => {

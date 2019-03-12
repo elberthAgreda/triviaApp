@@ -70,6 +70,7 @@ export class RegistroComponent implements OnInit {
     this.userRegister.users = tmpS;
     this.userRegister.teamName = this.userRegister.username.replace(/\s*$/,'');
     this.userRegister.username = this.userRegister.username.replace(/\s*$/,'');
+    this.userRegister.username = this.userRegister.username.toUpperCase();
     this._customService.register(this.userRegister).subscribe(
       response => {
         this.message = true;
@@ -79,7 +80,7 @@ export class RegistroComponent implements OnInit {
         if(error.status == 200){
           this.txtMessage = "Grupo: " + this.userRegister.teamName + " registrado correctamente";
           this._router.navigate([ruta]);
-        }  
+        }
         else
           this.txtMessage = "El nombre del grupo o uno de los usuarios ya existen, por favor escribe un nuevo nombre o validar los usuarios";
         this.message = true;

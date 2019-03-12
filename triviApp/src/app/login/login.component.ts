@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   authentication(): void {
     this.loader = true;
     this.username = this.username.replace(/\s*$/,'');
+    this.username = this.username.toUpperCase();
     this.user = { 'userName': this.username, 'password': this.password };
     const ruta = './home/inicio/';
     this._customService.login<ResponseModel>(this.user).subscribe(

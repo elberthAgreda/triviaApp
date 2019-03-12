@@ -1,0 +1,29 @@
+<section class="flex login" *ngIf="!showRecuperar">
+    <img class="logoWWB" src="../../assets/img/logo.png">
+    <form #resetForm="ngForm" (ngSubmit)="authentication()" class="flex">
+      <input [(ngModel)]="username" name="username" 
+            type="text" placeholder="Usuario del grupo"
+            required>
+      <input [(ngModel)]="cedula" name="cedula" 
+             type="text" placeholder="Cédula" OnlyNumber
+             required>
+      <button [disabled]="!resetForm.form.valid" type="submit">Recuperar</button>
+    </form>
+    <a routerLink="/login">Login</a>
+</section>
+
+<section class="flex login" *ngIf="showRecuperar">
+    <img class="logoWWB" src="../../assets/img/logo.png">
+    <form #recuperarForm="ngForm" (ngSubmit)="authentication()" class="flex">
+      <input [(ngModel)]="password" name="password" 
+            type="password" placeholder="Password nuevo"
+            required>
+      <input [(ngModel)]="password2" name="password2" 
+             type="password" placeholder="Vuelve a escribir el password" OnlyNumber
+             required>
+      <button [disabled]="!recuperarForm.form.valid" type="submit">Recuperar</button>
+    </form>
+    <a routerLink="/login">Login</a>
+</section>
+
+<loader estado="{{loader}}"></loader>

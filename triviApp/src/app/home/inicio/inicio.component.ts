@@ -37,19 +37,22 @@ export class InicioComponent implements OnInit {
         this.positionMarker = 169;
         break;
       case 4:
-        this.messageImg = rutaAssets + 'nivel3/texto_niveles-03.png';
-        this.rutaImg = rutaAssets + 'nivel3/fondo-03.jpg';
-        this.positionMarker = 318;
+        this._router.navigate(['./home/finalizado']);
+        // this.messageImg = rutaAssets + 'nivel3/texto_niveles-03.png';
+        // this.rutaImg = rutaAssets + 'nivel3/fondo-03.jpg';
+        // this.positionMarker = 318;
         break;
       case 5:
-        this.messageImg = rutaAssets + 'nivel4/texto_niveles-04.png';
-        this.rutaImg = rutaAssets + 'nivel4/fondo-04.jpg';
-        this.positionMarker = 470;
+        this._router.navigate(['./home/finalizado']);
+        // this.messageImg = rutaAssets + 'nivel4/texto_niveles-04.png';
+        // this.rutaImg = rutaAssets + 'nivel4/fondo-04.jpg';
+        // this.positionMarker = 470;
         break;
       case 6:
-        this.messageImg = rutaAssets + 'nivel5/texto_niveles-05.png';
-        this.rutaImg = rutaAssets + 'nivel5/fondo-05.jpg';
-        this.positionMarker = 620;
+        this._router.navigate(['./home/finalizado']);
+        // this.messageImg = rutaAssets + 'nivel5/texto_niveles-05.png';
+        // this.rutaImg = rutaAssets + 'nivel5/fondo-05.jpg';
+        // this.positionMarker = 620;
         break;
       case 7:
         this._router.navigate(['./home/finalizado']);
