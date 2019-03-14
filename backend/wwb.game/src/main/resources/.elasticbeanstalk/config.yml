@@ -1,0 +1,20 @@
+branch-defaults:
+  master:
+    environment: null
+## Add the following deploy configuration    
+deploy:
+  artifact: target/wwb.game-0.0.1-SNAPSHOT.jar
+global:
+  application_name: spring-boot-app
+  branch: null
+  default_ec2_keyname: TriviaServices
+  default_platform: Java 8
+  default_region: us-west-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  repository: null
+  sc: git
+  workspace_type: Application

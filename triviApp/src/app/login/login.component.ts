@@ -36,6 +36,9 @@ export class LoginComponent implements OnInit {
     const ruta = './home/inicio/';
     this._customService.login<ResponseModel>(this.user).subscribe(
       response => {
+        if ( response.users.length == 0 ) {
+          this.message = 'Este usuario fue renovado';
+        }
         this._localService.setResponseModel(response);
         this._localService.setLevel(response.nivel.nivel);
         this._router.navigate([ruta]);

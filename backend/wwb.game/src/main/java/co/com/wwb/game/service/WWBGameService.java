@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -28,6 +29,7 @@ import co.com.wwb.game.model.UserData;
 import co.com.wwb.game.model.WWBGameUsuario;
 import co.com.wwb.game.repository.AgenciaRepository;
 import co.com.wwb.game.repository.CiudadRepository;
+import co.com.wwb.game.repository.GrupoRespository;
 import co.com.wwb.game.repository.NivelRespository;
 import co.com.wwb.game.repository.UsuarioRespository;
 import co.com.wwb.game.repository.VotoQueryRepository;
@@ -40,6 +42,9 @@ public final class WWBGameService {
 	
 	@Autowired
 	private UsuarioRespository repository;
+	
+	@Autowired
+	private GrupoRespository grupoRespository;
 	
 	@Autowired
 	private NivelRespository nivelRepository;
@@ -107,6 +112,10 @@ public final class WWBGameService {
 																 .map( p -> new WWBGameUsuario(p.getMembername(), 
 																		 					   p.getMemberid()))
 																 .collect(Collectors.toList());
+			
+			if(lstGrupo.isEmpty()) {
+				throw new Exception("El usuario no tiene participantes asociados");
+			}
 				
 			userData.setUsers( lstGrupo );
 			userData.setUserName( userName );
@@ -171,6 +180,18 @@ public final class WWBGameService {
 			usuario.setPassword( encriptedPsw );
 			usuario.setCiudad( registro.getCiudad() );
 			usuario.setAgencia( registro.getAgencia() );
+			
+			
+			List<String> listIds= new ArrayList<>();
+			for (WWBGameUsuario wwbGameUsuario : registro.getUsers()) {
+				listIds.add(wwbGameUsuario.getDocumentId());
+			}
+			List<Grupo> lstGrupoExist =grupoRespository.findByMemberidIn(listIds);
+			
+			if(!lstGrupoExist.isEmpty()) {
+				error="Alguno de los jugadores ya se encuentra incluido en otro equipo";
+				throw new Exception(error);
+			}
 			
 			List<Grupo> lstGrupo = registro.getUsers().stream()
 					 								  .map( p -> new Grupo(p.getDocumentId(), 
@@ -308,7 +329,7 @@ public final class WWBGameService {
 	private Usuario getUserInformation(String userName) throws Exception {
 		
 		Usuario usuario = null; 
-		Optional<Usuario> optional = repository.findById( userName );
+		Optional<Usuario> optional = repository.findById( userName.toUpperCase() );
 		if(optional.isPresent()) {
 			usuario = (Usuario)optional.get();
 		}
@@ -411,6 +432,74 @@ public final class WWBGameService {
 			throw new Exception("Se ha presentado un error en el sistema por favor contactese con el administrador.");
 		}
 
+		return resultado;
+	}
+	
+	public Resultado validarUsuarioGrupo(String userName, String cedula1, String cedula2) throws Exception {
+		Resultado resultado = new  Resultado();
+		if(userName==null) {
+			throw new Exception("Parametros invalidos para la petición");
+		}
+		
+		Usuario usuario = getUserInformation(userName.toUpperCase());
+		List<Grupo> grupo= usuario.getLstGrupo();
+		
+		if(grupo.isEmpty()) {
+			throw new Exception("El usuario no tiene jugadores en la lista");
+		}
+		
+		
+		if(userName==null || cedula1==null|| cedula2==null) {
+			throw new Exception("Parametros invalidos para la petición");
+		}
+		
+		
+		Grupo grupoEncontrado=  grupo.stream().filter(grupoBuscado -> cedula1.equals(grupoBuscado.getMemberid())).findAny().orElse(null);
+		if(grupoEncontrado==null) {
+			throw new Exception("El usuario no tiene los jugadores ingresados en la lista");
+		}
+		
+		grupoEncontrado=  grupo.stream().filter(grupoBuscado -> cedula2.equals(grupoBuscado.getMemberid())).findAny().orElse(null);
+		if(grupoEncontrado==null) {
+			throw new Exception("El usuario no tiene los jugadores ingresados en la lista");
+		}
+		
+		resultado.setExito(true);
+		
+		return resultado;
+	}
+	public Resultado change(String userName, String password) throws Exception {
+		Resultado resultado = new  Resultado();
+		if(userName==null || password==null) {
+			throw new Exception("Parametros invalidos para la petición");
+		}
+		
+		Usuario usuario = getUserInformation(userName.toUpperCase());
+		
+		String encriptedPsw = md5HashingComponent.encript(password);
+		usuario.setPassword(encriptedPsw);
+		repository.save(usuario);
+		
+		
+		resultado.setExito(true);
+		
+		return resultado;
+	}
+
+
+	public Resultado getUserName(String identifier) throws Exception {
+		Resultado resultado = new  Resultado();
+		
+		if(identifier==null ) {
+			throw new Exception("Parametros invalidos para la petición");
+		}
+		
+		
+		Optional<Grupo> grupo =grupoRespository.findById(identifier);
+		if(grupo.isPresent()) {
+			resultado.setUserName(grupo.get().getUsuario().getUsername());
+			resultado.setExito(true);
+		}
 		return resultado;
 	}
 }

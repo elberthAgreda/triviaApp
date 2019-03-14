@@ -10,6 +10,7 @@
     <button [disabled]="!loginForm.form.valid" type="submit">ACCEDER</button>
   </form>
   <a (click)="registrar();">Registra tu equipo</a>
+  <a routerLink="/recuperar-user">¿Olvidaste el nombre de tú grupo?</a>
   <a routerLink="/recuperar">Recuperar contraseña</a>
   <p class="error" *ngIf="stateMessage">{{message}}</p>
 </section>

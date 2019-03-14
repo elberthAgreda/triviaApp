@@ -14,6 +14,13 @@ export class HttpProxyService {
     return this.http.get<T>(this.url + service);
   }
 
+  /** @description Metodo que permite Obtener datos por GET con parametros */
+  public get<T>( service: string, queryParam: string ): Observable<T> {
+    const params = new HttpParams({ fromString: queryParam });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get<T>(this.url + service, { headers, params});
+  }
+
   /** @description Metodo que permite Obtener datos por POST */
   public post<T>(service:string, request ) : Observable<T>{
     return this.http.post<T>( this.url + service, request, this.getHeaders() );

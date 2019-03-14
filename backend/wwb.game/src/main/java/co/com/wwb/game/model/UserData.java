@@ -11,7 +11,22 @@ public class UserData {
 	private String password;
 	private String ciudad;
 	private String agencia;
+	private String cedula1;
+	private String cedula2;
 	
+	
+	public String getCedula1() {
+		return cedula1;
+	}
+	public void setCedula1(String cedula1) {
+		this.cedula1 = cedula1;
+	}
+	public String getCedula2() {
+		return cedula2;
+	}
+	public void setCedula2(String cedula2) {
+		this.cedula2 = cedula2;
+	}
 	public NivelUsuario getNivel() {
 		return nivel;
 	}

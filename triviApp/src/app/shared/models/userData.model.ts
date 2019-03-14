@@ -9,4 +9,6 @@ export class UserData {
 	password:string;
 	ciudad:string;
 	agencia:string;
+	cedula1:string;
+	cedula2:string;
 }

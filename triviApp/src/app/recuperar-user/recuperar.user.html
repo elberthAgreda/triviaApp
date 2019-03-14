@@ -1,0 +1,12 @@
+<section class="flex login">
+    <img class="logoWWB" src="../../assets/img/logo.png">
+    <form #recuperarForm="ngForm" (ngSubmit)="getUserName()" class="flex">
+      <input [(ngModel)]="identifier" name="identifier" OnlyNumber
+            type="text" placeholder="Cédula" required>
+      <button [disabled]="!recuperarForm.form.valid" type="submit">Recuperar usuario</button>
+    </form>
+    <p class="error" *ngIf="stateMessage">{{message}}</p>
+    <a routerLink="/login">Login</a>
+</section>
+
+<loader estado="{{loader}}"></loader>

@@ -9,7 +9,7 @@ import { UserData } from '../models/userData.model';
 
 @Injectable()
 export class CustomSevice{
-  
+
     private proxy: HttpProxyService;
     private proxyGame: HttpProxyService;
 
@@ -23,7 +23,7 @@ export class CustomSevice{
         return this.proxy.getByQuery<T>(AppVariable.preguntas+nivel);
     }
 
-    /** @description obtiene las preguntas por Nivel */
+    /** @description Autentificacion */
     public login<T>( request:any ) : Observable<T>{
         return this.proxyGame.post<T>(AppVariable.login, request);
     }
@@ -38,13 +38,30 @@ export class CustomSevice{
         return this.proxyGame.post<T>(AppVariable.agencias, request);
     }
 
-    /** @description obtiene las preguntas por Nivel */
+    /** @description registro de usuario */
     public register<T>( request:Register ) : Observable<T>{
         return this.proxyGame.put<T>(AppVariable.register,request);
     }
 
-    /** @description obtiene las preguntas por Nivel */
+    /** @description guardar progreso */
     public saveProgress<T>( request:Nivel ) : Observable<T>{
         return this.proxyGame.put<T>(AppVariable.saveProgress,request);
     }
+
+    /** @description validar si usuario existe */
+    public validarUsuarioGrupo<T>( request:UserData ) : Observable<T>{
+        return this.proxyGame.post<T>(AppVariable.validarUsuarioGrupo, request);
+    }
+
+    /** @description cambiar password */
+    public change<T>( request:UserData ) : Observable<T>{
+        return this.proxyGame.post<T>(AppVariable.change, request);
+    }
+
+    /** @description validar si usuario existe */
+    public getUserName<T>( identifier: string ) : Observable<T>{
+        const request = `identifier=${identifier}`;
+        return this.proxyGame.get<T>(AppVariable.getUserName, request);
+    }
+
 }

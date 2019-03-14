@@ -15,6 +15,7 @@ import { OnlyNumber } from './shared/directives/onlyNumber.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoaderModule } from './shared/loader/loader.module';
 import { RecuperarPassComponent } from './recuperar-pass/recuperar-pass.component';
+import { RecuperarUserComponent } from './recuperar-user/recuperar-user.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RecuperarPassComponent } from './recuperar-pass/recuperar-pass.componen
     LoginComponent,
     RegistroComponent,
     RecuperarPassComponent,
+    RecuperarUserComponent,
     OnlyNumber
   ],
   imports: [

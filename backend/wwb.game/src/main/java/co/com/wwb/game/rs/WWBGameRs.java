@@ -78,4 +78,29 @@ public class WWBGameRs {
 		Resultado resultado = service.obtenerPuntuacion(user);
 			return ResponseEntity.ok().body(resultado);
 	}
+	
+	@RequestMapping(value = "/validarUsuarioGrupo", method = RequestMethod.POST, 
+			  consumes = MediaType.APPLICATION_JSON_VALUE,
+			  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Resultado> validarUsuarioGrupo(@RequestBody UserData userData)throws Exception{
+		Resultado resultado = service.validarUsuarioGrupo(userData.getUserName(),userData.getCedula1(),userData.getCedula2());
+			return ResponseEntity.ok().body(resultado);
+	}
+	
+
+	@RequestMapping(value = "/change", method = RequestMethod.POST, 
+			  consumes = MediaType.APPLICATION_JSON_VALUE,
+			  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Resultado> change(@RequestBody UserData userData)throws Exception{
+		Resultado resultado = service.change(userData.getUserName(),userData.getPassword());
+			return ResponseEntity.ok().body(resultado);
+	}
+	
+	@RequestMapping(value = "/getUserName", method = RequestMethod.GET, 
+			
+			  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Resultado> change(@RequestParam (value = "identifier") String identifier)throws Exception{
+		Resultado resultado = service.getUserName(identifier);
+			return ResponseEntity.ok().body(resultado);
+	}
 }
