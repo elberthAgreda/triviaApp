@@ -1,6 +1,7 @@
 export const AppVariable = {
     baseurl: 'https://www.cincobmm.com/unoraya/wp-json/wp/v2/',
-    baseGame: 'https://triviaservices-env.mtm9ueucne.us-east-2.elasticbeanstalk.com/rest/wwbgame/api/',
+
+    baseGame: 'https://triviaservicesprod.us-east-2.elasticbeanstalk.com/rest/wwbgame/api/',
     saveProgress: 'saveProgress',
     gurdarVoto: 'saveVote',
     puntos: 'scores',
