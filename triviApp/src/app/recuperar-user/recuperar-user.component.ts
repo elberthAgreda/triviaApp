@@ -20,9 +20,13 @@ export class RecuperarUserComponent implements OnInit {
   ngOnInit() { }
 
   getUserName() {
-    this._customService.getUserName(this.identifier).subscribe(
+    this._customService.getUserName<any>(this.identifier).subscribe(
       response => {
-        console.log(response);
+        if ( response.exito ) {
+          alert('El username del grupo es :' + response.userName);
+        } else {
+          alert('No se encontro la cédula en base de datos');
+        }
       }
     );
   }
