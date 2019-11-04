@@ -9,6 +9,12 @@ section.login{
     justify-content: center;
     align-items: center;
 }
+a{
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+    text-decoration: underline;
+}
 form.flex{
     flex-flow: column;
     margin-top: 17px;
@@ -20,6 +26,14 @@ button{
     border: none;
     padding: 14px 20px;
     border-radius: 20px;
+    font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: all linear 0.2s;
+    cursor: pointer;
+}
+button:hover{
+    background: #2bbbad;
 }
 input[type="password"], input[type="text"] {
     background: transparent;
@@ -27,7 +41,7 @@ input[type="password"], input[type="text"] {
     padding: 10px;
     border-radius: 20px;
     outline: 0px;
-    color: #e6b548;
+    color: #fff;
 }
 
 ::-webkit-input-placeholder {

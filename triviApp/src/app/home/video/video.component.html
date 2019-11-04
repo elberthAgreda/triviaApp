@@ -1,8 +1,10 @@
-<!-- <section class="flex fullCenter video">
-  <div class="flex panel-video">
-    <h2><span>Has desbloqueado</span>comportamiento</h2>
-    <button (click)="navigate('./home/nivel/4');" class="btn">Jugar Nivel 2</button>
-  </div>
-</section> -->
-
-<iframe [src]="urlIframe"></iframe>
+<section class="flex video">
+  <video *ngIf="state" (ended)="videoEnd()" [ngClass]="{'smallVideo':videoFinish === true}" autoplay controls>
+    <source [src]="rutaLevel" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+  <p *ngIf="videoFinish"><b>{{message}}</b><br>
+    Para continuar con el siguiente nivel debes ingresar cuando se especifique en el calendario de capacitación
+  </p>
+  <button *ngIf="videoFinish" (click)="salir();" class="btn">Salir</button>
+</section>

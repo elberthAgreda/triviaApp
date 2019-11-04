@@ -3,8 +3,8 @@ import { User } from "./user.model";
 
 export class ResponseModel{
 
-    private nivel:Nivel;
-    private users:User[];
-    private usuerName:string;
-
+    nivel:Nivel;
+    users:User[];
+    userName:string;
+    teamName:string;
 }

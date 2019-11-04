@@ -1,22 +1,79 @@
 section.login{
-    background: rgb(78,72,158);
     min-height: 100vh;
-    height: 100%;
-    padding: 20px 0px;
+    height: auto;
     width: 100vw;
     background: rgb(48,160,219);
     background: linear-gradient(56deg, rgba(48,160,219,1) 0%, rgba(33,133,200,1) 50%, rgba(29,113,184,1) 100%);
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    .btn{
+        margin-top: 20px;
+    }
     p{
         font-size: 1.5rem;
         color: #fff;
         font-weight: bold;
     }
-    ul{
-        margin: 0px;
-        padding: 0px;
-        color: #fff;
+    .contenido-errores {
+        height: 300px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        width: 600px;
+        padding-top: 40px;
+        padding-right: 30px;
+    }
+    .errorDiv{
+        width: 430px;
+        position: relative;
+        margin: 0px auto;
+        margin-bottom: 30px;
+        img{
+            position: absolute;
+        }
+        img.cir{
+            width: 95px;
+            right: -70px;
+            bottom: -25px;
+        }
+        h5{
+            color: #e6322f;
+            background: white;
+            text-align: center;
+            font-size: 3rem;
+            margin: 0px;
+            line-height: 30px;
+            border-radius: 40px 0px 0px 40px;
+            padding: 10px 20px;
+            font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;
+            padding-right: 0px;
+            span{
+                display: block;
+                font-size: 14px;
+            }
+        }
+        .txtContent {
+            background: #fff;
+            width: 450px;
+            border-radius: 0px 30px 0px 0px;
+            min-height: 70px;
+            height: auto;
+            padding-bottom: 10px;
+            padding-right: 20px;
+            h3 , p{
+                margin: 0px;
+                margin-left: 30px;
+            }
+            h3{
+                color: #e6322f;
+                margin-top: 10px;
+                font-size: 20px;
+            }
+            p{
+                color: #969696;
+                font-size: 15px;
+                margin-top: 2px;
+            }
+        }   
     }
 }

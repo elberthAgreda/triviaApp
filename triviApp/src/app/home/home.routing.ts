@@ -5,16 +5,20 @@ import { NivelComponent } from "./nivel/nivel.component";
 import { VideoComponent } from "./video/video.component";
 import { ErrorComponent } from "./error/error.component";
 import { InicioComponent } from "./inicio/inicio.component";
+// Guards
+import { AuthGuard } from "../shared/auth/auth.guards";
+import { FinalizadoComponent } from "./finalizado/finalizado.component";
 
 const adminRoutes: Routes = [
   {
     path: '',
-    //canActivate: [AdministradorGuard],
+    canActivate: [AuthGuard],
     component: HomeComponent,
     children: [
       { path: "inicio", component: InicioComponent },
-      { path: "nivel/:id", component: NivelComponent },
-      { path: "video/:id", component: VideoComponent },
+      { path: "nivel", component: NivelComponent },
+      { path: "finalizado", component: FinalizadoComponent },
+      { path: "video", component: VideoComponent },
       { path: "error", component: ErrorComponent }
     ]
   }

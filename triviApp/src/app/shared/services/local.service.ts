@@ -11,6 +11,9 @@ export class LocalService{
     private _questionError = new BehaviorSubject<any>(null);
     questionError=this._questionError.asObservable();
 
+    private _level = new BehaviorSubject<any>(null);
+    level=this._level.asObservable();
+
     public setResponseModel(responseModel: ResponseModel) {
       this._responseModel.next(responseModel);
     }
@@ -19,4 +22,7 @@ export class LocalService{
       this._questionError.next(errorQuestion);
     }
 
+    public setLevel(level:any){
+      this._level.next(level);
+    }
 }

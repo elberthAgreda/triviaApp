@@ -1,13 +1,21 @@
 section.login{
     background: rgb(78,72,158);
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
+    height: auto;
+    min-height: 100vh;
+    width: 100%;
+    padding: 30px 0px;
     background: rgb(48,160,219);
     background: linear-gradient(56deg, rgba(48,160,219,1) 0%, rgba(33,133,200,1) 50%, rgba(29,113,184,1) 100%);
     flex-flow: column;
     justify-content: center;
     align-items: center;
+}
+select{
+    background: transparent;
+    border: solid 2px #fff;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom:10px;
 }
 form.flex{
     flex-flow: column;
@@ -20,6 +28,14 @@ button{
     border: none;
     padding: 14px 20px;
     border-radius: 20px;
+    font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: all linear 0.2s;
+    cursor: pointer;
+}
+button:hover{
+    background: #2bbbad;
 }
 input[type="password"], input[type="text"] {
     background: transparent;
@@ -27,7 +43,15 @@ input[type="password"], input[type="text"] {
     padding: 10px;
     border-radius: 20px;
     outline: 0px;
-    color: #e6b548;
+    color: #fff;
+}
+
+form p {
+    margin: 0px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 5px;
 }
 
 .form-group{
@@ -37,6 +61,7 @@ input[type="password"], input[type="text"] {
     border-right: none;
     border-radius: 20px 0px 0px 20px;
     flex:1;
+    max-width: 350px;
 }
 .form-group input[type="text"]:nth-child(2){
     border-left: solid 1px #ffff;

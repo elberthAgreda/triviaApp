@@ -11,30 +11,49 @@ import { ResponseModel } from '../shared/models/response.model';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(  private _router:Router,
-                private _customService:CustomSevice,
-                private _localService:LocalService ) { }
+  username:string;
+  password:string;
+  user:any = [];
+  stateMessage:boolean = false;
+  loader: boolean;
+  message:string;
 
-  private username:string;
-  private password:string;
+  constructor(  public _router: Router,
+                public _customService: CustomSevice,
+                public _localService: LocalService ) {
+                  this.loader = true;
+                }
 
   ngOnInit() {
+    this.loader = false;
   }
 
-
-  private authentication():void{
-    var tmpLogin = '?username='+this.username + "&password=" + this.password;
-    var path = './home/inicio/';
-
-    this._customService.login<ResponseModel>(tmpLogin).subscribe(
+  authentication(): void {
+    this.loader = true;
+    this.username = this.username.replace(/\s*$/,'');
+    this.username = this.username.toUpperCase();
+    this.user = { 'userName': this.username, 'password': this.password };
+    const ruta = './home/inicio/';
+    this._customService.login<ResponseModel>(this.user).subscribe(
       response => {
-        console.log(response);
+        if ( response.users.length == 0 ) {
+          this.message = 'Este usuario fue renovado';
+        }
         this._localService.setResponseModel(response);
-        this._router.navigate([path]);
+        this._localService.setLevel(response.nivel.nivel);
+        this._router.navigate([ruta]);
+        this.loader = false;
       }, error => {
-        console.log(error);
+        this.stateMessage = true;
+        this.loader = false;
+        this.message = 'Datos Incorrectos';
       }
     );
+  }
+
+  registrar():void{
+    var rutaRegistro = "./registro";
+    this._router.navigate([rutaRegistro]);
   }
 
 }

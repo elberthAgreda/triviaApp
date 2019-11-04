@@ -1,46 +1,71 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { CustomSevice } from '../../shared/services/custom.service';
 import { LocalService } from '../../shared/services/local.service';
+import { ResponseModel } from '../../shared/models/response.model';
+import { User } from '../../shared/models/user.model';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { slideInDown, slideInUp, slideInLeft } from 'ng-animate';
 
 @Component({
   selector: 'trivia-nivel',
   templateUrl: './nivel.component.html',
+  animations: [
+    trigger('slideInDown', [transition('* => *', useAnimation(slideInDown))]),
+    trigger('slideInLeft', [transition('* => *', useAnimation(slideInLeft))]),
+    trigger('slideInUp', [transition('* => *', useAnimation(slideInUp))]),
+  ],
   styleUrls: ['./nivel.component.css']
 })
 export class NivelComponent implements OnInit {
-
-  private preguntas:any;
-  private integrantes:any;
-  private level:number;
-  private preguntaActiva:any;
-  private numQuestion:number;
-  private optionAnswer:string;
-  private showQuestion:boolean;
-  private showAnswer:boolean;
-  private showIntroduction:boolean;
-  private countAnswer:number;
-  private countQuestion:number;
-  public loader:boolean;
+  loader: boolean;
+  preguntas:any;
+  integrantes:any;
+  level:number;
+  preguntaActiva:any;
+  numQuestion:number;
+  optionAnswer:string;
+  showQuestion:boolean;
+  showAnswer:boolean;
+  showIntroduction:boolean;
+  countAnswer:number;
+  countQuestion:number;
+  responseModel:ResponseModel = new ResponseModel();
+  integrantesResponse:User[];
+  nameGroup:string;
   /* Custom */
-  public questionError:any[];
-  public errorNivel:boolean;
-  public ruta:string = "../../../assets/img/";
-  public imgRespuesta:string;
-  public numIntegrante:number;
-  public integranteActivo:string;
-  public numRonda:number;
-  public firstRonda:boolean;
-  public countQuestionActive:number;
-  constructor(  private _customService:CustomSevice,
-                private _nivel:ActivatedRoute,
-                private _localService:LocalService,
-                private _router:Router )
+  colorSvg:string;
+  questionError:any[];
+  errorNivel:boolean;
+  ruta:string = "../../../assets/img/";
+  rutaImgBackground:string;
+  pathImgLevel:string = "nivel1";
+  imgLevel:number = 1;
+  imgRespuesta:string;
+  numIntegrante:number;
+  integranteActivo:string;
+  numRonda:number;
+  firstRonda:boolean;
+  countError:number;
+  countQuestionActive:number;
+  markeLevel:number;
+  constructor(  public _customService:CustomSevice,
+                public _localService:LocalService,
+                public _router:Router )
   {
     this.loader = true;
-    this._nivel.params.subscribe(response => this.level = response['id']);
+    this._localService.responseModel.subscribe(
+      response => {
+        this.responseModel = response;
+        this.level = response.nivel.nivel + 1;
+        this.integrantesResponse = response.users;
+        this.nameGroup = response.teamName;
+        this.customOptions(this.level);
+      }
+    )
     this.errorNivel = false;
     this.numQuestion = 0;
+    this.countError = 0;
     this.showIntroduction = true;
     this.showQuestion = false;
     this.showAnswer = false;
@@ -50,20 +75,33 @@ export class NivelComponent implements OnInit {
     this.firstRonda = true;
     this.countQuestionActive = 1;
     this.questionError = [];
+    this.colorSvg = '#fff';
+    this.markeLevel = 0;
   }
 
   ngOnInit() {
     this.getIntegrantes();
     this.getPreguntas();
-    this.soundGame();
   }
 
-  public getPreguntas():void{
-    var nivel = '?categories='+this.level+'&per_page=60';
+  // obtener las preguntas del servicio Wordpress
+  getPreguntas():void{
+    // Valida que solo deje ingresar el nivel 1 - temporal validacion
+    if ( this.level > 6 ) {
+      this._router.navigate(['./home/finalizado']);
+    }
+    var nivel = '?categories='+this.level+'&per_page=50';
     this._customService.getPreguntas(nivel).subscribe(
       preguntas => {
-        this.preguntas = preguntas;
-        console.log(preguntas);
+        // Generar random del arreglo de preguntas
+        let tmpPreguntas = preguntas;
+        for (var i = 49; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var temp = tmpPreguntas[i];
+          tmpPreguntas[i] = tmpPreguntas[j];
+          tmpPreguntas[j] = temp;
+        }
+        this.preguntas = tmpPreguntas;
         this.preguntaActiva = this.preguntas[this.numQuestion];
         this.countQuestion = this.preguntas.length;
         this.loader = false;
@@ -71,46 +109,69 @@ export class NivelComponent implements OnInit {
     );
   }
 
-  public getIntegrantes():void{
+  // obtener y crear el arreglo de integrantes
+  getIntegrantes():void{
     this.integrantes = {integrante:[]};
-    this.integrantes.integrante.push({"nombre":"Elberth","image":this.ruta+"bien.png"});
-    this.integrantes.integrante.push({"nombre":"Jairo","image":this.ruta+"bien.png"});
-    this.integrantes.integrante.push({"nombre":"Carlos","image":this.ruta+"bien.png"});
-    this.integrantes.integrante.push({"nombre":"Lucia","image":this.ruta+"bien.png"});
-    this.integrantes.integrante.push({"nombre":"Ana","image":this.ruta+"bien.png"});
+    for (let i = 0; i < this.integrantesResponse.length; i++) {
+      this.integrantes.integrante.push({"nombre":this.integrantesResponse[i]['name'],"image":this.ruta+"bien.png"});
+    }
   }
 
-  private showQuestions():void{
+  // mostrar contenedor de preguntas
+  showQuestions():void{
     this.showIntroduction = false;
     this.showQuestion = true;
   }
 
-  private nextQuestion():void{
+  // Cambiar a la siguiente pregunta
+  nextQuestion():void{
+    if(this.optionAnswer != undefined){
+      this.validateQuestion();
+      if(this.imgLevel >= 5)
+        this.imgLevel = 0;
+      this.imgLevel = this.imgLevel + 1;
+    }
+    else
+      alert("Seleccionar una respuesta");
+  }
+
+  // Validar preguntas
+  validateQuestion():void{
     // Contador de preguntas
-    this.countQuestionActive = this.countQuestionActive + 1;
+    if(this.countQuestion !== this.countQuestionActive)
+      this.countQuestionActive = this.countQuestionActive + 1;
     // Reestablece el numIntegrante a 0 si ya todos los participantes respondieron
-    if(this.numIntegrante === 5){
+    if(this.numIntegrante === this.integrantesResponse.length){
       this.numIntegrante = 0;
       this.numRonda = 0;
     }
     // Valida si la respuesta es correcta
     if(this.preguntaActiva.post_meta_fields.respuesta_correcta == this.optionAnswer){
       this.countAnswer = this.countAnswer + 1;
+      // Valida si el contador de correctas es igual a 30
+      if(this.countAnswer >= 30)
+        this.finishLevel();  
       // Cambia icono si la respuesta es correcta
-      this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"bien2.png";
-      this.imgRespuesta = this.ruta+"correcto.png";
+      this.sonidoCorrecto();
+      this.markeLevel = this.markeLevel + 23.33;
+      this.colorSVG(true);
+      this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"carita_feliz.gif";
+      this.imgRespuesta = this.ruta+"respuesta_correcta.gif";
     }
     else{
       this.questionError.push(this.preguntaActiva.post_meta_fields);
-      this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"error2.png";
-      this.imgRespuesta = this.ruta+"error.png";
+      this.sonidoError();
+      this.colorSVG(false);
+      this.countError = this.countError + 1;
+      this.integrantes['integrante'][this.numIntegrante]['image'] = this.ruta+"carita_triste.gif";
+      this.imgRespuesta = this.ruta+"respuesta_incorrecta.gif";
     }
     // Muestra el integrante que debe responder
     if(this.numRonda === 0 && this.firstRonda)
       this.integranteActivo = this.integrantes['integrante'][1]['nombre'];
 
-    if(this.numRonda >= 0 && !this.firstRonda && this.numRonda <= 4){
-      if(this.numIntegrante >= 4 )
+    if(this.numRonda >= 0 && !this.firstRonda && this.numRonda <= this.integrantesResponse.length - 1){
+      if(this.numIntegrante >= this.integrantesResponse.length - 1 )
         this.integranteActivo = this.integrantes['integrante'][0]['nombre'];
       else
         this.integranteActivo = this.integrantes['integrante'][this.numIntegrante+1]['nombre'];
@@ -132,14 +193,15 @@ export class NivelComponent implements OnInit {
     this.firstRonda = false;
   }
 
-  private finishLevel():void{
+  // Termina el nivel del juego
+  finishLevel():void{
     this.showQuestion = false;
     this.showAnswer = true;
     this.preguntaActiva = [];
-    //var tmpResult = Math.round(this.countAnswer / this.countQuestion);
-    //console.log(tmpResult);
+    var tmpLevel = {level:this.level, state:true}
+    this._localService.setLevel(tmpLevel);
     if(this.countAnswer >= 30){
-      this.navigate('./home/video/2');
+      this.navigate('./home/video');
     }
     else{
       this.errorNivel = true;
@@ -148,48 +210,71 @@ export class NivelComponent implements OnInit {
     }
   }
 
-  private showIntoductions():void{
+  // mostrar introduccion
+  showIntoductions():void{
     this.showIntroduction = true;
     this.showAnswer = false;
     this.showQuestion = false;
     this.optionAnswer = null;
+    this.colorSvg = '#fff';
   }
 
-  private customOptions(nivel:number):void{
-    var path:string;
+  // Custom nivel
+  customOptions(nivel:number):void{
     switch (nivel) {
-      case 1:
-        path = "...";
-        break;
       case 2:
-        path = "...";
+        this.pathImgLevel = "nivel1";
+        this.rutaImgBackground = "nivel1/fondo-01.jpg";
         break;
       case 3:
-        path = "...";
+        this.pathImgLevel = "nivel2";
+        this.rutaImgBackground = "nivel2/fondo-02.jpg";
         break;
       case 4:
-        path = "...";
+        this.pathImgLevel = "nivel3";
+        this.rutaImgBackground = "nivel3/fondo-03.jpg";
         break;
       case 5:
-        path = "...";
+        this.pathImgLevel = "nivel4";
+        this.rutaImgBackground = "nivel4/fondo-04.jpg";
+        break;
+      case 6:
+        this.pathImgLevel = "nivel5";
+        this.rutaImgBackground = "nivel5/fondo-05.jpg";
         break;
       default:
         break;
     }
   }
 
-  public soundGame():void{
-    var audio = new Audio();
-    audio.src = "http://cepi.do.grafos.tech/wp-content/themes/cepi/img/forest/sound/Forest.mp3";
-    audio.load();
-    audio.play();
+  colorSVG(answer:boolean){
+    if ( answer )
+      this.colorSvg = '#66cccc';
+    else
+      this.colorSvg = '#ff3366';
   }
 
-  private logout():void{
-    this.navigate('./login');
+  sonidoCorrecto(){
+    var audioC = new Audio();
+    audioC.src = "../../../assets/audio/bien.mp3";
+    audioC.load();
+    audioC.play();
   }
 
-  private navigate(path:string):void{
+  sonidoError(){
+    var audioE = new Audio();
+    audioE.src = "../../../assets/audio/error.mp3";
+    audioE.load();
+    audioE.play();
+  }
+
+  // Salir de la aplicación
+  logout():void{
+    location.href ="./";
+  }
+
+  // Redirecionar
+  navigate(path:string):void{
     this._router.navigate([path]);
   }
 
