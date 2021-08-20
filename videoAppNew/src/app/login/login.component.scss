@@ -1,0 +1,66 @@
+section.login{
+    background: rgb(78,72,158);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: rgb(48,160,219);
+    background: linear-gradient(56deg, rgba(48,160,219,1) 0%, rgba(33,133,200,1) 50%, rgba(29,113,184,1) 100%);
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+a{
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+img{
+    width: 260px
+}
+form.flex{
+    flex-flow: column;
+    margin-top: 17px;
+    width: 300px;
+}
+button{
+    background: #533e91;
+    color: #fff;
+    width: 316px;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 20px;
+    font-family: MyriadPro-Bold, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: all linear 0.2s;
+    cursor: pointer;
+}
+button:hover{
+    background: #2bbbad;
+}
+input[type="password"], input[type="text"] {
+    background: transparent;
+    width: 300px;
+    border: solid 2px #fff;
+    padding-left: 10px;
+    border-radius: 20px;
+    outline: 0px;
+    color: #fff;
+}
+
+::-webkit-input-placeholder {
+    color: #fff;
+}
+::placeholder {
+    color: #fff;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #fff;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #fff;
+}

@@ -1,0 +1,29 @@
+<section class="flex login" *ngIf="!showRecuperar">
+    <img class="logoWWB" src="../../assets/img/logo.png">
+    <form #resetForm="ngForm" (ngSubmit)="validarUser()" class="flex">
+      <input [(ngModel)]="userData.userName" name="username" 
+            type="text" placeholder="Usuario del grupo" required>
+      <input [(ngModel)]="userData.cedula1" name="cedula1" 
+             type="text" placeholder="Cédula 1" OnlyNumber required>
+      <input [(ngModel)]="userData.cedula2" name="cedula2" 
+             type="text" placeholder="Cédula 2" OnlyNumber required>
+      <button [disabled]="!resetForm.form.valid" type="submit">Recuperar</button>
+    </form>
+    <p class="error" *ngIf="stateMessage">{{message}}</p>
+    <a routerLink="/login">Login</a>
+</section>
+
+<section class="flex login" *ngIf="showRecuperar">
+    <img class="logoWWB" src="../../assets/img/logo.png">
+    <form #recuperarForm="ngForm" (ngSubmit)="change()" class="flex">
+      <input [(ngModel)]="userData.password" name="password" 
+            type="password" placeholder="Password nuevo" required>
+      <input [(ngModel)]="password2" name="password2" 
+             type="password" placeholder="Vuelve a escribir el password" required>
+      <button [disabled]="!recuperarForm.form.valid" type="submit">Recuperar</button>
+    </form>
+    <p class="error" *ngIf="stateMessage">{{message}}</p>
+    <a routerLink="/login">Login</a>
+</section>
+
+<loader estado="{{loader}}"></loader>
