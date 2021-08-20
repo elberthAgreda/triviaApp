@@ -1,0 +1,45 @@
+<section class="flex login">
+    <p class="error" *ngIf="message">{{txtMessage}}</p>
+  <img class="logoWWB" src="./assets/img/logo.png">
+  <form #registroForm="ngForm" (ngSubmit)="registerForm()" class="flex">
+    <p>Inscribe tu equipo</p>
+    <input type="text" name="username"
+            [(ngModel)]="userRegister.username"
+            placeholder="Nombre del grupo" required>
+    <input type="password" name="password"
+            [(ngModel)]="userRegister.password"
+            placeholder="Password del grupo" required> 
+    <select name="ciudad" [(ngModel)]="userRegister.ciudad">
+        <option *ngFor="let ciudad of ciudades"
+                [value]="ciudad.codigo">{{ciudad.nombre}}</option>
+    </select>
+    <select name="agencia" [(ngModel)]="userRegister.agencia">
+        <option *ngFor="let agencia of agencias"
+                [value]="agencia.codigo">{{agencia.nombre}}</option>
+    </select>
+    <div class="form-group">
+        <input type="text" name="name" [(ngModel)]="user1.name" placeholder="Nombre Usuario 1" required>
+        <input type="text" OnlyNumber name="documentId" [(ngModel)]="user1.documentId" placeholder="C.C." required>
+    </div>  
+    <div class="form-group">
+        <input type="text" name="name2" [(ngModel)]="user2.name" placeholder="Nombre Usuario 2" required>
+        <input type="text" OnlyNumber name="documentId2" [(ngModel)]="user2.documentId" placeholder="C.C." required>
+    </div>
+    <p>Usuarios opcionales</p>
+    <div class="form-group">
+        <input type="text" name="name3" [(ngModel)]="user3.name" placeholder="Nombre Usuario 3">
+        <input type="text" OnlyNumber name="documentId3" [(ngModel)]="user3.documentId" placeholder="C.C.">
+    </div>
+    <div class="form-group">
+        <input type="text" name="name4" [(ngModel)]="user4.name" placeholder="Nombre Usuario 4">
+        <input type="text" OnlyNumber name="documentId4" [(ngModel)]="user4.documentId" placeholder="C.C.">
+    </div>
+    <div class="form-group">
+        <input type="text" name="name5" [(ngModel)]="user5.name" placeholder="Nombre Usuario 5">
+        <input type="text" OnlyNumber name="documentId5" [(ngModel)]="user5.documentId" placeholder="C.C.">
+    </div>
+    <button [disabled]="!registroForm.form.valid" type="submit">CREAR GRUPO</button>
+  </form>
+</section>
+
+<loader estado="{{loader}}"></loader>
