@@ -1,0 +1,13 @@
+version: "3"
+
+volumes: 
+  mysql_local_data: {}
+
+services:
+  game:
+    build:
+      context: .
+      dockerfile: ./compose/game/Dockerfile
+    image: game
+    ports:
+      - 8084:8084
