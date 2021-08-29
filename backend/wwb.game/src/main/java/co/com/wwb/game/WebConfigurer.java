@@ -12,7 +12,8 @@ public class WebConfigurer extends WebMvcConfigurerAdapter {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/rest/wwbgame/api/**")
-				.allowedMethods("PUT", "POST","GET");
+				.allowedMethods("PUT", "POST","GET")
+				.allowedOrigins("http://localhost:4200");
 	}
 
 }
