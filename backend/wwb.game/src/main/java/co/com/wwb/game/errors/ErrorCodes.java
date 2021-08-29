@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum ErrorCodes {
 
     CREDENCIALES_NO_ENVIADAS(400,"Por favor suministre los datos de inicio de sesión"),
-    CREDENCIALES_INVALIDAS (400,"Las Credenciales de autenticación son incorrectas"),
+    CREDENCIALES_INVALIDAS (401,"Las Credenciales de autenticación son incorrectas"),
     DATOS_REGISTRO_NO_DISPONIBLES(400,"La información de registro es requerida"),
     GRUPO_USUARIOS_NO_DISPONIBLES(400,"EL grupo de usuarios es requerida"),
     CIUDAD_REQUERIDA(400,"La ciudad es requerida"),
@@ -26,6 +26,4 @@ public enum ErrorCodes {
         this.code = code;
         this.messageError = messageError;
     }
-
-
 }
