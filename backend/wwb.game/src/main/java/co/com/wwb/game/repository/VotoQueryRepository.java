@@ -1,13 +1,9 @@
 package co.com.wwb.game.repository;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
+import co.com.wwb.game.db.Voto;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
-
-import co.com.wwb.game.db.Voto;
 
 
 public interface VotoQueryRepository extends Repository<Voto,String> {
