@@ -1,68 +1,39 @@
 <header>
-<img src="./assets/img/banner.png">
-<img class="logo" src="./assets/img/fondo1.png">
-<div class="flex contenido-banner">
-    <div class="btn-jugar">
-    <div class="flex fullCenter botonesHeader">
+    <div class="flex contenido-banner">
         <img class="lgBanner" src="./assets/img/logo.png">
-        <a class="btn" href="https://www.cincobmm.com/trivia/#/">Jugar</a>
+        <div class="btn-jugar">
+            <div class="flex fullCenter botonesHeader">
+                <img class="lgBanner" src="./assets/img/logo.png">
+                <a class="btn" href="https://www.cincobmm.com/trivia/#/">Votar</a>
+            </div>
+        </div>
     </div>
-    <img class="scrllBn" src="./assets/img/scroll.png">
-    <img class="personaBn" src="./assets/img/persona1.png">
-    </div>
-</div>
 </header>
 
 <section class="contenido">
-<div class="row">
-    <div class="btnCumplimiento">
-    <a (click)="navegar('instrucciones')" class="btn">Instrucciones</a>
+    <div class="row">
+        <div class="btnCumplimiento">
+            <a (click)="navegar('instrucciones')" class="btn">Instrucciones</a>
+        </div>
+        <div class="extras-tbs">
+            <router-outlet></router-outlet>
+        </div>
+        
     </div>
-    <div class="col s12 opcionesTab">
-    <ul class="tabs">
-        <li class="tab col s2">
-            <a (click)="navegar('cumplimiento')">Cumplimiento</a>
-        </li>
-        <li class="tab col s3">
-            <a (click)="navegar('riesgos')">Riesgos No Financieros</a>
-        </li>
-        <li class="tab col s2">
-            <a (click)="navegar('sarlaft')">SARLAFT</a>
-        </li>           
-        <li class="tab col s2">
-            <a (click)="navegar('seguridad')">Seguridad Bancaria</a>
-        </li>
-        <li class="tab col s2">
-            <a (click)="navegar('control-interno')">Control Interno (SCI)</a>
-        </li>
-        <!-- <li class="tab col s2">
-            <a (click)="navegar('crear-video')">Crear Video</a>
-        </li>
-        <li class="tab col s2">
-            <a (click)="navegar('../login')">Videos</a>
-        </li> -->
-    </ul>
-    </div>
-
-    <div class="extras-tbs">
-        <router-outlet></router-outlet>
-    </div>
-    
-</div>
 </section>
 
 
 <footer>
-<div class="footer flex">
-    <img src="./assets/img/logo-footer.png">
-    <div class="txt-footer">
-    <h2>Contacto</h2>
-    <p>
-        Teléfono fijo: 8399900 Ext.1831 - 1167<br>
-        Celular: 3205592454 – 3104527391<br>
-        Correo: cinco@bmm.com.co
-    </p>
+    <div class="footer flex">
+        <div class="txt-footer">
+            <h2>Contacto</h2>
+            <p>
+                Teléfono fijo: 8399900 Ext.1831 - 1167<br>
+                Celular: 3205592454 – 3104527391<br>
+                Correo: cinco@bmm.com.co
+            </p>
+        </div>
+        <img src="./assets/img/logo-footer.png">
     </div>
-</div>
-<img src="./assets/img/unoraya.png">
+    <h5>CINCO es una campaña corporativa del <b>Banco Mundo Mujer S.A.</b></h5>
 </footer>

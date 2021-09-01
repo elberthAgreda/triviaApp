@@ -15,12 +15,17 @@ select{
     border: solid 2px #fff;
     border-radius: 20px;
     padding: 10px;
-    margin-bottom:10px;
+    margin: 0px auto;
+    margin-bottom: 10px;
+    display: block;
+    width: 314px;
+    height: 46px;
+    outline: 0px;
 }
 form.flex{
     flex-flow: column;
     margin-top: 17px;
-    width: 350px;
+    width: 314px;
 }
 button{
     background: #533e91;
@@ -37,10 +42,16 @@ button{
 button:hover{
     background: #2bbbad;
 }
+img.logoWWB {
+    width: 220px;
+}
 input[type="password"], input[type="text"] {
     background: transparent;
+    width: 300px;
+    margin: 0px auto;
+    margin-bottom: 10px;
     border: solid 2px #fff;
-    padding: 10px;
+    padding-left: 10px;
     border-radius: 20px;
     outline: 0px;
     color: #fff;
@@ -82,4 +93,11 @@ form p {
 
 ::-ms-input-placeholder { /* Microsoft Edge */
     color: #fff;
+}
+p.error {
+    color: #ffff;
+    width: 90%;
+    margin: 0px auto;
+    margin-bottom: 20px;
+    text-align: center;
 }

@@ -50,7 +50,7 @@ export class CustomSevice{
 
     /** @description registro de usuario */
     public register<T>( request:Register ) : Observable<T>{
-        return this.proxyGame.put<T>(AppVariable.register,request);
+        return this.proxyGame.post<T>(AppVariable.register,request);
     }
 
     /** @description validar si usuario existe */

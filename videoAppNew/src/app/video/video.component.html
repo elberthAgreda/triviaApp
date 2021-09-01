@@ -7,17 +7,6 @@
       class="btn btn-cerrar">Cerrar</a>
   <header>
     <img class="logo" src="../../assets/img/fondo1.png">
-    <div class="flex contenido-banner">
-      <ul class="flex">
-        <li><a [routerLink]="['../home/instrucciones']">Instrucciones</a></li>
-        <li><a [routerLink]="['../home/cumplimiento']">Cumplimiento</a></li>
-        <li><a [routerLink]="['../home/riesgos']">Riesgos No Financieros</a></li>
-        <li><a [routerLink]="['../home/sarlaft']">SARLAFT</a></li>           
-        <li><a [routerLink]="['../home/seguridad']">Seguridad Bancaria</a></li>
-        <li><a [routerLink]="['../home/control-interno']">Control Interno (SCI)</a></li>
-        <li><a [routerLink]="['../home/crear-video']">Crear Video</a></li>
-      </ul>
-    </div>
   </header>
   <section class="flex contenido">
     <div *ngIf="videoData.video != null" class="descripcion-video">
@@ -34,10 +23,12 @@
 </section>
 
 <section class="videos-listado">
-  <h2>Agencias</h2>
   <div class="flex items-video">
-    <div (click)="viewAgencie(agencia);" *ngFor="let agencia of agencias" class="item-video">
-      <h2>{{agencia.post_meta_fields.titulo}}</h2>
+    <div *ngFor="let agencia of agencias">
+      <h2 *ngIf="agencia">Regional {{agencia[0].data.regional[0]}}</h2>    
+      <div (click)="viewAgencie(agencia);" *ngFor="let item of agencia" class="item-video">
+        <h2>{{item.data.titulo}}</h2>
+      </div>
     </div>
   </div>
 </section>
