@@ -5,8 +5,8 @@
 
 	<groupId>com.example</groupId>
 	<artifactId>wwb.game</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
 	<name>wwb.game</name>
 	<description>Demo project for Spring Boot</description>
@@ -42,7 +42,21 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-    </dependencies>
+
+         <dependency>
+             <groupId>org.projectlombok</groupId>
+             <artifactId>lombok</artifactId>
+             <version>1.18.20</version>
+             <scope>provided</scope>
+         </dependency>
+
+         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+         <dependency>
+             <groupId>org.apache.commons</groupId>
+             <artifactId>commons-lang3</artifactId>
+             <version>3.12.0</version>
+         </dependency>
+     </dependencies>
 
     <properties>
         <java.version>1.8</java.version>
@@ -56,7 +70,5 @@
             </plugin>
         </plugins>
     </build>
-	
-
 
 </project>
