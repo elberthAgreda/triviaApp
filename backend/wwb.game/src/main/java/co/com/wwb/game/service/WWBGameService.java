@@ -7,6 +7,7 @@ import co.com.wwb.game.errors.WWBGeneralException;
 import co.com.wwb.game.model.*;
 import co.com.wwb.game.model.v2.RegistroV2;
 import co.com.wwb.game.repository.*;
+import co.com.wwb.game.utils.AppConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
@@ -217,48 +218,51 @@ public final class WWBGameService {
     }
 
     /**
-     * @param nivelUsuario
+     * Metodo encargado de registrar los votos.
+     * @param puntuacionUsuario informaciónn del voto
      */
-    public void saveVoto(Puntuacion puntuacionUsuario) throws Exception {
+    public void saveVoto(Puntuacion puntuacionUsuario) {
 
-        String error = null;
-
-        if (puntuacionUsuario.getVideo() == null || puntuacionUsuario.getVideo().isEmpty()) {
-            error = "El identificante del video es requerido";
-            throw new Exception(error);
+        if(Objects.isNull(puntuacionUsuario)){
+            throw new WWBGeneralException(ErrorCodes.DATOS_REGISTRO_VOTOS_REQUERIDOS);
         }
 
-        if (puntuacionUsuario.getUsuario() == null || puntuacionUsuario.getUsuario().isEmpty()) {
-            error = "El id de usuario es requerido";
-            throw new Exception(error);
+        if (StringUtils.isEmpty(puntuacionUsuario.getVideo())) {
+            throw new WWBGeneralException(ErrorCodes.VIDEO_REQUERIDO);
         }
 
-        if (puntuacionUsuario.getAgencia() == null || puntuacionUsuario.getAgencia().isEmpty()) {
-            error = "La agencia es requerida";
-            throw new Exception(error);
+        if (StringUtils.isEmpty(puntuacionUsuario.getUsuario())) {
+            throw new WWBGeneralException(ErrorCodes.USUARIO_REQUERIDO);
         }
 
-        Usuario usuario = this.getUserInformation(puntuacionUsuario.getUsuario());
-
-        if (usuario == null) {
-            error = "Usuario no registrado";
-            throw new Exception(error);
+        if (StringUtils.isEmpty(puntuacionUsuario.getAgencia())) {
+            throw new WWBGeneralException(ErrorCodes.AGENCIA_REQUERIDA);
         }
 
-        String agenciaSrv = puntuacionUsuario.getAgencia();
+        Usuario usuario = repository.findById(puntuacionUsuario.getUsuario().toUpperCase())
+                .orElseThrow(() -> new WWBGeneralException(ErrorCodes.USUARIO_NO_REGISTRADO));
 
         //valido que el usuario no pueda votar por la misma agencia
-        if (usuario.getAgencia() != null) {
-            if (!usuario.getAgencia().equals(agenciaSrv)) {
-                error = "No se puede registrar un voto para la misma agencia";
-                throw new Exception(error);
-            }
+
+        if (usuario.getAgencia().equals(puntuacionUsuario.getAgencia())) {
+            throw new WWBGeneralException(ErrorCodes.VOTO_INVALIDO);
         }
 
-        long total = this.votoQueryRepository.votosByUser(puntuacionUsuario.getUsuario());
-        if (total > 1 && (total > usuario.getLstGrupo().size())) {
-            error = "EL usuario no puede registrar más votos";
-            throw new Exception(error);
+        long numeroVotosRegistadosUsuario = this.votoQueryRepository.votosByUser(puntuacionUsuario.getUsuario());
+        if (AppConstant.MAXIMO_NUMERO_VOTOS_USUARIO == numeroVotosRegistadosUsuario) {
+            throw new WWBGeneralException(ErrorCodes.MAX_VOTOS_USUARIO_ERROR);
+        }
+
+        List<Voto> votosPorUsuario = votoRepository.findVotosByUsuario(puntuacionUsuario.getUsuario());
+        if(Objects.nonNull(votosPorUsuario) && !votosPorUsuario.isEmpty()){
+            votosPorUsuario.stream()
+                    .filter(voto -> voto.getVideo().equals(puntuacionUsuario.getVideo()))
+                    .map(Voto::getVideo)
+                    .findAny()
+                    .ifPresent(video -> {
+                        log.info("Ya se ha registrado un mismo voto para el video " +  video + " por el usuario " + puntuacionUsuario.getUsuario());
+                        throw new WWBGeneralException(ErrorCodes.VOTO_VIDE_YA_REGISTRADO);
+                    });
         }
 
         try {
@@ -275,12 +279,11 @@ public final class WWBGameService {
             }
 
             votoRepository.save(voto);
+        }catch(WWBGeneralException e){
+            throw e;
         } catch (Exception e) {
-            if (error == null) {
-                e.printStackTrace();
-                error = "Se ha presentado un error en el sistema por favor contactese con el administrador.";
-            }
-            throw new Exception(error);
+            log.error("Error registrando voto ", e);
+            throw new WWBGeneralException(ErrorCodes.INTERNAL_ERROR);
         }
     }
 
