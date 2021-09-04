@@ -5,9 +5,7 @@
   </video>
   <a *ngIf="showVideo" (click)="showVideoBase(false);"
       class="btn btn-cerrar">Cerrar</a>
-  <header>
-    <img class="logo" src="../../assets/img/fondo1.png">
-  </header>
+
   <section class="flex contenido">
     <div *ngIf="videoData.video != null" class="descripcion-video">
       <h1>{{videoData.titulo}}</h1>
@@ -23,11 +21,13 @@
 </section>
 
 <section class="videos-listado">
-  <div class="flex items-video">
+  <div class="items-video">
     <div *ngFor="let agencia of agencias">
-      <h2 *ngIf="agencia">Regional {{agencia[0].data.regional[0]}}</h2>    
-      <div (click)="viewAgencie(agencia);" *ngFor="let item of agencia" class="item-video">
-        <h2>{{item.data.titulo}}</h2>
+      <h3 *ngIf="agencia">Regional {{agencia[0].data.regional[0]}}</h3>
+      <div class="flex">
+        <div (click)="viewAgencie(agencia);" *ngFor="let item of agencia" class="item-video">
+          <h2>{{item.data.titulo}}</h2>
+        </div>
       </div>
     </div>
   </div>
@@ -35,15 +35,16 @@
 
 <footer>
   <div class="footer flex">
-    <img src="../../assets/img/logo-footer.png">
-    <div class="txt-footer">
-      <h2>Contacto</h2>
-      <p>
-        PBX: +57(2) 123-4567<br>
-        Celular: 31234567890<br>
-        info@cinco.bmm.com
-      </p>
-    </div>
+      <div class="txt-footer">
+          <hr>
+          <h2>Contacto</h2>
+          <p>
+              Teléfono fijo: 8399900 Ext.1831 - 1167<br>
+              Celular: 3205592454 – 3104527391<br>
+              Correo: cinco@bmm.com.co
+          </p>
+      </div>
+      <img src="./assets/img/logo-footer.png">
   </div>
-  <img src="../../assets/img/unoraya.png">
+  <h5>CINCO es una campaña corporativa del <b>Banco Mundo Mujer S.A.</b></h5>
 </footer>

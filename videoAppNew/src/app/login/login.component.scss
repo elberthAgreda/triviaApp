@@ -19,12 +19,18 @@ a{
     text-decoration: underline;
 }
 img{
-    width: 260px
+    width: 260px;
+    @media (max-width: 600px) {
+        width: 210px;
+    }
 }
 form.flex{
     flex-flow: column;
     margin-top: 17px;
     width: 300px;
+    @media (max-width: 600px) {
+        align-items: center;
+    }
 }
 button{
     background: #533e91;
@@ -38,6 +44,9 @@ button{
     letter-spacing: 2px;
     transition: all linear 0.2s;
     cursor: pointer;
+    @media (max-width: 600px) {
+        width: 285px;
+    }
 }
 button:hover{
     background: #2bbbad;
@@ -50,6 +59,9 @@ input[type="password"], input[type="text"] {
     border-radius: 20px;
     outline: 0px;
     color: #fff;
+    @media (max-width: 600px) {
+        width: 270px;
+    }
 }
 
 ::-webkit-input-placeholder {

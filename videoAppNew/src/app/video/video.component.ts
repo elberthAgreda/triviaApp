@@ -63,10 +63,11 @@ export class VideoComponent implements OnInit {
   }
 
   viewAgencie(data: any): void {
-    this.videoData.titulo = data.data.titulo[0];
-    this.videoData.descripcion = data.data.descripcion[0];
-    this.videoData.imagen = data.data.imgurl[0];
-    this.videoData.video = data.data.video_url[0];
+    const tmpData = data[0].data;
+    this.videoData.titulo = tmpData.titulo[0];
+    this.videoData.descripcion = tmpData.descripcion[0];
+    this.videoData.imagen = tmpData.imgurl[0];
+    this.videoData.video = tmpData.video_url[0];
     // Puntuacion
     this.videoData.puntuacion.video = data.id;
     this.videoData.puntuacion.agencia = data.id;

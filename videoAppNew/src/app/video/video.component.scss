@@ -80,7 +80,14 @@ section.video-content{
   }
   .items-video {
     margin-bottom: 30px;
-    flex-flow: row wrap;
+    h3 {
+      font-size: 30px;
+      color: #37a6df;
+      font-family: "MyriadPro-Bold";
+    }
+    >div.flex {
+      flex-flow: row wrap;
+    }
   }
   .item-video {
     width: 220px;
