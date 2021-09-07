@@ -1,5 +1,6 @@
 package co.com.wwb.game.rs.v2;
 
+import co.com.wwb.game.model.Resultado;
 import co.com.wwb.game.model.UserData;
 import co.com.wwb.game.model.v2.RegistroV2;
 import org.springframework.http.ResponseEntity;
@@ -21,4 +22,6 @@ public interface WWBGameRSV2 {
      * @return Informacion del usuario autenticado.
      */
     ResponseEntity<UserData> login(UserData user);
+
+    ResponseEntity<Resultado> getAgencies(String cityCode);
 }

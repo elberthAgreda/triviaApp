@@ -1,16 +1,16 @@
 package co.com.wwb.game.rs.v2;
 
+import co.com.wwb.game.model.Elemento;
+import co.com.wwb.game.model.Resultado;
 import co.com.wwb.game.model.UserData;
 import co.com.wwb.game.model.v2.RegistroV2;
 import co.com.wwb.game.service.WWBGameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/rest/wwbgame/api/v2")
@@ -27,5 +27,15 @@ public class WWBGameRSV2Impl implements WWBGameRSV2 {
     @PostMapping(value = "/login")
     public ResponseEntity login(@RequestBody @Valid final UserData userData) {
         return ResponseEntity.ok(wwbGameService.loginV2(userData.getUserName(), userData.getPassword()));
+    }
+
+    @GetMapping(value = "/cities/{city-code}/agencies")
+    public ResponseEntity<Resultado> getAgencies(@PathVariable("city-code") String cityCode) {
+        List<Elemento> agencias = wwbGameService.getAgenciasByCity(cityCode);
+        Resultado resultado = new Resultado();
+        resultado.setTipo("AGENCIAS");
+        resultado.setListado(agencias);
+        resultado.setExito(true);
+        return ResponseEntity.ok(resultado);
     }
 }

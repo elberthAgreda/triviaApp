@@ -24,6 +24,7 @@ public enum ErrorCodes {
     MAX_VOTOS_USUARIO_ERROR(403, "Voto no registado, Haz alcanzado el número maximo de votos permitidos por usuario"),
     VOTO_VIDE_YA_REGISTRADO(409, "Ya haz registrado un voto para el mimo video, por favor selecciona un nuevo video."),
     DATOS_REGISTRO_VOTOS_REQUERIDOS(400, "N0 se ha obtenido data valida para registrar el voto."),
+    CIUDAD_SIN_AGENCIAS(404, "La ciudad seleccionada no tiene agencias asignadas"),
     INTERNAL_ERROR(500,"Se ha presentado un error en el sistema por favor contactese con el administrador.");
 
     private int code;
