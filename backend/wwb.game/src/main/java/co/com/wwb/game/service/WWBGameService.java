@@ -10,12 +10,14 @@ import co.com.wwb.game.repository.*;
 import co.com.wwb.game.utils.AppConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @Log4j2
@@ -555,5 +557,30 @@ public final class WWBGameService {
                 .build();
 
         return userData;
+    }
+
+    public List<Elemento> getAgenciasByCity(final String codCity) {
+        if (StringUtils.isEmpty(codCity)) {
+            throw new WWBGeneralException(ErrorCodes.CIUDAD_REQUERIDA);
+        }
+
+        try {
+            List<Agencia> agencias = agenciaRepository.findByCiudad(codCity);
+            if(Objects.isNull(agencias) || agencias.isEmpty()){
+                throw new WWBGeneralException(ErrorCodes.CIUDAD_SIN_AGENCIAS);
+            }
+
+            return agencias.stream().map(agencia -> {
+                Elemento elemento = new Elemento();
+                elemento.setAgencia(agencia.getNombre());
+                elemento.setCodigo(agencia.getCodigo());
+                elemento.setCiudad(agencia.getCiudad());
+                return elemento;
+            }).collect(Collectors.toList());
+
+        } catch (Exception e){
+            log.error(e);
+            throw new WWBGeneralException(ErrorCodes.INTERNAL_ERROR);
+        }
     }
 }
