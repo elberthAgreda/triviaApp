@@ -223,7 +223,7 @@ public final class WWBGameService {
      * Metodo encargado de registrar los votos.
      * @param puntuacionUsuario informaciónn del voto
      */
-    public void saveVoto(Puntuacion puntuacionUsuario) {
+    public ResultMessage saveVoto(Puntuacion puntuacionUsuario) {
 
         if(Objects.isNull(puntuacionUsuario)){
             throw new WWBGeneralException(ErrorCodes.DATOS_REGISTRO_VOTOS_REQUERIDOS);
@@ -281,6 +281,10 @@ public final class WWBGameService {
             }
 
             votoRepository.save(voto);
+            ResultMessage resultMessage = new ResultMessage();
+            resultMessage.setMessage("Voto almacenado exitosamente");
+            resultMessage.setSuccess(true);
+            return resultMessage;
         }catch(WWBGeneralException e){
             throw e;
         } catch (Exception e) {
