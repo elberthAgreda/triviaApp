@@ -4,7 +4,7 @@ import { AuthGuard } from '../shared/auth/auth.guards';
 import { VideoComponent } from './video.component';
 
 const adminRoutes: Routes = [
-  { path: '', component: VideoComponent}
+  { path: '', component: VideoComponent, canActivate:[AuthGuard] }
 ];
 
 @NgModule({

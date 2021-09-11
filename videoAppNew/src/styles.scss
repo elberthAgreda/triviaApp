@@ -1,17 +1,8 @@
-@font-face {
-    font-family: "MyriadPro-Regular";
-    src: url(../src/assets/fonts/MyriadPro-Regular.otf);
-}
-@font-face {
-    font-family: "MyriadPro-Bold";
-    src: url(../src/assets/fonts/MyriadPro-Bold.otf);
-}
-
 *{
-    font-family: "MyriadPro-Regular";
+    font-family: 'Montserrat', sans-serif;
 }
 h2, b{
-    font-family: "MyriadPro-Bold";
+    font-weight:900;
 }
 html, body{
     overflow-x: hidden;
@@ -54,7 +45,7 @@ h4.dcmDownl{
     font-size: 16px;
     color: #0499e5;
     border-bottom: solid 1px #dddddd;
-    font-family: "MyriadPro-Bold";
+    font-weight:900;
     padding-bottom: 17px;
 }
 .contenido-banner {
@@ -75,7 +66,7 @@ h4.dcmDownl{
     text-align: center;
     margin-bottom: 27px;
     h3 {
-        font-family: "MyriadPro-Bold";
+        font-weight:900;
         color: #45a6df;
     }
     hr {
@@ -110,7 +101,7 @@ a.btn {
     color: #fff;
     padding: 19px 45px;
     text-transform: uppercase;
-    font-family: "MyriadPro-Bold";
+    font-weight:900;
     font-size: 18px;
     display: flex;
     align-items: center;
@@ -165,7 +156,7 @@ margin-top: 10px;
 .tabs .tab a{
     color: #1d71b8;
     font-size: 16px;
-    font-family: "MyriadPro-Bold";
+    font-weight:900;
     text-transform: capitalize;
 }
 .border-left{
@@ -200,7 +191,7 @@ margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "MyriadPro-Bold";
+    font-weight:900;
     color: #37a6df;
     font-size: 20px;
     margin: 0px 10px;
@@ -266,7 +257,7 @@ width: 253px;
 .btn-descargas a label{
     color: #fff;
     display: block;
-    font-family: "MyriadPro-Bold";
+    font-weight:900;
     width: 121px;
     text-align: left;
     margin-left: 32px;
@@ -367,7 +358,7 @@ footer > img{
     margin-left: 13px;
     font-size: 16px;
     color: #0499e5;
-    font-family: "MyriadPro-Bold";
+    font-weight:900;
 }
 
 .txt-collapse img{
@@ -383,7 +374,7 @@ footer > img{
     font-size: 18px;
     color: #41ade2;
     line-height: 20px;
-    font-family: "MyriadPro-Bold";
+    font-weight:900;
     max-width: 130px;
 }
 .collapsible{

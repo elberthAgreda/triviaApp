@@ -1,31 +1,57 @@
-<section [ngStyle]="{'background-image': 'url(' + videoData.imagen + ')'}"
+<section [ngStyle]="{'background-image': 'url(' + baseData + ')'}"
          class="video-content">
-  <video *ngIf="showVideo" autoplay muted loop id="videoCampana">
+  <img src="{{baseImage}}logo_header.png">
+
+  <div class="flex">
+    <img src="{{baseImage}}logo_cinco_banner_videos.png">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo quaerat quasi delectus culpa 
+      dignissimos error quidem accusantium nulla sequi nostrum, tenetur debitis ipsam vel possimus 
+      voluptatibus, omnis deleniti repellat ad.
+    </p>
+  </div>
+
+</section>
+
+<section class="flex contenido-video" *ngIf="showVideo">
+  <video controls preload="none" (ended)="vidEnded()" id="videoCampana">
     <source [src]="videoData.video" type="video/mp4">
   </video>
-  <a *ngIf="showVideo" (click)="showVideoBase(false);"
-      class="btn btn-cerrar">Cerrar</a>
+  
+  <div class="options-video-controls">
+    <img (click)="playPause()"
+          width="23px"
+          height="27px"
+         src="{{baseImage + imgActivePlayOrPause}}">
+  </div>
 
-  <section class="flex contenido">
-    <div *ngIf="videoData.video != null" class="descripcion-video">
-      <h1>{{videoData.titulo}}</h1>
-      <p>{{videoData.descripcion}}</p>
-      <a (click)="showVideoBase(true);" class="btn">Reproducir</a>
-    </div>
-    <a *ngIf="videoData.video != null" class="btn-votar"
-       (click)="saveVote();" >
-      <img src="">
-      <label>Vota por este video</label>
-    </a>
-  </section>
+  <img (click)="showVideoBase(false);"
+        width="30px"
+        class="btn-cerrar"
+        [ngClass]="{'hide': hideContent}"
+        src="{{baseImage}}btn-cerrar.svg">
+
+  <div *ngIf="videoData.video != null"
+       class="descripcion-video"
+       [ngClass]="{'hide': hideContent}">
+    <h1>{{videoData.titulo}}</h1>
+    <p>{{videoData.descripcion}}</p>
+  </div>
+  <a *ngIf="videoData.video != null"
+     class="btnVotar"
+     [ngClass]="{'hide': hideContent}"
+     (click)="saveVote();" >
+     <label>Vota por este video</label>
+    <img width="30" src="{{baseImage}}icono_votar-01.svg">
+  </a>
 </section>
 
 <section class="videos-listado">
   <div class="items-video">
     <div *ngFor="let agencia of agencias">
       <h3 *ngIf="agencia">Regional {{agencia[0].data.regional[0]}}</h3>
-      <div class="flex">
-        <div (click)="viewAgencie(agencia);" *ngFor="let item of agencia" class="item-video">
+      <div class="flex rw-col">
+        <div (click)="viewAgencie(item);" *ngFor="let item of agencia" class="item-video">
           <h2>{{item.data.titulo}}</h2>
         </div>
       </div>

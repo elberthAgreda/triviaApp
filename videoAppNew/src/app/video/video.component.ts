@@ -3,8 +3,8 @@ import { CustomSevice } from '../shared/services/custom.service';
 import { UserData } from '../shared/models/userData.model';
 import { Puntuacion } from '../shared/models/puntuacion.model';
 import { VideoModel } from '../shared/models/video.model';
-import { ResponseModel } from '../shared/models/response.model';
 import { LocalService } from '../shared/services/local.service';
+import { AppVariable } from '../shared/config/app.variables';
 declare var $: any;
 
 @Component({
@@ -13,13 +13,18 @@ declare var $: any;
   styleUrls: ['./video.component.scss'],
 })
 export class VideoComponent implements OnInit {
+
   agencias: any[];
   responseModel: any;
   userData: any;
   videoData: any;
+  baseData = '../../assets/img/fondovideo.jpg';
+  baseImage = AppVariable.baseImages;
+  imgActivePlayOrPause = 'boton_play-01.svg';
   dataVoto: any;
   showVideo: boolean;
   today: Date;
+  hideContent = false;
 
   constructor(
     private _customService: CustomSevice,
@@ -29,7 +34,6 @@ export class VideoComponent implements OnInit {
     this.agencias = [];
     this.dataVoto = new Puntuacion();
     this.videoData = new VideoModel();
-    this.videoData.imagen = '../../assets/img/fondovideo.jpg';
     this.videoData.video = '';
     this.videoData.puntuacion = new Puntuacion();
     this.userData = new UserData();
@@ -45,6 +49,7 @@ export class VideoComponent implements OnInit {
 
   getVideos(): void {
     this._customService.getVideos<any[]>().subscribe((response) => {
+      console.log(response);
       const groupBy = (array: any, key: any) => {
         return array.reduce((result: any, currentValue: any) => {
           (result[currentValue[key]['regional'][0]] = result[currentValue[key]['regional'][0]] || []).push(
@@ -63,22 +68,23 @@ export class VideoComponent implements OnInit {
   }
 
   viewAgencie(data: any): void {
-    const tmpData = data[0].data;
+    const tmpData = data.data;
     this.videoData.titulo = tmpData.titulo[0];
     this.videoData.descripcion = tmpData.descripcion[0];
     this.videoData.imagen = tmpData.imgurl[0];
     this.videoData.video = tmpData.video_url[0];
     // Puntuacion
-    this.videoData.puntuacion.video = data.id;
-    this.videoData.puntuacion.agencia = data.id;
+    this.videoData.puntuacion.video = tmpData.id[0];
+    this.videoData.puntuacion.agencia = tmpData.id[0];
     this.videoData.puntuacion.usuario = this.responseModel.userName;
-    const dateAc =
-      this.today.getDate() +
-      '/' +
-      this.today.getMonth() +
-      '/' +
-      this.today.getFullYear();
-    this.videoData.puntuacion.fecha = dateAc;
+    // const dateAc =
+    //   this.today.getDate() +
+    //   '/' +
+    //   this.today.getMonth() +
+    //   '/' +
+    //   this.today.getFullYear();
+    // this.videoData.puntuacion.fecha = dateAc;
+    this.showVideo = true;
     $('html,body').animate({ scrollTop: 0 }, 1000);
   }
 
@@ -86,17 +92,36 @@ export class VideoComponent implements OnInit {
     this.dataVoto = this.videoData.puntuacion;
     this._customService.saveVote(this.dataVoto).subscribe(
       (response) => {
-        console.log(response);
+        alert('Voto almacenado exitosamente');
       },
       (error) => {
-        console.log(error);
+        if (!error.error) {
+          alert('Voto almacenado exitosamente');
+          return;
+        } 
+        alert(error.error.errorMsg);
       }
     );
   }
 
-  scores(): void {
-    this._customService.scores(this.userData).subscribe((response) => {
-      console.log(response);
-    });
+  playPause() {
+    var myVideo: any = document.getElementById("videoCampana");
+    if ( myVideo.paused ) {
+      this.hideContent = true;
+      myVideo.play();
+      this.imgActivePlayOrPause = 'pausa_Mesa-de-trabajo-1.svg';
+
+    } 
+    else {
+      myVideo.pause();
+      this.hideContent = false;
+      this.imgActivePlayOrPause = 'boton_play-01.svg';
+    }
   }
+
+  vidEnded() {
+    this.hideContent = false;
+    this.imgActivePlayOrPause = 'boton_play-01.svg';
+  }
+
 }
