@@ -1,5 +1,6 @@
 package co.com.wwb.game.rs;
 
+import co.com.wwb.game.model.ResultMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +51,8 @@ public class WWBGameRs {
 	@RequestMapping(value = "/saveVote", method = RequestMethod.PUT, 
 			 consumes = MediaType.APPLICATION_JSON_VALUE,
 			 produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> saveVote(@RequestBody Puntuacion puntuacionUsuario) throws Exception{
-		service.saveVoto(puntuacionUsuario);
-		return ResponseEntity.ok().body("Voto almacenado exitosamente");
+	public ResponseEntity<ResultMessage> saveVote(@RequestBody Puntuacion puntuacionUsuario) throws Exception{
+		return ResponseEntity.ok().body(service.saveVoto(puntuacionUsuario));
 	}
 
 	@RequestMapping(value = "/cities", method = RequestMethod.POST, 
