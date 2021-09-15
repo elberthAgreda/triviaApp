@@ -3,6 +3,11 @@ variable "region" {
   default     = "us-east-2"
 }
 
+variable "subnet_cidr_block" {
+  description = "Default CIDR block"
+  default     = "172.31.128.0/17"
+}
+
 variable "project" {
   default     = "unogame"
   description = "Project name"
@@ -26,7 +31,11 @@ variable "container_name" {
 variable "container_url" {
   default     = "381830857098.dkr.ecr.us-east-2.amazonaws.com/uno-repository:latest"
   description = "Repository URL"
+}
 
+variable "container_port" {
+  default = 8084
+  description = "Port for container"
 }
 
 variable "min_capacity" {

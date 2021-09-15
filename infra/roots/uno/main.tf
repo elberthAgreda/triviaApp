@@ -30,13 +30,23 @@ module "ecs" {
 
   source = "../../modules/ecs"
 
-  project        = var.project
-  region         = var.region
-  account_number = var.account_number
-  vpc_id         = var.vpc_id
-  container_name = var.container_name
-  container_url  = var.container_url
-  cern_arn       = var.cern_arn
-  min_capacity   = var.min_capacity
-  max_capacity   = var.max_capacity
+  # Project stuff
+  project           = var.project
+  region            = var.region
+  account_number    = var.account_number
+  vpc_id            = var.vpc_id
+  
+  # Container Stuff
+  container_name    = var.container_name
+  container_url     = var.container_url  
+  container_port    = var.container_port 
+  min_capacity      = var.min_capacity
+  max_capacity      = var.max_capacity
+
+  # Cert for https
+  #cern_arn          = var.cern_arn
+  
+  # CIDR block for create valids subnets
+  subnet_cidr_block = var.subnet_cidr_block
+ 
 }

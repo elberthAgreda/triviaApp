@@ -6,7 +6,7 @@ data "template_file" "wwbgame" {
   vars = {
     "docker_name"           = var.container_name
     "docker_image"          = var.container_url
-    "docker_port"           = 8084
+    "docker_port"           = var.container_port
     "docker_fargate_cpu"    = 2048
     "docker_fargate_memory" = 4096
     "docker_aws_region"     = var.region
@@ -43,7 +43,7 @@ resource "aws_ecs_service" "wwbgame" {
   ]
 
   network_configuration {
-    security_groups = [ aws_security_group.sg_alb.id ]
+    security_groups = [ aws_security_group.sg_ecs.id ]
     subnets = [
       aws_subnet.cinco_subnet[0].id,
       aws_subnet.cinco_subnet[1].id
@@ -54,7 +54,7 @@ resource "aws_ecs_service" "wwbgame" {
   load_balancer {
     target_group_arn = aws_lb_target_group.cinco_target_group.arn
     container_name   = var.container_name
-    container_port   = 8084
+    container_port   = var.container_port
   }
   # service_registries {
   #   registry_arn = aws_service_discovery_service.webserver.arn

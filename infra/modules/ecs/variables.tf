@@ -9,7 +9,6 @@ variable "region" {
 
 variable "subnet_cidr_block" {
   description = "Default CIDR block"
-  default     = "172.31.128.0/17"
 }
 
 variable "vpc_id" {
@@ -17,11 +16,11 @@ variable "vpc_id" {
 }
 
 variable "min_capacity" {
-  description = ""
+  description = "Min capacity for service size"
 }
 
 variable "max_capacity" {
-  description = ""
+  description = "Max capacity for service size"
 }
 
 variable "account_number" {
@@ -36,6 +35,10 @@ variable "container_url" {
   description = "Repository of container"
 }
 
-variable "cern_arn" {
-  description = "Certificate arn for https"
+variable "container_port" {
+  description = "Port for container"
 }
+
+# variable "cern_arn" {
+#   description = "Certificate arn for https"
+# }
