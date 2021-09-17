@@ -18,6 +18,10 @@ module "wwbgame" {
   subnet_id_1                 = aws_subnet.cinco_subnet[0].id
   subnet_id_2                 = aws_subnet.cinco_subnet[1].id
 
+  # EFS
+  efs_id                      = aws_efs_file_system.efs_cinco.id
+  access_point                = aws_efs_access_point.access_point_cinco.id
+
   depends_on = [
     aws_lb.lb_cinco,
     aws_lb_target_group.cinco_target_group,
@@ -45,6 +49,10 @@ module "wordpress" {
   target_group_arn            = aws_lb_target_group.cinco_target_group_wordpress.arn
   subnet_id_1                 = aws_subnet.cinco_subnet[0].id
   subnet_id_2                 = aws_subnet.cinco_subnet[1].id
+  
+  # EFS
+  efs_id                      = aws_efs_file_system.efs_cinco.id
+  access_point                = aws_efs_access_point.access_point_cinco.id
 
   depends_on = [
     aws_lb.lb_cinco,

@@ -20,6 +20,12 @@
         "containerPort": ${docker_port},
         "hostPort": ${docker_port}
       }
+    ],
+    "mountPoints": [
+      {
+        "containerPath": "/var/www/html",
+        "sourceVolume": "service-storage"
+      }
     ]
   }
 ]

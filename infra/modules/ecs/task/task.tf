@@ -23,8 +23,26 @@ resource "aws_ecs_task_definition" "wwbgame" {
   cpu                      = 2048
   memory                   = 4096
   container_definitions    = data.template_file.wwbgame.rendered
+  
   lifecycle {
     create_before_destroy = true
+  }
+
+  volume {
+    name = "service-storage"
+
+    efs_volume_configuration {
+      #file_system_id          = aws_efs_file_system.fs.id
+      file_system_id          = var.efs_id
+      root_directory          = "/"
+      transit_encryption      = "ENABLED"
+      transit_encryption_port = 2999
+
+      authorization_config {
+        access_point_id = var.access_point
+        iam             = "ENABLED"
+      }
+    }
   }
 }
 

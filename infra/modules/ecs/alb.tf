@@ -145,9 +145,9 @@ resource "aws_lb_target_group" "cinco_target_group_wordpress" {
     healthy_threshold   = "3"
     interval            = "30"
     protocol            = "HTTP"
-    matcher             = "302"
+    matcher             = "200"
     timeout             = "3"
-    path                = "/wp-load.php"
+    path                = "/"
     unhealthy_threshold = "2"
   }
 

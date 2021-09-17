@@ -48,3 +48,11 @@ variable "min_capacity" {
 variable "max_capacity" {
   description = "Max capacity for service size"
 }
+
+variable "efs_id" {
+  
+}
+
+variable "access_point" {
+  
+}

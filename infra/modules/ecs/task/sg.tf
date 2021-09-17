@@ -12,6 +12,22 @@ resource "aws_security_group" "sg_ecs" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    description = "Allow access for EFS"
+    from_port   = 2049
+    to_port     = 2049
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
+  ingress {
+    description = "Allow access for EFSs"
+    from_port   = 2999
+    to_port     = 2999
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     description = "Egress rule"
     from_port   = 0
