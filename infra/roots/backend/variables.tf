@@ -49,6 +49,22 @@ variable "max_capacity" {
 }
 
 variable "cern_arn" {
-  default     = ""
+  default     = "arn:aws:acm:us-east-2:381830857098:certificate/54847077-e7b7-48d5-bc06-f7324c1361ea"
   description = "Certificate ARN for https"
+}
+
+
+variable "container_name_wp" {
+  description = "Values for wordpress"
+  default = "wordpress"
+}
+
+variable "container_url_wp" {
+  description = "Values for wordpress"
+  default = "wordpress:latest"
+}
+
+variable "container_port_wp" {
+  description = "Values for wordpress"
+  default = 80
 }

@@ -36,23 +36,23 @@ resource "aws_ecs_service" "wwbgame" {
   launch_type            = "FARGATE"
   enable_execute_command = true
 
-  depends_on = [
-    aws_lb_target_group.cinco_target_group,
-    aws_ecs_cluster.ecs,
-    aws_lb.lb_cinco
-  ]
+  # depends_on = [
+  #   aws_lb_target_group.cinco_target_group,
+  #   aws_ecs_cluster.ecs,
+  #   aws_lb.lb_cinco
+  # ]
 
   network_configuration {
     security_groups = [ aws_security_group.sg_ecs.id ]
     subnets = [
-      aws_subnet.cinco_subnet[0].id,
-      aws_subnet.cinco_subnet[1].id
+      var.subnet_id_1,
+      var.subnet_id_2
     ]
     assign_public_ip = true
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.cinco_target_group.arn
+    target_group_arn = var.target_group_arn
     container_name   = var.container_name
     container_port   = var.container_port
   }
@@ -71,7 +71,7 @@ resource "aws_ecs_service" "wwbgame" {
 
 # Scaling microservices develop
 resource "aws_appautoscaling_target" "wwbgame" {
-  resource_id        = "service/cluster-${var.project}/wwbgame"
+  resource_id        = "service/cluster-${var.project}/${var.container_name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
   min_capacity       = var.min_capacity # Cantidad Minima de Microservicios
@@ -89,13 +89,14 @@ resource "aws_appautoscaling_policy" "request-wwbgame" {
   resource_id        = aws_appautoscaling_target.wwbgame.resource_id        # El tipo de recurso y la cadena de identificación única
   scalable_dimension = aws_appautoscaling_target.wwbgame.scalable_dimension # La dimensión escalable del objetivo escalable
   service_namespace  = aws_appautoscaling_target.wwbgame.service_namespace  # El espacio de nombres del servicio de AWS del destino escalable
-  depends_on = [
-    aws_ecs_service.wwbgame, aws_lb.lb_cinco
-  ]
+  # depends_on = [
+  #   aws_ecs_service.wwbgame, aws_lb.lb_cinco
+  # ]
   target_tracking_scaling_policy_configuration {
     predefined_metric_specification {
       predefined_metric_type = "ALBRequestCountPerTarget"
-      resource_label         = "${aws_lb.lb_cinco.arn_suffix}/${aws_lb_target_group.cinco_target_group.arn_suffix}"
+      # resource_label         = "${aws_lb.lb_cinco.arn_suffix}/${aws_lb_target_group.cinco_target_group.arn_suffix}"
+      resource_label         = "${var.lb_arn_suffix}/${var.target_group_arn_suffix}"
     }
 
     target_value       = 100
@@ -113,9 +114,9 @@ resource "aws_appautoscaling_policy" "memory-wwbgame" {
   resource_id        = aws_appautoscaling_target.wwbgame.resource_id
   scalable_dimension = aws_appautoscaling_target.wwbgame.scalable_dimension
   service_namespace  = aws_appautoscaling_target.wwbgame.service_namespace
-  depends_on = [
-    aws_ecs_service.wwbgame, aws_lb.lb_cinco
-  ]
+  # depends_on = [
+  #   aws_ecs_service.wwbgame, aws_lb.lb_cinco
+  # ]
   target_tracking_scaling_policy_configuration {
     predefined_metric_specification {
       predefined_metric_type = "ECSServiceAverageMemoryUtilization"
@@ -128,16 +129,15 @@ resource "aws_appautoscaling_policy" "memory-wwbgame" {
 }
 
 # CPU Memory
-
 resource "aws_appautoscaling_policy" "cpu-wwbgame" {
   name               = "cpu-wwbgame"
   policy_type        = "TargetTrackingScaling"
   resource_id        = aws_appautoscaling_target.wwbgame.resource_id
   scalable_dimension = aws_appautoscaling_target.wwbgame.scalable_dimension
   service_namespace  = aws_appautoscaling_target.wwbgame.service_namespace
-  depends_on = [
-    aws_ecs_service.wwbgame, aws_lb.lb_cinco
-  ]
+  # depends_on = [
+  #   aws_ecs_service.wwbgame, aws_lb.lb_cinco
+  # ]
 
   target_tracking_scaling_policy_configuration {
     predefined_metric_specification {

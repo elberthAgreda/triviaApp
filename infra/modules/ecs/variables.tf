@@ -39,6 +39,18 @@ variable "container_port" {
   description = "Port for container"
 }
 
-# variable "cern_arn" {
-#   description = "Certificate arn for https"
-# }
+variable "cern_arn" {
+  description = "Certificate arn for https"
+}
+
+variable "container_name_wp" {
+
+}
+
+variable "container_url_wp" {
+
+}
+
+variable "container_port_wp" {
+
+}

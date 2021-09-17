@@ -43,8 +43,13 @@ module "ecs" {
   min_capacity      = var.min_capacity
   max_capacity      = var.max_capacity
 
+  # Wordpress Stuff
+  container_name_wp = var.container_name_wp
+  container_url_wp = var.container_url_wp
+  container_port_wp = var.container_port_wp
+
   # Cert for https
-  #cern_arn          = var.cern_arn
+  cern_arn          = var.cern_arn
   
   # CIDR block for create valids subnets
   subnet_cidr_block = var.subnet_cidr_block
