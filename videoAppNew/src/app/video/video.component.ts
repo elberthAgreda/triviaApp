@@ -95,10 +95,6 @@ export class VideoComponent implements OnInit {
         alert('Voto almacenado exitosamente');
       },
       (error) => {
-        if (!error.error) {
-          alert('Voto almacenado exitosamente');
-          return;
-        } 
         alert(error.error.errorMsg);
       }
     );
