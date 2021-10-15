@@ -51,6 +51,12 @@ button{
 button:hover{
     background: #2bbbad;
 }
+
+button:disabled {
+    background: #1e79be;
+    cursor: help;
+}
+
 input[type="password"], input[type="text"] {
     background: transparent;
     width: 300px;

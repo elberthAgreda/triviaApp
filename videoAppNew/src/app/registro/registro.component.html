@@ -2,14 +2,14 @@
     <p class="error" *ngIf="message">{{txtMessage}}</p>
   <img class="logoWWB" src="./assets/img/logo.png">
   <form #registroForm="ngForm" (ngSubmit)="registerForm()" class="flex">
-    <p>Inscribe tu equipo</p>
+    <p>Regístrate</p>
     <input type="text" name="username"
             [(ngModel)]="userRegister.username"
             placeholder="Usuario" required>
     <input type="password" name="password"
             [(ngModel)]="userRegister.password"
             placeholder="Contraseña" required> 
-    <select name="ciudad" [(ngModel)]="userRegister.ciudad">
+    <select name="ciudad" [(ngModel)]="userRegister.ciudad" (ngModelChange)="getAgencias($event)">
         <option disabled >Seleccione una ciudad</option>
         <option *ngFor="let ciudad of ciudades"
                 [value]="ciudad.codigo">{{ciudad.nombre}}</option>
@@ -17,9 +17,9 @@
     <select name="agencia" [(ngModel)]="userRegister.agencia">
         <option disabled>Seleccione una agencia</option>
         <option *ngFor="let agencia of agencias"
-                [value]="agencia.codigo">{{agencia.nombre}}</option>
+                [value]="agencia.codigo">{{agencia.agencia}}</option>
     </select>
-    <button [disabled]="!registroForm.form.valid" type="submit">CREAR GRUPO</button>
+    <button [disabled]="!registroForm.form.valid" type="submit">REGISTRARSE</button>
   </form>
 </section>
 

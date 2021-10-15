@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomSevice } from '../shared/services/custom.service';
 import { LocalService } from '../shared/services/local.service';
@@ -9,7 +9,7 @@ import { ResponseModel } from '../shared/models/response.model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   username:string = '';
   password:string = '';
@@ -21,9 +21,11 @@ export class LoginComponent implements OnInit {
                 public _customService:CustomSevice,
                 public _localService:LocalService ){}
 
-  ngOnInit() {}
-
   authentication():void{
+    if ( this.username === '' || this.password === '' ) {
+      alert('Ingrese usuario y contraseña');
+      return;
+    }
     this.user = {"userName":this.username, "password":this.password}
     this._customService.login<ResponseModel>(this.user).subscribe(
       response => {
@@ -33,7 +35,7 @@ export class LoginComponent implements OnInit {
         }
       }, error => {
         this.stateMessage = true;
-        this.message = "Datos Incorrectos";
+        this.message = error.error.errorMsg;
       }
     );
   }

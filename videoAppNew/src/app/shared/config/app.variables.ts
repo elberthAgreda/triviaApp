@@ -6,7 +6,7 @@ export const AppVariable = {
     puntos: 'scores',
     login: 'v2/login',
     ciudades: 'cities',
-    agencias: 'agencies',
+    agencias: 'v2/cities/',
     videos: 'videos/',
     register: 'v2/register',
     validarUsuarioGrupo: 'validarUsuarioGrupo',

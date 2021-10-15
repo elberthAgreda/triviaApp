@@ -34,8 +34,9 @@ export class CustomSevice{
     }
 
     /** @description obtiene las agencias */
-    public agencies<T>( request:UserData ) : Observable<T>{
-        return this.proxyGame.post<T>(AppVariable.agencias, request);
+    public agencies<T>(ciudad: string) : Observable<T>{
+        const query = `${AppVariable.agencias}${ciudad}/agencies`;
+        return this.proxyGame.getByQuery<T>(query);
     }
 
     /** @description guardar voto */

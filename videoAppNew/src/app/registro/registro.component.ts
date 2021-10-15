@@ -27,21 +27,22 @@ export class RegistroComponent implements OnInit {
   ngOnInit() {
     this.loader = true;
     this.getCiudades();
-    this.getAgencias();
   }
 
   getCiudades():void{
     this._customService.cities<any>(this.userData).subscribe(
       (ciuadades: { listado: any[]; }) => {
         this.ciudades = ciuadades.listado;
+        this.loader = false;
       }
     );
   }
 
-  getAgencias():void{
-    this._customService.agencies<any>(this.userData).subscribe(
+  getAgencias(ciudad: string):void{
+    this._customService.agencies<any>(ciudad).subscribe(
       (agencias: { listado: any[]; }) => { 
         this.agencias = agencias.listado;
+        console.log(this.agencias);
         this.loader = false;
       }
     );
