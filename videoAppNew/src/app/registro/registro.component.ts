@@ -42,7 +42,6 @@ export class RegistroComponent implements OnInit {
     this._customService.agencies<any>(ciudad).subscribe(
       (agencias: { listado: any[]; }) => { 
         this.agencias = agencias.listado;
-        console.log(this.agencias);
         this.loader = false;
       }
     );

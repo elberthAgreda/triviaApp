@@ -49,7 +49,6 @@ export class VideoComponent implements OnInit {
 
   getVideos(): void {
     this._customService.getVideos<any[]>().subscribe((response) => {
-      console.log(response);
       const groupBy = (array: any, key: any) => {
         return array.reduce((result: any, currentValue: any) => {
           (result[currentValue[key]['regional'][0]] = result[currentValue[key]['regional'][0]] || []).push(
@@ -59,7 +58,6 @@ export class VideoComponent implements OnInit {
         }, []);
       };
       this.agencias = groupBy(response, 'data');
-      console.log(this.agencias);
     });
   }
 
