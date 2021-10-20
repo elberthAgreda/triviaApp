@@ -18,7 +18,7 @@ export class VideoComponent implements OnInit {
   responseModel: any;
   userData: any;
   videoData: any;
-  baseData = '../../assets/img/fondovideo.jpg';
+  baseData = '../../assets/img/banner_votacion.jpg';
   baseImage = AppVariable.baseImages;
   imgActivePlayOrPause = 'boton_play-01.svg';
   dataVoto: any;

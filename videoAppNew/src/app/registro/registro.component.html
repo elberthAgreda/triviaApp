@@ -1,26 +1,45 @@
 <section class="flex login">
-    <p class="error" *ngIf="message">{{txtMessage}}</p>
-  <img class="logoWWB" src="./assets/img/logo.png">
+  <p class="error" *ngIf="message">{{ txtMessage }}</p>
+  <img
+    class="logoWWB"
+    src="https://unoraya.com/demo/cinco-video/wp-content/uploads/2021/09/logo_cinco_banner_videos.png"
+  />
   <form #registroForm="ngForm" (ngSubmit)="registerForm()" class="flex">
     <p>Regístrate</p>
-    <input type="text" name="username"
-            [(ngModel)]="userRegister.username"
-            placeholder="Usuario" required>
-    <input type="password" name="password"
-            [(ngModel)]="userRegister.password"
-            placeholder="Contraseña" required> 
-    <select name="ciudad" [(ngModel)]="userRegister.ciudad" (ngModelChange)="getAgencias($event)">
-        <option disabled >Seleccione una ciudad</option>
-        <option *ngFor="let ciudad of ciudades"
-                [value]="ciudad.codigo">{{ciudad.nombre}}</option>
+    <input
+      type="text"
+      name="username"
+      [(ngModel)]="userRegister.username"
+      placeholder="Cédula"
+      required
+    />
+    <input
+      type="password"
+      name="password"
+      [(ngModel)]="userRegister.password"
+      placeholder="Contraseña"
+      required
+    />
+    <label>Seleccione una regional</label>
+    <select
+      name="ciudad"
+      [(ngModel)]="userRegister.ciudad"
+      (ngModelChange)="getAgencias($event)"
+    >
+      <option *ngFor="let ciudad of ciudades" [value]="ciudad.codigo">
+        {{ ciudad.nombre }}
+      </option>
     </select>
+    <label>Seleccione una agencia</label>
     <select name="agencia" [(ngModel)]="userRegister.agencia">
-        <option disabled>Seleccione una agencia</option>
-        <option *ngFor="let agencia of agencias"
-                [value]="agencia.codigo">{{agencia.agencia}}</option>
+      <option *ngFor="let agencia of agencias" [value]="agencia.codigo">
+        {{ agencia.agencia }}
+      </option>
     </select>
-    <button [disabled]="!registroForm.form.valid" type="submit">REGISTRARSE</button>
+    <button [disabled]="!registroForm.form.valid" type="submit">
+      REGISTRARSE
+    </button>
   </form>
 </section>
 
-<loader estado="{{loader}}"></loader>
+<loader estado="{{ loader }}"></loader>

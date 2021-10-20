@@ -1,7 +1,8 @@
 <section class="flex login">
-  <img class="logoWWB" src="../../assets/img/logo.png">
+  <img class="logoWWB"
+        src="https://unoraya.com/demo/cinco-video/wp-content/uploads/2021/09/logo_cinco_banner_videos.png">
   <form #loginForm="ngForm" (ngSubmit)="authentication()" class="flex">
-    <input [(ngModel)]="username" name="username" type="text" placeholder="Usuario del grupo" required>
+    <input [(ngModel)]="username" name="username" type="text" placeholder="Usuario" required>
     <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required>
     <button type="submit">ACCEDER</button>
   </form>

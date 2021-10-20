@@ -21,14 +21,106 @@ html, body{
 .col2{
     flex:2;
 }
+
+@media (max-width: 600px) {
+    section.video-content {
+      background-image: url(assets/img/banner_votacion_ok_responsive.jpg) !important;
+    }
+}
+  
+
 header{
     width: 100%;
     position: relative;
-    background-image: url(https://unoraya.com/demo/cinco-video/wp-content/uploads/2021/09/banner_home.png);
-    background-size: 100% 100%;
+    background-image: url(assets/img/banner-home.png);
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: left center;
+    background-position: center;
     padding-bottom: 50px;
+    overflow: hidden;
+    @media (max-width: 600px) {
+        background-image: url(assets/img/banner_home_responsive.png);
+    }
+    > img {
+        background-image: url(assets/img/vector-home.png);
+        position: absolute;
+        top: 20px;
+        width: 100%;
+        @media (max-width: 2490px) {
+            top: 50px;
+        }
+        @media (max-width: 2280px) {
+            top: 90px;
+        }
+        @media (max-width: 1990px) {
+            top: 130px;
+        }
+        @media (max-width: 1720px) {
+            top: 170px;
+        }
+        @media (max-width: 1520px) {
+            top: 200px;
+        }
+        @media (max-width: 1520px) {
+            top: 200px;
+        }
+        @media (max-width: 1320px) {
+            top: 230px;
+        }
+        @media (max-width: 1140px) {
+            top: 260px;
+        }
+        @media (max-width: 960px) {
+            top: 290px;
+        }
+        @media (max-width: 780px) {
+            top: 320px;
+        }
+        @media (max-width: 630px) {
+            top: 360px;
+        }
+        @media (max-width: 390px) {
+            top: 350px;
+        }
+    }
+}
+
+img.scroll {
+    position: absolute;
+    width: 30px !important;
+    left: 0px;
+    right: 0px;
+    bottom: 130px;
+    @media (max-width: 1840px) {
+        bottom: 80px;
+    }
+    @media (max-width: 900px) {
+        bottom: 20px;
+    }
+}
+
+.item-instrucciones { 
+    li {
+        list-style-type: disc !important;
+        margin-left: 20px;
+        color: #37a6df;
+    }
+    h5 {
+        margin-top: 0px;
+        background-color: #37a6e0;
+        padding: 10px 15px;
+        color: #fff;
+        @media (max-width: 600px) {
+            margin-top: 30px;
+        }
+    }
+    b{
+        color: #37a6e0;
+        margin-right: 10px;
+    }
+}
+.list-gris li {
+    color: #868686;
 }
 
 .pr-50{
@@ -68,6 +160,9 @@ h4.dcmDownl{
     h3 {
         font-weight:900;
         color: #45a6df;
+        @media (max-width: 960px) {
+            font-size: 29px;
+        }
     }
     hr {
         width: 30px;
@@ -115,15 +210,18 @@ img.personaBn {
     bottom: -24px;
     width: 95vw;
     max-width: 1380px;
+    
 }
 div.botonesHeader{
     flex-flow: column;
+    z-index: 99;
     img {
         margin-top: 90px;
     }
 }
 img.lgBanner{
-    width: 420px;
+    max-width: 420px;
+    width: 90%;
 }
 
 section.contenido {
@@ -135,7 +233,11 @@ section.contenido h2{
     text-align: left;
     font-size: 20px;
     margin: 0px;
+    @media (max-width: 600px) {
+        font-size: 17px;
+    }
 }
+
 .detalle-title h2{
     text-transform: uppercase;
     font-size: 35px;
@@ -163,14 +265,30 @@ margin-top: 10px;
     border-left: solid 1px #868686;
     padding-left: 0px;
 }
-
+div#instrucciones {
+    max-width: 720px;
+    float: none;
+    margin: 0px auto;
+}
 .content-instr {
     flex-flow: row wrap;
     justify-content: center;
 }
 .item-instrucciones {
     margin: 20px;
-    width: 300px;
+    flex: 1;
+}
+.item-instrucciones.flex {
+    min-width: 90%;
+    @media (max-width: 900px) {
+        flex-flow: column;
+    }
+    .item-instrucciones__first {
+        margin-right: 5%;
+        @media (max-width: 900px) {
+            margin-right: 0px;
+        }
+    }
 }
 .item-instrucciones__header img {
     width: 50px;
@@ -196,6 +314,14 @@ margin-top: 10px;
     font-size: 20px;
     margin: 0px 10px;
 }
+
+p.nota {
+    margin-top: -10px;
+    border-top: solid 2px #d5e1ef;
+    padding: 30px;
+    padding-top: 20px;
+}
+
 .instrucciones-footer {
     text-align: center;
     h2, p {
@@ -284,6 +410,9 @@ p{
     text-align: justify;
     font-size: 15px;
     color: #868686;
+    @media (max-width: 600px) {
+        text-align: center;
+    }
 }
 footer{
     background: #ededed;
@@ -392,6 +521,12 @@ footer > img{
 footer h5 {
     text-align: center;
     font-size: 17px;
+    @media (max-width: 600px) {
+        font-size: 13px;
+        width: 90%;
+        margin: 0px auto;
+        margin-top: 20px;
+    }
     b {
         color: #0d5e9b;
     }

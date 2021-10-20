@@ -3,14 +3,16 @@
   <img src="{{baseImage}}logo_header.png">
 
   <div class="flex">
-    <img src="{{baseImage}}logo_cinco_banner_videos.png">
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo quaerat quasi delectus culpa 
-      dignissimos error quidem accusantium nulla sequi nostrum, tenetur debitis ipsam vel possimus 
-      voluptatibus, omnis deleniti repellat ad.
+      Conoce todas las notas  periodísticas que han hecho tus compañeros en otras Agencias, PDA´s y Áreas del país.
+      <br><br>
+      Haz click en la que quieras reproducir y vota por tus 3 videos favoritos.
+      <br><br>
+      <b>Recuerda que no puedes votar por tu propia Agencia, PDA o Área.</b>
     </p>
   </div>
-
+  <img class="scroll" src="assets/img/scroll.png">
+  <img class="vector-interna" src="assets/img/vector-home.png">
 </section>
 
 <section class="flex contenido-video" *ngIf="showVideo">
@@ -18,9 +20,8 @@
     <source [src]="videoData.video" type="video/mp4">
   </video>
   
-  <div class="options-video-controls">
-    <img (click)="playPause()"
-          width="23px"
+  <div class="flex fullCenter options-video-controls" (click)="playPause()">
+    <img  width="23px"
           height="27px"
          src="{{baseImage + imgActivePlayOrPause}}">
   </div>
@@ -37,19 +38,19 @@
     <h1>{{videoData.titulo}}</h1>
     <p>{{videoData.descripcion}}</p>
   </div>
-  <a *ngIf="videoData.video != null"
+  <button *ngIf="videoData.video != null"
      class="btnVotar"
      [ngClass]="{'hide': hideContent}"
      (click)="saveVote();" >
      <label>Vota por este video</label>
     <img width="30" src="{{baseImage}}icono_votar-01.svg">
-  </a>
+  </button>
 </section>
 
 <section class="videos-listado">
   <div class="items-video">
     <div *ngFor="let agencia of agencias">
-      <h3 *ngIf="agencia">Regional {{agencia[0].data.regional[0]}}</h3>
+      <h3 *ngIf="agencia">{{agencia[0].data.regional_name[0]}}</h3>
       <div class="flex rw-col">
         <div (click)="viewAgencie(item);" *ngFor="let item of agencia" class="item-video">
           <h2>{{item.data.titulo}}</h2>
