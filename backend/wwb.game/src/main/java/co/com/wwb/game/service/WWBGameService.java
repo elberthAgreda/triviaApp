@@ -320,7 +320,7 @@ public final class WWBGameService {
             if (ciudades) {
                 resultado.setTipo("CIUDADES");
                 //consulto los registros de ciudades
-                Iterable<Ciudad> all = ciudadRepository.findAll();
+                Iterable<Ciudad> all = ciudadRepository.findAllByOrderByNombreAsc();
                 for (Ciudad ciudad : all) {
                     resultado.getListado().add(new Elemento(ciudad.getCodigo(), ciudad.getNombre(),
                             ciudad.getCodigo()));
