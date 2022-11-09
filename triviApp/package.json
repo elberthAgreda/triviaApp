@@ -28,7 +28,7 @@
     "ng-animate": "0.3.4"
   },
   "devDependencies": {
-    "@angular/cli": "~1.7.0",
+    "@angular/cli": "~14.2.9",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
     "@types/jasmine": "~2.8.3",
